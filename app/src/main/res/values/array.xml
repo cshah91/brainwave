@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="modules_list">
+        <item>Counseling Services</item>
+        <item>Flower Therapy</item>
+        <item>Pari Herbal Products</item>
+        <item>Play Therapy</item>
+        <item>Handwriting Analysis</item>
+        <item>Astrology</item>
+    </string-array>
+
+    <array name="modules_icons">
+        <item>@mipmap/icon_counseling</item>
+        <item>@mipmap/icon_flower</item>
+        <item>@mipmap/icon_herbal</item>
+        <item>@mipmap/icon_play</item>
+        <item>@mipmap/icon_handwriting</item>
+        <item>@mipmap/icon_astro</item>
+    </array>
+</resources>
