@@ -1,5 +1,6 @@
 package nksystems.brainwave;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -78,7 +79,8 @@ public class activity_home_menu extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_counseling) {
-            // Handle the camera action
+            Intent intent = new Intent(this, activity_counselling_services.class);
+            startActivity(intent);
         } else if (id == R.id.nav_flower) {
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_play) {
@@ -89,7 +91,11 @@ public class activity_home_menu extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_astro) {
             drawer.closeDrawer(GravityCompat.START);
-        }else if(id==R.id.nav_close){
+        }else if(id == R.id.nav_about){
+            Intent intent = new Intent(this, activity_about_brainwave.class);
+            startActivity(intent);
+        }
+        else if(id==R.id.nav_close){
             drawer.closeDrawer(GravityCompat.START);
         }
 

@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">BrainWave</string>
-    <string name="title_activity_home_menu">activity_home_menu</string>
+    <string name="app_name">BRAINWAVE</string>
+    <string name="title_activity_home_menu">BRAINWAVE</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
 </resources>

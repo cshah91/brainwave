@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="bw_name"><u>BRAINWAVE PROFILE</u></string>
+    <string name="bw_intro">
+        Brainwave literally means rapid fluctuations of voltage between parts of the cerebral cortex that are detectable with an
+        electroencephalograph. Brainwave further also refers to an idea, a notion, an inspiration, a concept, a conviction or a
+        model. This means to say that a Brainwave is a clever plan or notion.
+    </string>
+    <string name="bw_history_title"><u>Our History</u></string>
+    <string name="bw_history_info1">
+        Brainwave Educational &amp; Counselling Services was started in the year 2011 to holistically cater to all those who were
+        in need of resolving their emotional, behavioural and learning related concerns.
+    </string>
+    <string name="bw_history_info2">
+        Brainwave is committed to meet the <u>personal, academic and professional needs</u> of an individual in an <u>affable</u>
+        but <u>proficient</u> milieu. We take utmost care to maintain <u>confidentiality</u>. We are <u>customer centered</u>.
+    </string>
+    <string name="bw_history_info3">
+        Brainwave offers effective counselling services to help you maintain your mental well – being.
+    </string>
+    <string name="bw_founder_title"><u>Founder</u></string>
+    <string name="bw_founder_info1">
+        Brainwave is owned and managed by Ms. Jenil Jariwala, a Counselling Psychologist, R.E.B.T. Therapist &amp; a Graphologist
+        by profession. She has over 15 years of experience in the education sector.
+    </string>
+    <string name="bw_founder_info2">
+        She has acquired her post graduate Diploma in School Counselling and a Masters in Career &amp; Developmental Counselling
+        degrees from S.N.D.T. Women\'s University. She has also undertaken a foundation course on Education of Children with
+        Learning Disabilities from Rehabilitation Council of India (RCI) as well as completed a basic and advanced course on
+        Rational Emotive Behaviour Therapy and is now a trained R.E.B.T. Therapist for adults as well as children. She has also
+        completed her basic and advanced course in Graphology.
+    </string>
+    <string name="bw_founder_info3">
+        In the course of her career, she has coached innumerable young minds and provided them the scaffolding and buoyancy to
+        accomplish their optimum abilities.
+    </string>
+    <string name="bw_founder_info4">
+        She has been working with children, parents, teachers and adults  across all education boards; NGOs; Child Guidance Clinic;
+        Remedial Centre; Guidance &amp; Counselling Department, S.N.D.T. Women\'s University, Churchgate; Distance Education
+        Department, S.N.D.T. Women\'s University, Juhu. She also conducts one on one personal Counselling and Language Sessions for
+        children, parents and adults to resolve academic, behavioral, emotional or career concerns.
+    </string>
+
+    <string name="bw_slogan_title"><u>Our Slogan</u></string>
+    <string name="bw_slogan_info">
+        "To build a healthy society" is our slogan. It appropriately reflects our attitude and approach when providing services for
+        students, their parents and our education partners.
+    </string>
+
+    <string name="bw_mission_title"><u>Our Mission</u></string>
+    <string name="bw_mission_info">
+        We seek to develop in every individual means to lead a happy and satisfying life, to empower people to sustain well in this
+        dynamic and highly competitive world using their strengths constructively. A unique plan is chalked out for every individual
+        who seeks our services as we strongly believe that every individual is unique and exceptional.
+    </string>
+</resources>
