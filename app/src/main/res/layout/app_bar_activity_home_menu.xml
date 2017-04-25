@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:id="@+id/rootLayout"
     tools:context="nksystems.brainwave.activity_home_menu">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
@@ -20,7 +23,56 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_activity_home_menu" />
+    <!--<include layout="@layout/about_brainwave_layout" android:id="@+id/layoutManager"/>
+-->
 
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/contentAbout"
+        android:visibility="visible"
+        />
 
-</android.support.design.widget.CoordinatorLayout>
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/contentCounselling"
+        android:visibility="gone"
+        />
+
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/contentFlower"
+        android:visibility="gone"
+        />
+
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/contentPari"
+        android:visibility="gone"
+        />
+
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/contentPlay"
+        android:visibility="gone"
+        />
+
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/contentAstrology"
+        android:visibility="gone"
+        />
+
+    <ViewStub
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/contentHandwriting"
+        android:visibility="gone"
+        />
+
+</LinearLayout>
