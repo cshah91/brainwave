@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+    <ExpandableListView
+        android:id="@+id/expandContact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/llAboutCounsel">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What is Flower Therapy?"
+            android:textColor="#000"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnAboutFlower"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="24dp"
+            android:gravity="center_vertical|center"
+            android:text="Know More"
+            android:textSize="14dp"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/llAboutCounsel">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rgFlower">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Schedule an Appointment"
+                android:id="@+id/rbfSchedule"/>
+
+            <ViewStub
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/vsfSchedule"
+                android:layout="@layout/contact_expand_item_layout"
+                android:layout_below="@+id/rbfSchedule"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Counselling Services"
+                android:id="@+id/rbfCounselling"
+                android:layout_below="@+id/vsfSchedule" />
+
+            <ViewStub
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/vsfCounselling"
+                android:layout="@layout/contact_expand_item_layout"
+                android:layout_below="@+id/rbfCounselling"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Counselling Services with Medicine"
+                android:id="@+id/rbfCounsellingMeds"
+                android:layout_below="@+id/rbfCounselling"/>
+
+            <ViewStub
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/vsfCounsellingMeds"
+                android:layout="@layout/contact_expand_item_layout"
+                android:layout_below="@+id/rbfCounsellingMeds"/>
+        </RadioGroup>
+
+    </ScrollView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fabFlowerTherapy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_dialog_info"
+        app:backgroundTint="@color/colorAccent" />
+
+</RelativeLayout>

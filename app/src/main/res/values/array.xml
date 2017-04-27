@@ -17,4 +17,10 @@
         <item>@mipmap/icon_handwriting</item>
         <item>@mipmap/icon_astro</item>
     </array>
+
+    <string-array name="contact_type_list">
+        <item>Telephonic</item>
+        <item>Skype</item>
+        <item>Personal</item>
+    </string-array>
 </resources>
