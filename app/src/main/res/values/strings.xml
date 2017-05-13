@@ -6,5 +6,10 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="product_list">Products</string>
+    <string name="tips">Tips</string>
+    <string name="cart">Add to Cart</string>
+
+    <string name="label_products_list">List of Products</string>
 
 </resources>

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relContact"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/relContact"
     android:layout_marginBottom="@dimen/activity_vertical_margin"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin">
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin">
 
     <Spinner
         android:id="@+id/spnContacttype"
@@ -18,64 +18,68 @@
         android:id="@+id/viewCounselName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/spnContacttype"
+        android:paddingTop="10dp"
         android:text="Name"
-        android:textColor="#000"
-        android:layout_below="@+id/spnContacttype"/>
+        android:textColor="#000" />
 
     <EditText
+        android:id="@+id/txtCounselName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtCounselName"
-        android:layout_below="@+id/viewCounselName"/>
+        android:layout_below="@+id/viewCounselName" />
 
     <TextView
         android:id="@+id/viewCounselNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtCounselName"
+        android:paddingTop="10dp"
         android:text="Contact Number"
         android:textColor="#000" />
 
     <EditText
+        android:id="@+id/txtCounselNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtCounselNumber"
-        android:layout_below="@+id/viewCounselNumber"/>
+        android:layout_below="@+id/viewCounselNumber" />
 
     <TextView
         android:id="@+id/viewCounselEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtCounselNumber"
+        android:paddingTop="10dp"
         android:text="Email"
         android:textColor="#000" />
 
     <EditText
+        android:id="@+id/txtCounselEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtCounselEmail"
-        android:layout_below="@+id/viewCounselEmail"/>
+        android:layout_below="@+id/viewCounselEmail" />
 
     <TextView
         android:id="@+id/viewCounselDateTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtCounselEmail"
+        android:paddingTop="10dp"
         android:text="Date &amp; Time"
         android:textColor="#000" />
 
     <LinearLayout
+        android:id="@+id/linearDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearDate"
+        android:layout_below="@+id/viewCounselDateTime"
         android:orientation="horizontal"
-        android:weightSum="1"
-        android:layout_below="@+id/viewCounselDateTime">
+        android:weightSum="1">
 
         <EditText
+            android:id="@+id/txtDueDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtDueDate"
             android:layout_weight="0.99" />
 
         <ImageButton
@@ -83,31 +87,33 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_toRightOf="@+id/txtDueDate"
-            android:src="@android:drawable/ic_menu_my_calendar" />
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_date_range_black_48dp" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/linearTime"
-        android:orientation="horizontal"
         android:layout_below="@+id/linearDate"
+        android:orientation="horizontal"
         android:weightSum="1">
 
         <EditText
+            android:id="@+id/txtDueTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtDueTime"
-            android:paddingBottom="@dimen/activity_horizontal_margin"
-            android:layout_weight="0.99" />
+            android:layout_weight="0.99"
+            android:paddingBottom="@dimen/activity_horizontal_margin" />
 
         <ImageButton
             android:id="@+id/btnTime"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_toRightOf="@+id/txtDueTime"
-            android:src="@android:drawable/ic_menu_my_calendar" />
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_schedule_black_48dp" />
 
     </LinearLayout>
 

@@ -8,8 +8,9 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,36 +21,51 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewStub;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ExpandableListView;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
+
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 
 public class activity_home_menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ViewStub contentAbout,contentCounselling,contentFlower,contentPlay,contentHandwriting,contentAstrology, contentPari;
+    ViewStub contentAbout,contentCounselling,contentFlower,contentPlay,contentHandwriting,contentAstrology, contentPari,
+    contentProducts, contentTips;
     LinearLayout root;
     /*ExpandableListView expandableListView;
     ExpandableListAdapter listAdapter;
     List<String> listDataHeader;
     HashMap<String, List<String>> listDataChild;*/
     ViewStub stub1, stub2, stub3, stubf1, stubf2, stubf3, stubh1, stubh2, stubh3;
+    DatabaseReference mReference;
+    StorageReference sReference;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
 
     protected DrawerLayout drawerLayout;
     @Override
@@ -58,7 +74,7 @@ public class activity_home_menu extends AppCompatActivity
         setContentView(R.layout.activity_home_menu);
 
         contentAbout=(ViewStub)findViewById(R.id.contentAbout);
-        contentAbout.setLayoutResource(R.layout.about_brainwave_layout);
+        contentAbout.setLayoutResource(R.layout.activity_card_view);
         contentAbout.inflate();
 
         contentCounselling=(ViewStub)findViewById(R.id.contentCounselling);
@@ -81,6 +97,14 @@ public class activity_home_menu extends AppCompatActivity
 
         contentAstrology=(ViewStub)findViewById(R.id.contentAstrology);
 
+        contentProducts=(ViewStub)findViewById(R.id.contentProducts);
+        contentProducts.setLayoutResource(R.layout.product_names_list_layout);
+        contentProducts.inflate();
+
+        contentTips=(ViewStub)findViewById(R.id.contentTips);
+        contentTips.setLayoutResource(R.layout.tips_layout);
+        contentTips.inflate();
+
         root=(LinearLayout)findViewById(R.id.rootLayout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -95,6 +119,8 @@ public class activity_home_menu extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        actionAboutBrainwave();
     }
 
     @Override
@@ -119,14 +145,21 @@ public class activity_home_menu extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        int id = item.getItemId();
+
+        if(id == R.id.menu_products){
+            switchContent(contentProducts);
+            actionsProductsList();
+        }
+        else if(id == R.id.menu_tips){
+            switchContent(contentTips);
+            actionTips();
         }
 
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -150,6 +183,7 @@ public class activity_home_menu extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_herbal) {
             switchContent(contentPari);
+            actionsPariHerbalProducts();
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_handwriting) {
             switchContent(contentHandwriting);
@@ -159,6 +193,7 @@ public class activity_home_menu extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         }else if(id == R.id.nav_about){
             switchContent(contentAbout);
+            actionAboutBrainwave();
             drawer.closeDrawer(GravityCompat.START);
         }
         else if(id==R.id.nav_close){
@@ -289,6 +324,11 @@ public class activity_home_menu extends AppCompatActivity
                 RadioButton radioButton = (RadioButton) findViewById(checkedId);
                 if(radioButton.getId() == R.id.rbfSchedule){
                     stubf1.inflate();
+                    Spinner spinner = (Spinner) findViewById(R.id.spnContacttype);
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activity_home_menu.this,
+                            R.array.contact_type_list, android.R.layout.simple_spinner_item);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner.setAdapter(adapter);
                     findViewById(R.id.vsfCounselling).setVisibility(View.GONE);
                     findViewById(R.id.vsfCounsellingMeds).setVisibility(View.GONE);
 
@@ -352,6 +392,11 @@ public class activity_home_menu extends AppCompatActivity
                 RadioButton radioButton = (RadioButton) findViewById(checkedId);
                 if(radioButton.getId() == R.id.rbhSchedule){
                     stubh1.inflate();
+                    Spinner spinner = (Spinner) findViewById(R.id.spnContacttype);
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activity_home_menu.this,
+                            R.array.contact_type_list, android.R.layout.simple_spinner_item);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    spinner.setAdapter(adapter);
                     findViewById(R.id.vshCounselling).setVisibility(View.GONE);
                     findViewById(R.id.vshCounsellingMeds).setVisibility(View.GONE);
 
@@ -477,5 +522,126 @@ public class activity_home_menu extends AppCompatActivity
                 startActivity(Intent.createChooser(email, "Choose an email client:"));
             }
         });
+    }
+
+    public void actionsPariHerbalProducts(){
+        final GridView productslist;
+        final ProgressBar progress;
+        productslist=(GridView)findViewById(R.id.gvBooksList);
+        progress=(ProgressBar)findViewById(R.id.progress);
+
+        FirebaseApp.initializeApp(this);
+
+        mReference= FirebaseDatabase.getInstance().getReference("products");
+        sReference= FirebaseStorage.getInstance().getReference("imagethumbnails");
+        final CustomGridItem item= new CustomGridItem(this,sReference,mReference);
+        mReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                item.notifyDataSetChanged();
+                progress.setVisibility(View.GONE);
+                productslist.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        productslist.setAdapter(item);
+        productslist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TextView tvTitle=(TextView)view.findViewById(R.id.tvTitle);
+                String title=tvTitle.getText().toString();
+
+                Intent intent=new Intent(activity_home_menu.this,activity_product_info.class);
+                intent.putExtra("title",title);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void actionAboutBrainwave(){
+        mRecyclerView = (RecyclerView) findViewById(R.id.recViewAboutBW);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new CardViewAdapter(getDataSet());
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private List<AboutBrainwaveObject> getDataSet() {
+        List<AboutBrainwaveObject> results = new ArrayList<AboutBrainwaveObject>();
+        String title = getResources().getString(R.string.bw_name);
+        String content = getResources().getString(R.string.bw_intro);
+        AboutBrainwaveObject obj = new AboutBrainwaveObject(title, content);
+        results.add(obj);
+
+        title = getResources().getString(R.string.bw_history_title);
+        content = getResources().getString(R.string.bw_history_info1) + "\n\n" +
+                getResources().getString(R.string.bw_history_info2) + "\n\n" +
+                getResources().getString(R.string.bw_history_info3);
+        AboutBrainwaveObject obj1 = new AboutBrainwaveObject(title, content);
+        results.add(obj1);
+
+        title = getResources().getString(R.string.bw_founder_title);
+        content = getResources().getString(R.string.bw_founder_info1) + "\n\n" +
+                getResources().getString(R.string.bw_founder_info2) + "\n\n" +
+                getResources().getString(R.string.bw_founder_info3) + "\n\n" +
+                getResources().getString(R.string.bw_founder_info4);
+        AboutBrainwaveObject obj2 = new AboutBrainwaveObject(title, content);
+        results.add(obj2);
+
+        title = getResources().getString(R.string.bw_slogan_title);
+        content = getResources().getString(R.string.bw_slogan_info);
+        AboutBrainwaveObject obj3 = new AboutBrainwaveObject(title, content);
+        results.add(obj3);
+
+        title = getResources().getString(R.string.bw_mission_title);
+        content = getResources().getString(R.string.bw_mission_info);
+        AboutBrainwaveObject obj4 = new AboutBrainwaveObject(title, content);
+        results.add(obj4);
+
+        for(int i=0;i<results.size();i++){
+            Log.i("activity_home_menu","Title: " + results.get(i).getmText1());
+            Log.i("activity_home_menu","Content: " + results.get(i).getmText2());
+        }
+
+        return results;
+    }
+
+    public void actionsProductsList(){
+
+        final List<String> productList = new ArrayList();
+
+        FirebaseApp.initializeApp(this);
+
+        mReference= FirebaseDatabase.getInstance().getReference("products");
+        mReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int i = 0;
+                for (DataSnapshot data :dataSnapshot.getChildren()){
+                    productList.add(data.getKey());
+                }
+
+                ArrayAdapter adapter = new ArrayAdapter(activity_home_menu.this,R.layout.product_names_list_item,productList);
+                ListView listView = (ListView) findViewById(R.id.list_view_products);
+                listView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    public void actionTips(){
+
     }
 }

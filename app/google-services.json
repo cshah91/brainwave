@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1046286299472",
+    "firebase_url": "https://brainwave-17039.firebaseio.com",
+    "project_id": "brainwave-17039",
+    "storage_bucket": "brainwave-17039.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046286299472:android:205d189e30d06862",
+        "android_client_info": {
+          "package_name": "nksystems.brainwave"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046286299472-8ek79q42ortcadtehsn0mpi64mmgdnbd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nksystems.brainwave",
+            "certificate_hash": "0da7897a79be0a73546b3d0271ae7547c2cc1f1c"
+          }
+        },
+        {
+          "client_id": "1046286299472-ucqsfefq5fct40h2i7hietjh2c6dbfhn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAAEfm-rbft3yIeW5maH4Dw7tSeNL3yrec"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1046286299472-ucqsfefq5fct40h2i7hietjh2c6dbfhn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

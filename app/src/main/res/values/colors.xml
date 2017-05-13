@@ -3,5 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="side_bar_color">#b679f7</color>
+    <color name="side_bar_color">#9765fd</color>
+    <color name="gridViewDivider">#FAFAFA</color>
+    <color name="disabledButton">#9E9E9E</color>
 </resources>

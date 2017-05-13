@@ -21,6 +21,7 @@
             android:name=".activity_home_menu"
             android:label="@string/title_activity_home_menu"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".activity_product_info" />
     </application>
 
 </manifest>

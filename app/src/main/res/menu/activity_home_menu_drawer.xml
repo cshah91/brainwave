@@ -25,7 +25,8 @@
         <item
             android:id="@+id/nav_astro"
             android:icon="@mipmap/icon_astro_alt"
-            android:title="Astrology" />
+            android:title="Astrology"
+            android:visible="false"/>
 
         <item
             android:id="@+id/nav_about"
