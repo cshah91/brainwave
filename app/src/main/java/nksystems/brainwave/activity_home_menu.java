@@ -66,6 +66,7 @@ public class activity_home_menu extends AppCompatActivity
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
+    Dialog commonDialog;
 
     protected DrawerLayout drawerLayout;
     @Override
@@ -218,42 +219,7 @@ public class activity_home_menu extends AppCompatActivity
 
     }
 
-    //FOR COUNSELLING SERVICES
-    /*private void prepareListData(){
-        listDataHeader = new ArrayList<String>();
-        listDataChild = new HashMap<String, List<String>>();
-
-        // Adding child data
-        listDataHeader.add("Schedule an Appointment");
-        listDataHeader.add("Counselling Services");
-        listDataHeader.add("Counselling Services + Medicines");
-
-        // Adding child data
-        List<String> top250 = new ArrayList<String>();
-        top250.add("The Shawshank Redemption");
-
-        List<String> nowShowing = new ArrayList<String>();
-        nowShowing.add("The Conjuring");
-
-        List<String> comingSoon = new ArrayList<String>();
-        comingSoon.add("2 Guns");
-
-        listDataChild.put(listDataHeader.get(0), top250); // Header, Child data
-        listDataChild.put(listDataHeader.get(1), nowShowing);
-        listDataChild.put(listDataHeader.get(2), comingSoon);
-    }*/
-
     public void actionsCounsellingServices(){
-
-            /*expandableListView = (ExpandableListView) findViewById(R.id.expandContact);
-
-            // preparing list data
-            prepareListData();
-
-            listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
-
-            // setting list adapter
-            expandableListView.setAdapter(listAdapter);*/
 
         stub1 = (ViewStub) findViewById(R.id.vscSchedule);
         stub2 = (ViewStub) findViewById(R.id.vscCounselling);
@@ -274,8 +240,8 @@ public class activity_home_menu extends AppCompatActivity
                     findViewById(R.id.vscCounselling).setVisibility(View.GONE);
                     findViewById(R.id.vscCounsellingMeds).setVisibility(View.GONE);
 
-                    setDateTimePicker();
-                    setAppointment(1);
+                    //setDateTimePicker();
+                    //setAppointment(1);
                 }
                 else if(radioButton.getId() == R.id.rbcCounselling){
                     stub2.inflate();
@@ -294,21 +260,23 @@ public class activity_home_menu extends AppCompatActivity
         btnAboutCounselling.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(activity_home_menu.this, android.R.style.Theme_Dialog);
+                Dialog dialog = new Dialog(activity_home_menu.this);
                 dialog.setContentView(R.layout.about_counselling_services_layout);
                 dialog.show();
             }
         });
 
-            /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabCounselling);
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Dialog dialog = new Dialog(activity_home_menu.this, android.R.style.Theme_Dialog);
-                    dialog.setContentView(R.layout.about_counselling_services_layout);
-                    dialog.show();
-                }
-            });*/
+        Button btnTelephone = (Button) findViewById(R.id.btnAboutCounselling);
+        btnTelephone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(activity_home_menu.this);
+                dialog.setContentView(R.layout.contact_expand_item_layout);
+                setDateTimePicker(dialog);
+                setAppointment(1,dialog);
+                dialog.show();
+            }
+        });
     }
 
     public void actionsFlowerTherapy(){
@@ -332,8 +300,8 @@ public class activity_home_menu extends AppCompatActivity
                     findViewById(R.id.vsfCounselling).setVisibility(View.GONE);
                     findViewById(R.id.vsfCounsellingMeds).setVisibility(View.GONE);
 
-                    setDateTimePicker();
-                    setAppointment(2);
+                    //setDateTimePicker();
+                    //setAppointment(2);
                 }
                 else if(radioButton.getId() == R.id.rbfCounselling){
                     stubf2.inflate();
@@ -358,28 +326,20 @@ public class activity_home_menu extends AppCompatActivity
             }
         });
 
-            /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabFlowerTherapy);
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Dialog dialog = new Dialog(activity_home_menu.this, android.R.style.Theme_Dialog);
-                    dialog.setContentView(R.layout.about_counselling_services_layout);
-                    dialog.show();
-                }
-            });*/
+        /*Button btnTelephone = (Button) findViewById(R.id.btnAboutCounselling);
+        btnTelephone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(activity_home_menu.this);
+                dialog.setContentView(R.layout.contact_expand_item_layout);
+                setDateTimePicker(dialog);
+                setAppointment(2,dialog);
+                dialog.show();
+            }
+        });*/
     }
 
     public void actionsHandwritingServices(){
-
-            /*expandableListView = (ExpandableListView) findViewById(R.id.expandContact);
-
-            // preparing list data
-            prepareListData();
-
-            listAdapter = new ExpandableListAdapter(this, listDataHeader, listDataChild);
-
-            // setting list adapter
-            expandableListView.setAdapter(listAdapter);*/
 
         stubh1 = (ViewStub) findViewById(R.id.vshSchedule);
         stubh2 = (ViewStub) findViewById(R.id.vshCounselling);
@@ -400,8 +360,8 @@ public class activity_home_menu extends AppCompatActivity
                     findViewById(R.id.vshCounselling).setVisibility(View.GONE);
                     findViewById(R.id.vshCounsellingMeds).setVisibility(View.GONE);
 
-                    setDateTimePicker();
-                    setAppointment(3);
+                    //setDateTimePicker();
+                    //setAppointment(3);
                 }
                 else if(radioButton.getId() == R.id.rbhCounselling){
                     stubh2.inflate();
@@ -426,22 +386,26 @@ public class activity_home_menu extends AppCompatActivity
             }
         });
 
-            /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fabHandwriting);
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Dialog dialog = new Dialog(activity_home_menu.this, android.R.style.Theme_Dialog);
-                    dialog.setContentView(R.layout.about_handwriting_layout);
-                    dialog.show();
-                }
-            });*/
+        /*Button btnTelephone = (Button) findViewById(R.id.btnAboutCounselling);
+        btnTelephone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(activity_home_menu.this);
+                dialog.setContentView(R.layout.contact_expand_item_layout);
+                setDateTimePicker(dialog);
+                setAppointment(3,dialog);
+                dialog.show();
+            }
+        });*/
     }
 
-    public void setDateTimePicker(){
+    public void setDateTimePicker(Dialog dialog){
         ImageButton btnDate, btnTime;
 
-        btnDate = (ImageButton) findViewById(R.id.btnDate);
-        btnTime = (ImageButton) findViewById(R.id.btnTime);
+        btnDate = (ImageButton) dialog.findViewById(R.id.btnDate);
+        btnTime = (ImageButton) dialog.findViewById(R.id.btnTime);
+
+        commonDialog = dialog;
 
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -457,7 +421,7 @@ public class activity_home_menu extends AppCompatActivity
                 DatePickerDialog datePickerDialog = new DatePickerDialog(activity_home_menu.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        EditText txtDate = (EditText) findViewById(R.id.txtDueDate);
+                        EditText txtDate = (EditText) commonDialog.findViewById(R.id.txtDueDate);
                         txtDate.setText(day + "-" + (month+1) + "-" + year);
                     }
                 },mYear,mMonth,mDay);
@@ -477,7 +441,7 @@ public class activity_home_menu extends AppCompatActivity
                 TimePickerDialog timePickerDialog = new TimePickerDialog(activity_home_menu.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
-                        EditText txtTime = (EditText) findViewById(R.id.txtDueTime);
+                        EditText txtTime = (EditText) commonDialog.findViewById(R.id.txtDueTime);
                         txtTime.setText(hour + ":" + minute);
                     }
                 },mHour,mMinute,false);
@@ -486,28 +450,29 @@ public class activity_home_menu extends AppCompatActivity
         });
     }
 
-    public void setAppointment(final int id){
-        Button btnCounselSetAppointment = (Button) findViewById(R.id.btnCounselSetAppointment);
+    public void setAppointment(final int id, Dialog dialog){
+        commonDialog = dialog;
+        Button btnCounselSetAppointment = (Button) dialog.findViewById(R.id.btnCounselSetAppointment);
         btnCounselSetAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 EditText txtName, txtEmail, txtContact, txtDate, txtTime;
                 Spinner spnContactType;
-                txtName = (EditText) findViewById(R.id.txtCounselName);
-                txtEmail = (EditText) findViewById(R.id.txtCounselEmail);
-                txtContact = (EditText) findViewById(R.id.txtCounselNumber);
-                txtDate = (EditText) findViewById(R.id.txtDueDate);
-                txtTime = (EditText) findViewById(R.id.txtDueTime);
+                txtName = (EditText) commonDialog.findViewById(R.id.txtCounselName);
+                txtEmail = (EditText) commonDialog.findViewById(R.id.txtCounselEmail);
+                txtContact = (EditText) commonDialog.findViewById(R.id.txtCounselNumber);
+                txtDate = (EditText) commonDialog.findViewById(R.id.txtDueDate);
+                txtTime = (EditText) commonDialog.findViewById(R.id.txtDueTime);
                 spnContactType = (Spinner) findViewById(R.id.spnContacttype);
 
                 String to = "charmyshah91@gmail.com";
                 String subject = "";
                 if(id == 1)
-                    subject = "Counselling Services - " + spnContactType.getSelectedItem().toString() + ": Appointment";
+                    subject = "Counselling Services - " + ": Appointment";
                 else if(id == 2)
-                    subject = "Flower Therapy - " + spnContactType.getSelectedItem().toString() + ": Appointment";
+                    subject = "Flower Therapy - " + ": Appointment";
                 else if(id == 3)
-                    subject = "Handwriting & Signature Analysis - " + spnContactType.getSelectedItem().toString() + ": Appointment";
+                    subject = "Handwriting & Signature Analysis - " + ": Appointment";
                 String message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
                         "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
                         "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +

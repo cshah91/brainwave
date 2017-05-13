@@ -9,123 +9,150 @@
     android:layout_marginRight="@dimen/activity_horizontal_margin"
     android:layout_marginTop="@dimen/activity_vertical_margin">
 
-    <Spinner
-        android:id="@+id/spnContacttype"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/viewCounselName"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spnContacttype"
-        android:paddingTop="10dp"
-        android:text="Name"
-        android:textColor="#000" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/txtCounselName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/viewCounselName" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/viewCounselNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtCounselName"
-        android:paddingTop="10dp"
-        android:text="Contact Number"
-        android:textColor="#000" />
+            <Spinner
+                android:id="@+id/spnContacttype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"/>
 
-    <EditText
-        android:id="@+id/txtCounselNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/viewCounselNumber" />
+            <TextView
+                android:id="@+id/viewCounselName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spnContacttype"
+                android:paddingTop="10dp"
+                android:text="Name"
+                android:textColor="#000" />
 
-    <TextView
-        android:id="@+id/viewCounselEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtCounselNumber"
-        android:paddingTop="10dp"
-        android:text="Email"
-        android:textColor="#000" />
+            <EditText
+                android:id="@+id/txtCounselName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewCounselName" />
 
-    <EditText
-        android:id="@+id/txtCounselEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/viewCounselEmail" />
+            <TextView
+                android:id="@+id/viewCounselNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtCounselName"
+                android:paddingTop="10dp"
+                android:text="Contact Number"
+                android:textColor="#000" />
 
-    <TextView
-        android:id="@+id/viewCounselDateTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtCounselEmail"
-        android:paddingTop="10dp"
-        android:text="Date &amp; Time"
-        android:textColor="#000" />
+            <EditText
+                android:id="@+id/txtCounselNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewCounselNumber" />
 
-    <LinearLayout
-        android:id="@+id/linearDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/viewCounselDateTime"
-        android:orientation="horizontal"
-        android:weightSum="1">
+            <TextView
+                android:id="@+id/viewCounselEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtCounselNumber"
+                android:paddingTop="10dp"
+                android:text="Email"
+                android:textColor="#000" />
 
-        <EditText
-            android:id="@+id/txtDueDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.99" />
+            <EditText
+                android:id="@+id/txtCounselEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewCounselEmail" />
 
-        <ImageButton
-            android:id="@+id/btnDate"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_toRightOf="@+id/txtDueDate"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_date_range_black_48dp" />
+            <TextView
+                android:id="@+id/viewCounselDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtCounselEmail"
+                android:paddingTop="10dp"
+                android:text="Date &amp; Time"
+                android:textColor="#000" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewCounselDateTime"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-    <LinearLayout
-        android:id="@+id/linearTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linearDate"
-        android:orientation="horizontal"
-        android:weightSum="1">
+                <EditText
+                    android:id="@+id/txtDueDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.99" />
 
-        <EditText
-            android:id="@+id/txtDueTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.99"
-            android:paddingBottom="@dimen/activity_horizontal_margin" />
+                <ImageButton
+                    android:id="@+id/btnDate"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_toRightOf="@+id/txtDueDate"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_date_range_black_48dp" />
 
-        <ImageButton
-            android:id="@+id/btnTime"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_toRightOf="@+id/txtDueTime"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/ic_schedule_black_48dp" />
+            </LinearLayout>
 
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearDate"
+                android:orientation="horizontal"
+                android:weightSum="1">
 
-    <Button
-        android:id="@+id/btnCounselSetAppointment"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/linearTime"
-        android:layout_marginTop="43dp"
-        android:text="Set an Appointment"
-        android:textAlignment="center"
-        android:textSize="14sp" />
+                <EditText
+                    android:id="@+id/txtDueTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.99"
+                    android:paddingBottom="@dimen/activity_horizontal_margin" />
+
+                <ImageButton
+                    android:id="@+id/btnTime"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_toRightOf="@+id/txtDueTime"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_schedule_black_48dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/viewProblem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/linearTime"
+                android:paddingTop="10dp"
+                android:text="Problem in brief"
+                android:textColor="#000" />
+
+            <EditText
+                android:id="@+id/txtProblem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/viewProblem" />
+
+            <Button
+                android:id="@+id/btnCounselSetAppointment"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/txtProblem"
+                android:layout_marginTop="43dp"
+                android:text="Set an Appointment"
+                android:textAlignment="center"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
