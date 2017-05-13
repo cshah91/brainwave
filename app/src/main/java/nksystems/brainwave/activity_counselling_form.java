@@ -1,15 +1,31 @@
 package nksystems.brainwave;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.RemoteException;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
+
+import com.android.vending.billing.IInAppBillingService;
+import com.google.android.gms.common.api.BooleanResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.wallet.Wallet;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * Created by Charmy on 13/05/2017.
@@ -21,6 +37,7 @@ public class activity_counselling_form extends AppCompatActivity{
     TextView txtTotal;
     int originalAmount, newAmount, medicationAmount;
     Button btnSubmit;
+    IInAppBillingService mService;
 
     @Override
     public void onBackPressed() {

@@ -273,11 +273,11 @@ public class activity_home_menu extends AppCompatActivity
         btnAboutCounselling.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(activity_home_menu.this);
+                /*Dialog dialog = new Dialog(activity_home_menu.this);
                 dialog.setContentView(R.layout.about_counselling_services_layout);
-                dialog.show();
-                /*finish();
-                startActivity(new Intent(activity_home_menu.this,activity_counselling_form.class));*/
+                dialog.show();*/
+                finish();
+                startActivity(new Intent(activity_home_menu.this,activity_counselling_form.class));
             }
         });
 
