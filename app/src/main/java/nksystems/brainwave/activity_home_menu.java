@@ -266,17 +266,23 @@ public class activity_home_menu extends AppCompatActivity
             }
         });
 
-        Button btnTelephone = (Button) findViewById(R.id.btnAboutCounselling);
+        /*Button btnTelephone = (Button) findViewById(R.id.btnAboutCounselling);
         btnTelephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Dialog dialog = new Dialog(activity_home_menu.this);
                 dialog.setContentView(R.layout.contact_expand_item_layout);
                 setDateTimePicker(dialog);
-                setAppointment(1,dialog);
+                // Third parameter for setAppointment is type of appointment
+                // Telephonic: 1, Skype: 2, Personal: 3
+                setAppointment(1,dialog,1);
+                TextView viewProblem = (TextView) dialog.findViewById(R.id.viewProblem);
+                EditText txtProblem = (EditText) dialog.findViewById(R.id.txtProblem);
+                viewProblem.setVisibility(View.GONE);
+                txtProblem.setVisibility(View.GONE);
                 dialog.show();
             }
-        });
+        });*/
     }
 
     public void actionsFlowerTherapy(){
@@ -333,7 +339,13 @@ public class activity_home_menu extends AppCompatActivity
                 Dialog dialog = new Dialog(activity_home_menu.this);
                 dialog.setContentView(R.layout.contact_expand_item_layout);
                 setDateTimePicker(dialog);
-                setAppointment(2,dialog);
+                // Third parameter for setAppointment is type of appointment
+                // Telephonic: 1, Skype: 2, Personal: 3
+                setAppointment(2,dialog,1);
+                TextView viewProblem = (TextView) dialog.findViewById(R.id.viewProblem);
+                EditText txtProblem = (EditText) dialog.findViewById(R.id.txtProblem);
+                viewProblem.setVisibility(View.GONE);
+                txtProblem.setVisibility(View.GONE);
                 dialog.show();
             }
         });*/
@@ -393,7 +405,13 @@ public class activity_home_menu extends AppCompatActivity
                 Dialog dialog = new Dialog(activity_home_menu.this);
                 dialog.setContentView(R.layout.contact_expand_item_layout);
                 setDateTimePicker(dialog);
-                setAppointment(3,dialog);
+                // Third parameter for setAppointment is type of appointment
+                // Telephonic: 1, Skype: 2, Personal: 3
+                setAppointment(3,dialog,1);
+                TextView viewProblem = (TextView) dialog.findViewById(R.id.viewProblem);
+                EditText txtProblem = (EditText) dialog.findViewById(R.id.txtProblem);
+                viewProblem.setVisibility(View.GONE);
+                txtProblem.setVisibility(View.GONE);
                 dialog.show();
             }
         });*/
@@ -450,13 +468,13 @@ public class activity_home_menu extends AppCompatActivity
         });
     }
 
-    public void setAppointment(final int id, Dialog dialog){
+    public void setAppointment(final int id, Dialog dialog, final int type){
         commonDialog = dialog;
         Button btnCounselSetAppointment = (Button) dialog.findViewById(R.id.btnCounselSetAppointment);
         btnCounselSetAppointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText txtName, txtEmail, txtContact, txtDate, txtTime;
+                EditText txtName, txtEmail, txtContact, txtDate, txtTime, txtProblem;
                 Spinner spnContactType;
                 txtName = (EditText) commonDialog.findViewById(R.id.txtCounselName);
                 txtEmail = (EditText) commonDialog.findViewById(R.id.txtCounselEmail);
@@ -464,19 +482,40 @@ public class activity_home_menu extends AppCompatActivity
                 txtDate = (EditText) commonDialog.findViewById(R.id.txtDueDate);
                 txtTime = (EditText) commonDialog.findViewById(R.id.txtDueTime);
                 spnContactType = (Spinner) findViewById(R.id.spnContacttype);
+                txtProblem = (EditText) commonDialog.findViewById(R.id.txtProblem);
 
-                String to = "charmyshah91@gmail.com";
+                String appointmentType = "";
+                String message = "";
+                if(type == 1){
+                    appointmentType = "Telephonic";
+                    message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
+                            "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
+                            "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
+                            "\n Problem in brief: " + txtProblem.getText().toString() + "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
+                }
+                else if(type == 2){
+                    appointmentType = "Skype";
+                    message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
+                            "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
+                            "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
+                            "\n Problem in brief: " + txtProblem.getText().toString() + "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
+                }
+                else if(type == 3){
+                    appointmentType = "Personal";
+                    message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
+                            "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
+                            "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
+                            "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
+                }
+
+                String to = activity_home_menu.this.getResources().getString(R.string.emailTo);
                 String subject = "";
                 if(id == 1)
-                    subject = "Counselling Services - " + ": Appointment";
+                    subject = "Counselling Services - " + appointmentType + ": Appointment";
                 else if(id == 2)
-                    subject = "Flower Therapy - " + ": Appointment";
+                    subject = "Flower Therapy - " + appointmentType + ": Appointment";
                 else if(id == 3)
-                    subject = "Handwriting & Signature Analysis - " + ": Appointment";
-                String message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
-                        "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
-                        "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
-                        ". \n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
+                    subject = "Handwriting & Signature Analysis - " + appointmentType + ": Appointment";
 
                 Intent email = new Intent(Intent.ACTION_SEND);
                 email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
