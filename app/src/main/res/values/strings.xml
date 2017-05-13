@@ -13,5 +13,6 @@
     <string name="label_products_list">List of Products</string>
 
     <string name="emailTo">charmyshah91@gmail.com</string>
+    <string name="medication_amount">100</string>
 
 </resources>

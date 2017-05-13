@@ -22,6 +22,8 @@
             android:label="@string/title_activity_home_menu"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".activity_product_info" />
+        <activity android:name=".activity_counselling_form"
+            android:label="Counselling Form"/>
     </application>
 
 </manifest>

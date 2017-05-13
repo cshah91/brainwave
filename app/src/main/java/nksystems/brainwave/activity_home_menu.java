@@ -74,6 +74,8 @@ public class activity_home_menu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_menu);
 
+
+
         contentAbout=(ViewStub)findViewById(R.id.contentAbout);
         contentAbout.setLayoutResource(R.layout.activity_card_view);
         contentAbout.inflate();
@@ -105,6 +107,17 @@ public class activity_home_menu extends AppCompatActivity
         contentTips=(ViewStub)findViewById(R.id.contentTips);
         contentTips.setLayoutResource(R.layout.tips_layout);
         contentTips.inflate();
+
+        String activeStub=getIntent().getStringExtra("active_activity");
+        switch (activeStub){
+            case "contentCounselling":
+                switchContent(contentCounselling);
+                actionsCounsellingServices();
+                break;
+            default:
+                switchContent(contentAbout);
+                break;
+        }
 
         root=(LinearLayout)findViewById(R.id.rootLayout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -260,9 +273,11 @@ public class activity_home_menu extends AppCompatActivity
         btnAboutCounselling.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(activity_home_menu.this);
+                /*Dialog dialog = new Dialog(activity_home_menu.this);
                 dialog.setContentView(R.layout.about_counselling_services_layout);
-                dialog.show();
+                dialog.show();*/
+                finish();
+                startActivity(new Intent(activity_home_menu.this,activity_counselling_form.class));
             }
         });
 
