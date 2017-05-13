@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
@@ -17,9 +19,8 @@ public class activity_counselling_form extends AppCompatActivity{
 
     CheckBox chkMedication;
     TextView txtTotal;
-    int originalAmount;
-    int newAmount;
-    int medicationAmount;
+    int originalAmount, newAmount, medicationAmount;
+    Button btnSubmit;
 
     @Override
     public void onBackPressed() {
@@ -72,6 +73,14 @@ public class activity_counselling_form extends AppCompatActivity{
                 }
 
                 txtTotal.setText("Total: " + newAmount + " INR");
+            }
+        });
+
+        btnSubmit = (Button) findViewById(R.id.btnQuestSubmit);
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

@@ -39,13 +39,13 @@ public class CustomGridItem extends BaseAdapter{
     int count=0;
     String app = "CustomGridItem";
 
-    public CustomGridItem(Context mContext, StorageReference sReference,DatabaseReference mReference){
+    public CustomGridItem(Context mContext, StorageReference sReference,DatabaseReference mReference, String orderby){
         this.mContext=mContext;
         inflater=(LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.sReference=sReference;
         this.mReference=mReference;
 
-        this.mReference.addValueEventListener(new ValueEventListener() {
+        this.mReference.orderByChild(orderby).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 count=(int)dataSnapshot.getChildrenCount();
@@ -53,10 +53,7 @@ public class CustomGridItem extends BaseAdapter{
                 Iterable<DataSnapshot> childrenIterator= dataSnapshot.getChildren();
                 for(DataSnapshot productName : childrenIterator){
                     productsList.add(productName);
-                    Log.i("child",productName.getKey());
                 }
-
-                Log.i(app, "Products List size from constructor: " + productsList.get(8).getKey());
             }
 
             @Override

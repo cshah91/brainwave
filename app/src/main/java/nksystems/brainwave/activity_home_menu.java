@@ -553,7 +553,7 @@ public class activity_home_menu extends AppCompatActivity
 
         mReference= FirebaseDatabase.getInstance().getReference("products");
         sReference= FirebaseStorage.getInstance().getReference("imagethumbnails");
-        final CustomGridItem item= new CustomGridItem(this,sReference,mReference);
+        final CustomGridItem item= new CustomGridItem(this,sReference,mReference,"orderid");
         mReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -624,11 +624,6 @@ public class activity_home_menu extends AppCompatActivity
         AboutBrainwaveObject obj4 = new AboutBrainwaveObject(title, content);
         results.add(obj4);
 
-        for(int i=0;i<results.size();i++){
-            Log.i("activity_home_menu","Title: " + results.get(i).getmText1());
-            Log.i("activity_home_menu","Content: " + results.get(i).getmText2());
-        }
-
         return results;
     }
 
@@ -639,7 +634,7 @@ public class activity_home_menu extends AppCompatActivity
         FirebaseApp.initializeApp(this);
 
         mReference= FirebaseDatabase.getInstance().getReference("products");
-        mReference.addValueEventListener(new ValueEventListener() {
+        mReference.orderByChild("orderid").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int i = 0;
