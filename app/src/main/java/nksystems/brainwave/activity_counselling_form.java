@@ -97,7 +97,8 @@ public class activity_counselling_form extends AppCompatActivity{
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                finish();
+                startActivity(new Intent(activity_counselling_form.this,activity_purchase_services.class));
             }
         });
     }

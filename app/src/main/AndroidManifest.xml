@@ -26,6 +26,8 @@
         <activity android:name=".activity_product_info" />
         <activity android:name=".activity_counselling_form"
             android:label="Counselling Form"/>
+        <activity android:name=".activity_purchase_services"
+            android:label="Purchase Services"/>
     </application>
 
 </manifest>

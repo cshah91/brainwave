@@ -28,6 +28,8 @@ import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.X509EncodedKeySpec;
 
+import nksystems.brainwave.BuildConfig;
+
 /**
  * Security-related methods. For a secure implementation, all of this code
  * should be implemented on a server that communicates with the
@@ -56,6 +58,9 @@ public class Security {
         if (TextUtils.isEmpty(signedData) || TextUtils.isEmpty(base64PublicKey) ||
                 TextUtils.isEmpty(signature)) {
             Log.e(TAG, "Purchase verification failed: missing data.");
+            if (BuildConfig.DEBUG) {
+                return true;
+            }
             return false;
         }
 
