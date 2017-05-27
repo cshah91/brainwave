@@ -234,7 +234,7 @@ public class activity_home_menu extends AppCompatActivity
 
     public void actionsCounsellingServices(){
 
-        stub1 = (ViewStub) findViewById(R.id.vscSchedule);
+        /*stub1 = (ViewStub) findViewById(R.id.vscSchedule);
         stub2 = (ViewStub) findViewById(R.id.vscCounselling);
         stub3 = (ViewStub) findViewById(R.id.vscCounsellingMeds);
 
@@ -268,18 +268,18 @@ public class activity_home_menu extends AppCompatActivity
                 }
             }
         });
-
-        Button btnAboutCounselling = (Button) findViewById(R.id.btnAboutCounselling);
+*/
+        /*Button btnAboutCounselling = (Button) findViewById(R.id.btnAboutCounselling);
         btnAboutCounselling.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Dialog dialog = new Dialog(activity_home_menu.this);
+                *//*Dialog dialog = new Dialog(activity_home_menu.this);
                 dialog.setContentView(R.layout.about_counselling_services_layout);
-                dialog.show();*/
+                dialog.show();*//*
                 finish();
                 startActivity(new Intent(activity_home_menu.this,activity_counselling_form.class));
             }
-        });
+        });*/
 
         /*Button btnTelephone = (Button) findViewById(R.id.btnAboutCounselling);
         btnTelephone.setOnClickListener(new View.OnClickListener() {
