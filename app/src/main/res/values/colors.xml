@@ -6,4 +6,6 @@
     <color name="side_bar_color">#9765fd</color>
     <color name="gridViewDivider">#FAFAFA</color>
     <color name="disabledButton">#9E9E9E</color>
+    <color name="facetofacebg">#3F51B5</color>
+    <color name="skypebg">#01AEF2</color>
 </resources>
