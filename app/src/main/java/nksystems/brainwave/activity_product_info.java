@@ -47,12 +47,35 @@ public class activity_product_info extends AppCompatActivity {
     boolean isAllowed=false;
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent=new Intent(activity_product_info.this,activity_home_menu.class);
+        intent.putExtra("active_activity","herbalProducts");
+        finish();
+        startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case android.R.id.home:
+                Intent intent=new Intent(activity_product_info.this,activity_home_menu.class);
+                intent.putExtra("active_activity","herbalProducts");
+                finish();
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.product_list_info_layout);
-
-
 
         tvTitle=(TextView)findViewById(R.id.tvTitle);
         tvYear=(TextView)findViewById(R.id.tvYear);

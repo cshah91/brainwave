@@ -11,7 +11,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -93,11 +95,13 @@
 
                 <ImageButton
                     android:id="@+id/btnDate"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_toRightOf="@+id/txtDueDate"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_date_range_black_48dp" />
+                    android:backgroundTint="@color/colorAccent"
+                    android:layout_gravity="bottom"
+                    android:src="@mipmap/ic_date_range_white_48dp" />
 
             </LinearLayout>
 
@@ -118,11 +122,13 @@
 
                 <ImageButton
                     android:id="@+id/btnTime"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_toRightOf="@+id/txtDueTime"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_schedule_black_48dp" />
+                    android:backgroundTint="@color/colorAccent"
+                    android:layout_gravity="bottom"
+                    android:src="@mipmap/ic_schedule_white_48dp" />
 
             </LinearLayout>
 
@@ -139,7 +145,66 @@
                 android:id="@+id/txtProblem"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text=""
                 android:layout_below="@+id/viewProblem" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tblAppointment"
+                android:layout_below="@id/txtProblem">
+
+                <TableRow>
+                    <TextView
+                        android:text="Appointment Timings"
+                        android:padding="3dp"
+                        android:layout_span="3"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Wednesday"
+                        android:padding="3dp"/>
+                    <TextView
+                        android:text=":"
+                        android:padding="3dp"/>
+                    <TextView
+                        android:text="9:00 AM to 1:00 PM IST"
+                        android:padding="3dp"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Saturday"
+                        android:padding="3dp"/>
+                    <TextView
+                        android:text=":"
+                        android:padding="3dp"/>
+                    <TextView
+                        android:text="4:00 PM to 7:00 PM IST"
+                        android:padding="3dp"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Saturday"
+                        android:padding="3dp"/>
+                    <TextView
+                        android:text=":"
+                        android:padding="3dp"/>
+                    <TextView
+                        android:text="9:00 PM to 12:00 AM IST"
+                        android:padding="3dp"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Sunday"
+                        android:padding="3dp"/>
+                    <TextView
+                        android:text=":"
+                        android:padding="3dp"/>
+                    <TextView
+                        android:text="10:00 AM to 4:00 PM IST"
+                        android:padding="3dp"/>
+                </TableRow>
+            </TableLayout>
 
             <Button
                 android:id="@+id/btnCounselSetAppointment"
@@ -147,8 +212,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/txtProblem"
-                android:layout_marginTop="43dp"
+                android:layout_below="@+id/tblAppointment"
                 android:text="Set an Appointment"
                 android:textAlignment="center"
                 android:textSize="14sp" />

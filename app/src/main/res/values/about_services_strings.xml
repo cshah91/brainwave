@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wk_learn">Learn -</string>
+
+    <string name="wk_title_1">Personal Safety Education – SAFE UNSAFE Touch</string>
+    <string name="wk_title_2">Punit Mann - De stress your mind, body &amp; soul</string>
+    <string name="wk_title_3">Mind Tuning - Emotional Intelligence</string>
+    <string name="wk_title_4">Bach Flower Therapy</string>
+    <string name="wk_title_5">Parenting Skills</string>
+    <string name="wk_title_6">Play Therapy</string>
+
+    <string name="wk_bull_1_1">What is sexual abuse?</string>
+    <string name="wk_bull_1_2">What is age appropriate sexual behavior?</string>
+    <string name="wk_bull_1_3">What are the signs of a child being a victim to any kind of sexual abuse?</string>
+    <string name="wk_bull_1_4">What is the right age to teach a child about good &amp; bad touch?</string>
+    <string name="wk_bull_1_5">What are some do\'s &amp; don\'ts to teach good &amp; bad touch?</string>
+    <string name="wk_bull_1_6">Preventive Skills to teach your child</string>
+    <string name="wk_bull_1_7">How will you teach very young kids about sexuality?</string>
+
+    <string name="wk_bull_2_1">Useful, practical stress management techniques.</string>
+    <string name="wk_bull_2_2">Have a better control over your life.</string>
+    <string name="wk_bull_2_3">Stress relief in the moment.</string>
+    <string name="wk_bull_2_4">Reconnect with yourself.</string>
+    <string name="wk_bull_2_5">How to stop worrying!</string>
+    <string name="wk_bull_2_6">Prevent burnout.</string>
+
+    <string name="wk_bull_3_1_1">Theory of Disturbance</string>
+    <string name="wk_bull_3_1_2">Goal Setting</string>
+    <string name="wk_bull_3_1_3">Rational v/s Irrational Beliefs</string>
+    <string name="wk_bull_3_1_4">Healthy v/s Unhealthy Emotions</string>
+    <string name="wk_bull_3_1_5">Scientific Approaches to deal with Disturbances</string>
+    <string name="wk_bull_3_1_6">Cognitive, Emotional &amp; Behavioural Techniques to dispute Irrational Beliefs</string>
+
+    <string name="wk_bull_3_2_1">Anger</string>
+    <string name="wk_bull_3_2_2">Addiction</string>
+    <string name="wk_bull_3_2_3">Self Esteem</string>
+    <string name="wk_bull_3_2_4">Marital Issues</string>
+    <string name="wk_bull_3_2_5">Procrastination</string>
+    <string name="wk_bull_3_2_6">Problem Solving</string>
+    <string name="wk_bull_3_2_7">Depressive Thinking</string>
+    <string name="wk_bull_3_2_8">Performance Anxiety</string>
+    <string name="wk_bull_3_2_9">Low Frustration Tolerance</string>
+
+    <string name="wk_bull_6_1_1">
+        My child is wasting most hours in the company of Idiot Boxes (computer, T.V., laptop, i-pad, cell phone, x-box)!
+    </string>
+    <string name="wk_bull_6_1_2">
+        My child does not know how to behave well with others! S/he is very shy!
+    </string>
+    <string name="wk_bull_6_1_3">
+        My child is very hyperactive and can\'t sit in one place!
+    </string>
+    <string name="wk_bull_6_1_4">My child has poor communication skills!</string>
+    <string name="wk_bull_6_1_5">My child lacks focus and concentration!</string>
+
+    <string name="wk_bull_6_2_1">Social Skills</string>
+    <string name="wk_bull_6_2_2">Concentration Skills</string>
+    <string name="wk_bull_6_2_3">Communication Skills</string>
+    <string name="wk_bull_6_2_4">Higher Order Thinking Skills</string>
+
+    <string name="wk_content_1_1">
+        A preventive program for parents/teachers/ caretakers that will enable you to comfortably talk with your child and bring
+        awareness about sexual abuse, prevent the gruesome act and stay safe.
+    </string>
+    <string name="wk_content_2_1">
+        A Stress Management Training Program – <b>"A STRESS RELIEF GUIDE"</b> that will minimize your day to day stress
+        levels – <b>STOP STRESSING, START LIVING!</b>
+    </string>
+    <string name="wk_content_3_1">
+        Our mental health has sharply declined in the last 25 years and the chances that one will have behavioural problems such as
+        lying, stealing and being disobedient, have more than doubled. The rate of emotional problems such as anxiety and depression
+        has increased by 70% today. The male folk are more likely to exhibit behavioural problems and the female folk are more
+        likely to suffer emotional problems. Our society breeds anxiety, depression and dysfunction. Our belief in "progress" has
+        increased our expectations. The result is mass disappointment.
+    </string>
+    <string name="wk_content_3_2">
+        It thus becomes imperative to safeguard your emotional well-being in today\'s testing and trying times. The Mind Tuning
+        Training Program enables you to effectively deal with your Emotional Health. It is a 60 hour Training Program based on the
+        Principles of Rational Emotive Behaviour Therapy (R.E.B.T.) by Dr. Albert Ellis and Stress Management Techniques. The
+        Training Program will shed light on –
+    </string>
+    <string name="wk_content_3_3">
+        The following issues will be dealt with during the Training -
+    </string>
+    <string name="wk_content_6_1">
+        <b>Playstation Pluto - </b>Beneficial Fun Time, Physical Play Time, De-Tech from Gadgets
+    </string>
+    <string name="wk_content_6_2">
+        Enroll your child for <b><i>PLAYSTATION PLUTO</i></b> if you have answered yes to any of the above and help him develop
+    </string>
+</resources>

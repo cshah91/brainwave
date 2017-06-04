@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -36,6 +37,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -48,7 +50,11 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+
+import static java.util.Calendar.SATURDAY;
 
 public class activity_home_menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -67,6 +73,7 @@ public class activity_home_menu extends AppCompatActivity
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     Dialog commonDialog;
+    String selectedDate;
 
     protected DrawerLayout drawerLayout;
     @Override
@@ -84,9 +91,9 @@ public class activity_home_menu extends AppCompatActivity
         contentCounselling.setLayoutResource(R.layout.counselling_services_layout);
         contentCounselling.inflate();
 
-        contentFlower=(ViewStub)findViewById(R.id.contentFlower);
+        /*contentFlower=(ViewStub)findViewById(R.id.contentFlower);
         contentFlower.setLayoutResource(R.layout.flower_therapy_layout);
-        contentFlower.inflate();
+        contentFlower.inflate();*/
 
         contentPari=(ViewStub)findViewById(R.id.contentPari);
         contentPari.setLayoutResource(R.layout.pari_herbal_product_layout);
@@ -113,6 +120,10 @@ public class activity_home_menu extends AppCompatActivity
             case "contentCounselling":
                 switchContent(contentCounselling);
                 actionsCounsellingServices();
+                break;
+            case "herbalProducts":
+                switchContent(contentPari);
+                actionsPariHerbalProducts();
                 break;
             default:
                 switchContent(contentAbout);
@@ -189,11 +200,11 @@ public class activity_home_menu extends AppCompatActivity
             switchContent(contentCounselling);
             actionsCounsellingServices();
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_flower) {
+        } /*else if (id == R.id.nav_flower) {
             switchContent(contentFlower);
             actionsFlowerTherapy();
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_play) {
+        } */else if (id == R.id.nav_play) {
             drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_herbal) {
             switchContent(contentPari);
@@ -221,7 +232,7 @@ public class activity_home_menu extends AppCompatActivity
     public void switchContent(View v){
 
         contentCounselling.setVisibility(View.GONE);
-        contentFlower.setVisibility(View.GONE);
+        //contentFlower.setVisibility(View.GONE);
         contentPari.setVisibility(View.GONE);
         contentPlay.setVisibility(View.GONE);
         contentHandwriting.setVisibility(View.GONE);
@@ -269,19 +280,45 @@ public class activity_home_menu extends AppCompatActivity
             }
         });
 */
-        /*Button btnAboutCounselling = (Button) findViewById(R.id.btnAboutCounselling);
-        btnAboutCounselling.setOnClickListener(new View.OnClickListener() {
+        CardView cvAbout = (CardView) findViewById(R.id.cvAbout);
+        cvAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                *//*Dialog dialog = new Dialog(activity_home_menu.this);
-                dialog.setContentView(R.layout.about_counselling_services_layout);
-                dialog.show();*//*
                 finish();
-                startActivity(new Intent(activity_home_menu.this,activity_counselling_form.class));
+                Intent intent = new Intent(activity_home_menu.this,activity_about_services.class);
+                startActivity(intent);
             }
-        });*/
+        });
 
-        /*Button btnTelephone = (Button) findViewById(R.id.btnAboutCounselling);
+        final Button btnPackage1 = (Button) findViewById(R.id.btnPackage1);
+        final Button btnPackage2 = (Button) findViewById(R.id.btnPackage2);
+
+        btnPackage1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(activity_home_menu.this,activity_counselling_form.class);
+                intent.putExtra("amount","500");
+                intent.putExtra("packagetype","2");
+                startActivity(intent);
+            }
+        });
+
+        btnPackage2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(activity_home_menu.this,activity_counselling_form.class);
+                intent.putExtra("amount","2000");
+                intent.putExtra("packagetype","1");
+                startActivity(intent);
+            }
+        });
+
+        ImageButton btnTelephone = (ImageButton) findViewById(R.id.btnTelephone);
+        ImageButton btnSkype = (ImageButton) findViewById(R.id.btnSkype);
+        ImageButton btnPersonal = (ImageButton) findViewById(R.id.btnPersonal);
+
         btnTelephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -293,14 +330,50 @@ public class activity_home_menu extends AppCompatActivity
                 setAppointment(1,dialog,1);
                 TextView viewProblem = (TextView) dialog.findViewById(R.id.viewProblem);
                 EditText txtProblem = (EditText) dialog.findViewById(R.id.txtProblem);
+                Button btnAppointment = (Button) dialog.findViewById(R.id.btnCounselSetAppointment);
+                btnAppointment.setText("Set Telephonic Appointment");
+                dialog.show();
+            }
+        });
+
+        btnSkype.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(activity_home_menu.this);
+                dialog.setContentView(R.layout.contact_expand_item_layout);
+                setDateTimePicker(dialog);
+                // Third parameter for setAppointment is type of appointment
+                // Telephonic: 1, Skype: 2, Personal: 3
+                setAppointment(1,dialog,2);
+                TextView viewProblem = (TextView) dialog.findViewById(R.id.viewProblem);
+                EditText txtProblem = (EditText) dialog.findViewById(R.id.txtProblem);
+                Button btnAppointment = (Button) dialog.findViewById(R.id.btnCounselSetAppointment);
+                btnAppointment.setText("Set Skype Appointment");
+                dialog.show();
+            }
+        });
+
+        btnPersonal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(activity_home_menu.this);
+                dialog.setContentView(R.layout.contact_expand_item_layout);
+                setDateTimePicker(dialog);
+                // Third parameter for setAppointment is type of appointment
+                // Telephonic: 1, Skype: 2, Personal: 3
+                setAppointment(1,dialog,3);
+                TextView viewProblem = (TextView) dialog.findViewById(R.id.viewProblem);
+                EditText txtProblem = (EditText) dialog.findViewById(R.id.txtProblem);
+                Button btnAppointment = (Button) dialog.findViewById(R.id.btnCounselSetAppointment);
+                btnAppointment.setText("Set Personal Appointment");
                 viewProblem.setVisibility(View.GONE);
                 txtProblem.setVisibility(View.GONE);
                 dialog.show();
             }
-        });*/
+        });
     }
 
-    public void actionsFlowerTherapy(){
+    /*public void actionsFlowerTherapy(){
 
         stubf1 = (ViewStub) findViewById(R.id.vsfSchedule);
         stubf2 = (ViewStub) findViewById(R.id.vsfCounselling);
@@ -346,25 +419,7 @@ public class activity_home_menu extends AppCompatActivity
                 dialog.show();
             }
         });
-
-        /*Button btnTelephone = (Button) findViewById(R.id.btnAboutCounselling);
-        btnTelephone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialog dialog = new Dialog(activity_home_menu.this);
-                dialog.setContentView(R.layout.contact_expand_item_layout);
-                setDateTimePicker(dialog);
-                // Third parameter for setAppointment is type of appointment
-                // Telephonic: 1, Skype: 2, Personal: 3
-                setAppointment(2,dialog,1);
-                TextView viewProblem = (TextView) dialog.findViewById(R.id.viewProblem);
-                EditText txtProblem = (EditText) dialog.findViewById(R.id.txtProblem);
-                viewProblem.setVisibility(View.GONE);
-                txtProblem.setVisibility(View.GONE);
-                dialog.show();
-            }
-        });*/
-    }
+    }*/
 
     public void actionsHandwritingServices(){
 
@@ -454,10 +509,24 @@ public class activity_home_menu extends AppCompatActivity
                 DatePickerDialog datePickerDialog = new DatePickerDialog(activity_home_menu.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        EditText txtDate = (EditText) commonDialog.findViewById(R.id.txtDueDate);
-                        txtDate.setText(day + "-" + (month+1) + "-" + year);
+                        // Get day of the week for the selected date
+                        Calendar cal = new GregorianCalendar(year, month, day);
+                        int week = cal.get(Calendar.DAY_OF_WEEK);
+
+                        if(week == Calendar.SATURDAY || week == Calendar.SUNDAY || week == Calendar.WEDNESDAY){
+                            EditText txtDate = (EditText) commonDialog.findViewById(R.id.txtDueDate);
+                            txtDate.setText(day + "-" + (month+1) + "-" + year);
+                            selectedDate = txtDate.getText().toString();
+                        }
+                        else{
+                            String message = "Appointments available only for Wednesday, Saturday and Sunday. " +
+                                    "Please select another date.";
+                            Toast.makeText(activity_home_menu.this,message,Toast.LENGTH_LONG).show();
+                        }
                     }
                 },mYear,mMonth,mDay);
+                Date currentDate = calendar.getTime();
+                datePickerDialog.getDatePicker().setMinDate(currentDate.getTime());
                 datePickerDialog.show();
             }
         });
@@ -475,7 +544,56 @@ public class activity_home_menu extends AppCompatActivity
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                         EditText txtTime = (EditText) commonDialog.findViewById(R.id.txtDueTime);
-                        txtTime.setText(hour + ":" + minute);
+                        if(selectedDate != null && selectedDate.length() > 0){
+                            String date[] = selectedDate.split("-");
+                            Calendar cal = new GregorianCalendar(Integer.parseInt(date[2]), (Integer.parseInt(date[1])-1),
+                                    Integer.parseInt(date[0]));
+                            int week = cal.get(Calendar.DAY_OF_WEEK);
+                            String min="";
+                            if(minute >= 0 && minute < 10)
+                                min = "0"+minute;
+                            else
+                                min = ""+minute;
+                            if(week == Calendar.WEDNESDAY){
+                                if(hour >= 9 && hour <= 12){
+                                    txtTime.setText((hour > 12 ? (hour-12):hour) + ":" + min + (hour > 11 ? " PM" : " AM"));
+                                }
+                                else{
+                                    txtTime.setText("");
+                                    Toast.makeText(activity_home_menu.this, "Selected time is not available. Please see the appointment schedule " +
+                                            "time slots mentioned below.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else if(week == Calendar.SATURDAY){
+                                if((hour >= 16 && hour <= 18) || (hour >= 21 && hour <= 23)){
+                                    txtTime.setText((hour > 12 ? (hour-12):hour) + ":" + min + (hour > 11 ? " PM" : " AM"));
+                                }
+                                else{
+                                    txtTime.setText("");
+                                    Toast.makeText(activity_home_menu.this, "Selected time is not available. Please see the appointment schedule " +
+                                            "time slots mentioned below.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else if(week == Calendar.SUNDAY){
+                                if(hour >= 10 && hour <= 15){
+                                    txtTime.setText((hour > 12 ? (hour-12):hour) + ":" + min + (hour > 11 ? " PM" : " AM"));
+                                }
+                                else{
+                                    txtTime.setText("");
+                                    Toast.makeText(activity_home_menu.this, "Selected time is not available. Please see the appointment schedule " +
+                                            "time slots mentioned below.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            else{
+                                txtTime.setText("");
+                                Toast.makeText(activity_home_menu.this, "Selected time is not available. Please see the appointment schedule " +
+                                        "time slots mentioned below.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else{
+                            txtTime.setText("");
+                            Toast.makeText(activity_home_menu.this, "Please select a date before setting time.", Toast.LENGTH_LONG).show();
+                        }
                     }
                 },mHour,mMinute,false);
                 timePickerDialog.show();
@@ -490,55 +608,83 @@ public class activity_home_menu extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 EditText txtName, txtEmail, txtContact, txtDate, txtTime, txtProblem;
-                Spinner spnContactType;
                 txtName = (EditText) commonDialog.findViewById(R.id.txtCounselName);
                 txtEmail = (EditText) commonDialog.findViewById(R.id.txtCounselEmail);
                 txtContact = (EditText) commonDialog.findViewById(R.id.txtCounselNumber);
                 txtDate = (EditText) commonDialog.findViewById(R.id.txtDueDate);
                 txtTime = (EditText) commonDialog.findViewById(R.id.txtDueTime);
-                spnContactType = (Spinner) findViewById(R.id.spnContacttype);
                 txtProblem = (EditText) commonDialog.findViewById(R.id.txtProblem);
 
-                String appointmentType = "";
-                String message = "";
-                if(type == 1){
-                    appointmentType = "Telephonic";
-                    message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
-                            "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
-                            "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
-                            "\n Problem in brief: " + txtProblem.getText().toString() + "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
+                if(txtName.getText().equals("") || txtName.getText().length() == 0){
+                    Toast.makeText(activity_home_menu.this, "Please enter your name.", Toast.LENGTH_SHORT).show();
+                    txtName.requestFocus();
                 }
-                else if(type == 2){
-                    appointmentType = "Skype";
-                    message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
-                            "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
-                            "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
-                            "\n Problem in brief: " + txtProblem.getText().toString() + "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
+                else if(txtContact.getText().equals("") || txtContact.getText().length() == 0){
+                    Toast.makeText(activity_home_menu.this, "Please enter your contact number.", Toast.LENGTH_SHORT).show();
+                    txtContact.requestFocus();
                 }
-                else if(type == 3){
-                    appointmentType = "Personal";
-                    message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
-                            "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
-                            "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
-                            "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
+                else if(txtEmail.getText().equals("") || txtEmail.getText().length() == 0){
+                    Toast.makeText(activity_home_menu.this, "Please enter your email.", Toast.LENGTH_SHORT).show();
+                    txtEmail.requestFocus();
                 }
+                else if(txtDate.getText().equals("") || txtDate.getText().length() == 0){
+                    Toast.makeText(activity_home_menu.this, "Please select a date of appointment.", Toast.LENGTH_SHORT).show();
+                    txtDate.requestFocus();
+                }
+                else if(txtTime.getText().equals("") || txtTime.getText().length() == 0){
+                    Toast.makeText(activity_home_menu.this, "Please select a time for your appointment", Toast.LENGTH_SHORT).show();
+                    txtTime.requestFocus();
+                }
+                else if(type == 1 && (txtProblem.getText().equals("") || txtProblem.getText().length() == 0)){
+                    Toast.makeText(activity_home_menu.this, "Briefly describe your problem here.", Toast.LENGTH_SHORT).show();
+                    txtProblem.requestFocus();
+                }
+                else if(type == 2 && (txtProblem.getText().equals("") || txtProblem.getText().length() == 0)){
+                    Toast.makeText(activity_home_menu.this, "Briefly describe your problem here.", Toast.LENGTH_SHORT).show();
+                    txtProblem.requestFocus();
+                }
+                else{
+                    String appointmentType = "";
+                    String message = "";
+                    if(type == 1){
+                        appointmentType = "Telephonic";
+                        message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
+                                "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
+                                "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
+                                "\n Problem in brief: " + txtProblem.getText().toString() + "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
+                    }
+                    else if(type == 2){
+                        appointmentType = "Skype";
+                        message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
+                                "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
+                                "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
+                                "\n Problem in brief: " + txtProblem.getText().toString() + "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
+                    }
+                    else if(type == 3){
+                        appointmentType = "Personal";
+                        message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
+                                "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
+                                "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
+                                "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
+                    }
 
-                String to = activity_home_menu.this.getResources().getString(R.string.emailTo);
-                String subject = "";
-                if(id == 1)
-                    subject = "Counselling Services - " + appointmentType + ": Appointment";
-                else if(id == 2)
-                    subject = "Flower Therapy - " + appointmentType + ": Appointment";
-                else if(id == 3)
-                    subject = "Handwriting & Signature Analysis - " + appointmentType + ": Appointment";
+                    String to = activity_home_menu.this.getResources().getString(R.string.emailTo);
+                    String subject = "";
+                    if(id == 1)
+                        subject = "Counselling Services - " + appointmentType + ": Appointment";
+                    else if(id == 2)
+                        subject = "Flower Therapy - " + appointmentType + ": Appointment";
+                    else if(id == 3)
+                        subject = "Handwriting & Signature Analysis - " + appointmentType + ": Appointment";
 
-                Intent email = new Intent(Intent.ACTION_SEND);
-                email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
-                email.putExtra(Intent.EXTRA_SUBJECT, subject);
-                email.putExtra(Intent.EXTRA_TEXT, message);
+                    Intent email = new Intent(Intent.ACTION_SEND);
+                    email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
+                    email.putExtra(Intent.EXTRA_SUBJECT, subject);
+                    email.putExtra(Intent.EXTRA_TEXT, message);
 
-                email.setType("message/rfc822");
-                startActivity(Intent.createChooser(email, "Choose an email client:"));
+                    email.setType("message/rfc822");
+                    startActivity(Intent.createChooser(email, "Choose an email client:"));
+                }
             }
         });
     }
@@ -624,12 +770,28 @@ public class activity_home_menu extends AppCompatActivity
         AboutBrainwaveObject obj4 = new AboutBrainwaveObject(title, content);
         results.add(obj4);
 
+        title = getResources().getString(R.string.bw_more_about);
+        content = getResources().getString(R.string.bw_facilitate) + "\n\n" +
+                getResources().getString(R.string.bw_bullet_point_1) + "\n" +
+                getResources().getString(R.string.bw_bullet_point_2) + "\n" +
+                getResources().getString(R.string.bw_bullet_point_3) + "\n" +
+                getResources().getString(R.string.bw_bullet_point_4) + "\n" +
+                getResources().getString(R.string.bw_bullet_point_5) + "\n" +
+                getResources().getString(R.string.bw_bullet_point_6) + "\n" +
+                getResources().getString(R.string.bw_bullet_point_7) + "\n" +
+                getResources().getString(R.string.bw_bullet_point_8) + "\n" +
+                getResources().getString(R.string.bw_bullet_point_9) + "\n" +
+                getResources().getString(R.string.bw_bullet_point_10) + "\n";
+        AboutBrainwaveObject obj5 = new AboutBrainwaveObject(title, content);
+        results.add(obj5);
+
         return results;
     }
 
     public void actionsProductsList(){
 
         final List<String> productList = new ArrayList();
+        final ProgressBar pd_progress = (ProgressBar) findViewById(R.id.pd_progress);
 
         FirebaseApp.initializeApp(this);
 
@@ -637,14 +799,17 @@ public class activity_home_menu extends AppCompatActivity
         mReference.orderByChild("orderid").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                int i = 0;
+                int i = 1;
                 for (DataSnapshot data :dataSnapshot.getChildren()){
-                    productList.add(data.getKey());
+                    productList.add(i + ". " + data.getKey());
+                    i++;
                 }
 
                 ArrayAdapter adapter = new ArrayAdapter(activity_home_menu.this,R.layout.product_names_list_item,productList);
                 ListView listView = (ListView) findViewById(R.id.list_view_products);
                 listView.setAdapter(adapter);
+                pd_progress.setVisibility(View.GONE);
+                listView.setVisibility(View.VISIBLE);
             }
 
             @Override

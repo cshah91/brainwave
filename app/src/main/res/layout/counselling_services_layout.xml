@@ -1,387 +1,266 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
+<ScrollView android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/activity_vertical_margin"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin">
-
-    <ExpandableListView
-        android:id="@+id/expandContact"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/llAboutCounsel">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="What are Counselling Services?"
-            android:textColor="#000"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btnAboutCounselling"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:elevation="24dp"
-            android:gravity="center_vertical|center"
-            android:text="Know More"
-            android:textSize="14dp"/>
-
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/llAboutCounsel">
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/rgCounselling">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Schedule an Appointment"
-            android:id="@+id/rbcSchedule"/>
-
-        <ViewStub
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/vscSchedule"
-            android:layout="@layout/contact_expand_item_layout"
-            android:layout_below="@+id/rbcSchedule"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Counselling Services"
-            android:id="@+id/rbcCounselling"
-            android:layout_below="@+id/vscSchedule" />
-
-        <ViewStub
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/vscCounselling"
-            android:layout="@layout/contact_expand_item_layout"
-            android:layout_below="@+id/rbcCounselling"/>
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Counselling Services with Medicine"
-            android:id="@+id/rbcCounsellingMeds"
-            android:layout_below="@+id/rbcCounselling"/>
-
-        <ViewStub
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/vscCounsellingMeds"
-            android:layout="@layout/contact_expand_item_layout"
-            android:layout_below="@+id/rbcCounsellingMeds"/>
-    </RadioGroup>
-
-    </ScrollView>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabCounselling"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_info"
-        app:backgroundTint="@color/colorAccent" />
-
-</RelativeLayout>-->
-<android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:background="@android:color/darker_gray"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-
-
-
-            <android.support.constraint.Guideline
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:id="@+id/thirty"
-                app:layout_constraintGuide_percent="0.33"
-                android:orientation="horizontal"
-                />
-
-    <android.support.constraint.Guideline
+    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:id="@+id/sixty"
-        app:layout_constraintGuide_percent="0.66"
-        android:orientation="horizontal"
-        />
+        android:background="#D9D9D9"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cvAbout"
+        <android.support.constraint.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:id="@+id/thirty"
+            app:layout_constraintGuide_percent="0.26"
+            android:orientation="horizontal"
+            />
+
+        <android.support.constraint.Guideline
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:id="@+id/sixty"
+            app:layout_constraintGuide_percent="0.66"
+            android:orientation="horizontal"
+            />
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvAbout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="12dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintVertical_bias="0.017"
+            app:layout_constraintBottom_toTopOf="@+id/thirty"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.60"
+                    android:gravity="center"
+                    android:text="Our Services"
+                    android:textAlignment="center"
+                    android:textColor="#383689"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvSchedule"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/sixty"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvAbout"
+            app:layout_constraintVertical_bias="0.147">
+
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="Schedule an Appointment"
+                android:textAlignment="center"
+                android:textColor="#383689"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-                android:background="@android:color/white"
-                app:cardElevation="8dp"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintVertical_bias="0.017"
-                app:layout_constraintBottom_toTopOf="@+id/thirty"
-                app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="38dp"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:layout_width="75dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:adjustViewBounds="false"
+                        android:background="#4A86E8"
+                        android:elevation="5dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_group_white_48dp"
+                        android:tint="@android:color/white"
+                        android:id="@+id/btnPersonal"/>
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:gravity="center"
-                        android:text="ABOUT"
-                        android:textColor="@android:color/black"
-                        android:textSize="25sp" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Line 1\nLine 2\nLine 3\nRead more..."
+                        android:layout_marginTop="2dp"
+                        android:text="Personal"
                         android:textAlignment="center"
-                        android:layout_marginBottom="10dp"
-                        android:textSize="20sp" />
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
-
-            </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cvSchedule"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-
-        android:background="@android:color/white"
-        app:cardElevation="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/sixty"
-        app:layout_constraintTop_toTopOf="@+id/thirty"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent">
-        <TextView
-            android:layout_width="match_parent"
-            android:textSize="25sp"
-            android:text="SCHEDULE APPOINTMENT"
-            android:textColor="@android:color/black"
-            android:textAlignment="center"
-            android:layout_marginTop="4dp"
-            android:layout_height="wrap_content" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="38dp"
-            android:layout_marginBottom="20dp"
-            >
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:elevation="5dp"
-                    android:tint="@android:color/white"
-                    android:background="@color/skypebg"
-                    android:src="@drawable/ic_group_white_48dp"
-                    android:scaleType="fitXY"
-                    />
-
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="Face to Face"
-                    android:layout_marginTop="2dp"
-                    android:textColor="@android:color/black"
-                    android:textAlignment="center"
-                    />
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/btnSkype"
+                        android:layout_width="75dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:background="@color/skypebg"
+                        android:elevation="5dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/skype" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Skype"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:layout_width="75dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:background="#4A86E8"
+                        android:elevation="5dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_call_white_48dp"
+                        android:id="@+id/btnTelephone"/>
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Telephonic"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvPackages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvSchedule"
+            app:layout_constraintVertical_bias="0.141">
+
+            <TextView
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:text="Select Package"
+                android:textAlignment="center"
+                android:textColor="#383689"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-                <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:elevation="5dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/skype"
-                    android:background="@color/skypebg"
-                    />
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="85dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_marginBottom="22dp"
+                android:layout_marginTop="38dp"
+                android:orientation="horizontal">
 
-                <TextView
+                <Button
+                    android:id="@+id/btnPackage1"
+                    android:layout_width="133dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginRight="15dp"
+                    android:background="#674EA7"
+                    android:text="Short Telephonic Session"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/btnPackage2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="Skype"
-                    android:layout_marginTop="2dp"
-                    android:textColor="@android:color/black"
-                    android:textAlignment="center"
-                    />
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:layout_marginLeft="15dp"
+                    android:background="#674EA7"
+                    android:text="Long Personal Session"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layout_marginRight="10dp"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:elevation="5dp"
-                    android:background="@color/skypebg"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_call_white_48dp"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="Phone"
-                    android:layout_marginTop="2dp"
-                    android:textColor="@android:color/black"
-                    android:textAlignment="center"
-                    />
-
-            </LinearLayout>
+        </android.support.v7.widget.CardView>
 
 
-        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
-
-    </android.support.v7.widget.CardView>
-
-
-    <android.support.v7.widget.CardView
-        android:id="@+id/cvPackages"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="12dp"
-
-        android:background="@android:color/white"
-        app:cardElevation="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintVertical_bias="0.017"
-        app:layout_constraintTop_toTopOf="@+id/sixty"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:layout_marginTop="4dp"
-            android:textColor="@android:color/black"
-            android:textAlignment="center"
-            android:text="SELECT A PACKAGE"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="40dp"
-            android:layout_marginBottom="35dp"
-            >
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:text="500"
-                android:textSize="20sp"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:background="@color/skypebg"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:text="2000"
-                android:textSize="20sp"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                android:background="@color/skypebg"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                />
-
-        </LinearLayout>
-
-
-    </android.support.v7.widget.CardView>
-
-
-
-
-
-
-
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
