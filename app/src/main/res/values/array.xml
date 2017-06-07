@@ -23,4 +23,15 @@
         <item>Skype</item>
         <item>Personal</item>
     </string-array>
+
+    <string-array name="services_list">
+        <item>Psychological Testing</item>
+        <item>Screening behavioural &amp; learning problems in children</item>
+        <item>Individual Counselling - children, parents and adults</item>
+        <item>Telephonic &amp; Skype Counselling </item>
+        <item>Career Guidance &amp; Counselling</item>
+        <item>Handwriting &amp; Signature Analysis</item>
+        <item>Bach Flower Therapy</item>
+        <item>Workshops for Parents, Caretakers, Teachers, Adults &amp; Counsellors</item>
+    </string-array>
 </resources>

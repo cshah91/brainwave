@@ -9,7 +9,8 @@
         <item
             android:id="@+id/nav_flower"
             android:icon="@mipmap/icon_flower"
-            android:title="Flower Therapy" />
+            android:title="Flower Therapy"
+            android:visible="false"/>
         <item
             android:id="@+id/nav_herbal"
             android:icon="@mipmap/icon_herbal"
@@ -17,11 +18,13 @@
         <item
             android:id="@+id/nav_play"
             android:icon="@mipmap/icon_play"
-            android:title="Play Therapy" />
+            android:title="Play Therapy"
+            android:visible="false"/>
         <item
             android:id="@+id/nav_handwriting"
             android:icon="@mipmap/icon_handwriting"
-            android:title="Handwriting Analysis" />
+            android:title="Handwriting Analysis"
+            android:visible="false"/>
         <item
             android:id="@+id/nav_astro"
             android:icon="@mipmap/icon_astro_alt"

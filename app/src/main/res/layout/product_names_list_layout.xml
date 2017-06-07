@@ -6,13 +6,36 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/label_products_list"/>
+        android:text="@string/label_products_list"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:paddingTop="10dp"
+        android:paddingBottom="5dp"
+        android:textAllCaps="true"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#acacac"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingBottom="5dp"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/list_view_products">
+        android:id="@+id/list_view_products"
+        android:visibility="gone">
 
     </ListView>
+
+    <ProgressBar
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/pd_progress"
+        android:visibility="visible"
+        android:layout_gravity="center"/>
 
 </LinearLayout>
