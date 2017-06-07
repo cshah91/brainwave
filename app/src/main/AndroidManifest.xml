@@ -6,9 +6,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/bwlogo_alt"
+        android:icon="@mipmap/ic_bw_blue_square"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/bwlogo_alt"
+        android:roundIcon="@mipmap/ic_bw_blue"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity_loading">
