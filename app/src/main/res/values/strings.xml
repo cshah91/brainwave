@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BRAINWAVE</string>
+    <string name="app_name">Brainwave</string>
     <string name="title_activity_home_menu">BRAINWAVE</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -15,5 +15,30 @@
     <string name="emailTo">charmyshah91@gmail.com</string>
     <string name="medication_amount">100</string>
     <string name="license_key">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgI1TflDTJPU8Bk5fNt7+EZAxazq9DDYtZDEZ96CpCCrDY+Bep2bPtu9LTBjiVjuW5j/drMyQJEcxRjxLoWlq883XkoJ/LvLiFnKLAf1obnDLqdXnflaKT3ABDHU2sLEZbDOoVaBeBgHk5kRzxqqPaGcRZcNBUM8tDk5WeXy7U5/hNXDC5o5vripSc0NK796HLCAFSFjgrv+hLHnQEsJJDzgVE3pVeBIGrrFOrWEq5wWKZZB6fTcnzAfSpOPHd4pxuA1YWiVn17xQrfcpD1543SJCh21Jf4dNOA6cuVlfOpVxb2S1+pVGO8coxW7abmVA7Pd/6PcBk3qkcpIOwfrzPwIDAQAB</string>
+
+    <string name="service1">Psychological Testing</string>
+    <string name="service2">Screening behavioural &amp; learning problems in children</string>
+    <string name="service3">Individual Counselling - children, parents and adults</string>
+    <string name="service4">Telephonic &amp; Skype Counselling</string>
+    <string name="service5">Career Guidance &amp; Counselling</string>
+    <string name="service6">Handwriting &amp; Signature Analysis</string>
+    <string name="service7">Bach Flower Therapy</string>
+    <string name="service8">Workshops for Parents, Caretakers, Teachers, Adults &amp; Counsellors</string>
+
+    <string name="title_activity_workshops">WorkshopsActivity</string>
+
+    <string name="workshop1">Personal Safety Education – teaching children about safe and unsafe touch</string>
+    <string name="workshop2">Stress Management</string>
+    <string name="workshop3">Mind Tuning</string>
+    <string name="workshop4">Bach Flower Therapy</string>
+    <string name="workshop5">Parenting Skills</string>
+    <string name="workshop6">Play Therapy</string>
+
+    <string name="workshopTitle1">Personal Safety Education – SAFE UNSAFE Touch</string>
+    <string name="workshopTitle2">Punit Mann – De stress your mind, body &amp; soul</string>
+    <string name="workshopTitle3">Mind Tuning - Emotional Intelligence</string>
+    <string name="workshopTitle4">Bach Flower Therapy</string>
+    <string name="workshopTitle5">Parenting Skills</string>
+    <string name="workshopTitle6">Play Therapy</string>
 
 </resources>
