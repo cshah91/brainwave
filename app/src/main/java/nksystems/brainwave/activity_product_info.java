@@ -33,18 +33,19 @@ import com.squareup.picasso.Picasso;
 
 public class activity_product_info extends AppCompatActivity {
 
-    TextView tvTitle,tvAuthor,tvYear,tvGenre;
+    TextView tvProductName,tvProductDescription,tvProductPrice,tvProductId;
     ImageView ivThumbnail;
     Button btView,btRent;
     DatabaseReference mReference;
     StorageReference sReference;
-    String author="author";
-    String year="year";
-    String title="title";
-    String genre="genre";
+    String productDescription="productDescription";
+    String productPrice="productPrice";
+    String productName="productName";
+    String productId="productId";
     String imageName="";
     String pdfuri="";
     boolean isAllowed=false;
+    String shortDescription;
 
     @Override
     public void onBackPressed() {
@@ -77,10 +78,12 @@ public class activity_product_info extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.product_list_info_layout);
 
-        tvTitle=(TextView)findViewById(R.id.tvTitle);
-        tvYear=(TextView)findViewById(R.id.tvYear);
-        tvAuthor=(TextView)findViewById(R.id.tvAuthor);
-        tvGenre=(TextView)findViewById(R.id.tvGenre);
+        shortDescription = getIntent().getStringExtra("shortDescription");
+
+        tvProductName=(TextView)findViewById(R.id.tvProductName);
+        tvProductPrice=(TextView)findViewById(R.id.tvProductPrice);
+        tvProductDescription=(TextView)findViewById(R.id.tvProductDescription);
+        tvProductId=(TextView)findViewById(R.id.tvProductId);
 
         ivThumbnail=(ImageView)findViewById(R.id.imageView);
 
@@ -90,18 +93,18 @@ public class activity_product_info extends AppCompatActivity {
         mReference= FirebaseDatabase.getInstance().getReference("products");
         sReference= FirebaseStorage.getInstance().getReference("imagethumbnails");
 
-        final String title=getIntent().getStringExtra("title");
-        this.title=title;
+        final String productName=getIntent().getStringExtra("title");
+        this.productName=productName;
 
-        final DatabaseReference productReference=mReference.child(title);
+        final DatabaseReference productReference=mReference.child(productName);
         productReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                author=dataSnapshot.child("dirforuse").getValue().toString();
-                year=dataSnapshot.child("price").getValue().toString();
-                genre=dataSnapshot.child("productid").getValue().toString();
+                productDescription=dataSnapshot.child("dirforuse").getValue().toString();
+                productPrice=dataSnapshot.child("price").getValue().toString();
+                productId=dataSnapshot.child("productid").getValue().toString();
 
-                imageName=title.replace(" ","");
+                imageName=productName.replace(" ","");
                 sReference.child(imageName+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
@@ -122,10 +125,10 @@ public class activity_product_info extends AppCompatActivity {
                     }
                 });
 
-                tvTitle.setText(title);
-                tvAuthor.setText(author);
-                tvYear.setText("Price: " + year + " INR");
-                tvGenre.setText(genre);
+                tvProductName.setText(productName);
+                tvProductDescription.setText(productDescription);
+                tvProductPrice.setText("Price: " + productPrice + " INR");
+                tvProductId.setText(productId);
 
                 /*if(dataSnapshot.child("accesslist").hasChild(FirebaseAuth.getInstance().getCurrentUser().getUid())){
                     isAllowed=true;
@@ -156,9 +159,13 @@ public class activity_product_info extends AppCompatActivity {
         btRent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                productReference.child("accesslist").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue("allow");
                 finish();
-                startActivity(new Intent(activity_product_info.this,activity_product_info.class).putExtra("title",title));
+                Intent intent = new Intent(activity_product_info.this,activity_order_confirmation.class);
+                intent.putExtra("productName",productName)
+                        .putExtra("orderType","product")
+                        .putExtra("productDescription",shortDescription)
+                        .putExtra("originalAmount",productPrice);
+                startActivity(intent);
             }
         });
 

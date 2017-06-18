@@ -1,5 +1,6 @@
 package nksystems.brainwave;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ComponentName;
@@ -26,8 +27,15 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
+import com.braintreepayments.api.BraintreeFragment;
+import com.braintreepayments.api.dropin.DropInActivity;
+import com.braintreepayments.api.dropin.DropInRequest;
+import com.braintreepayments.api.dropin.DropInResult;
+import com.braintreepayments.api.exceptions.InvalidArgumentException;
 import com.google.android.gms.common.api.BooleanResult;
 import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.wallet.Cart;
+import com.google.android.gms.wallet.LineItem;
 import com.google.android.gms.wallet.Wallet;
 
 import org.json.JSONObject;
@@ -114,6 +122,8 @@ public class activity_counselling_form extends AppCompatActivity{
 
         txtTotal.setText("Total: " + originalAmount + " INR");
 
+        newAmount = originalAmount;
+
         chkMedication = (CheckBox) findViewById(R.id.chkMedication);
         chkMedication.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -194,13 +204,29 @@ public class activity_counselling_form extends AppCompatActivity{
                         txtPincode.requestFocus();
                     }
                     else{
-                        finish();
-                        startActivity(new Intent(activity_counselling_form.this,activity_purchase_services.class));
+                        Intent intent = new Intent(activity_counselling_form.this, activity_order_confirmation.class);
+                        intent.putExtra("orderType","service");
+                        intent.putExtra("packageType", packagetype);
+                        if(chkMedication.isChecked())
+                            intent.putExtra("medication","true");
+                        else
+                            intent.putExtra("medication","false");
+                        intent.putExtra("medicineCharge",""+medicationAmount);
+                        intent.putExtra("originalAmount", ""+originalAmount);
+                        startActivity(intent);
                     }
                 }
                 else{
-                    finish();
-                    startActivity(new Intent(activity_counselling_form.this,activity_purchase_services.class));
+                    Intent intent = new Intent(activity_counselling_form.this, activity_order_confirmation.class);
+                    intent.putExtra("orderType","service");
+                    intent.putExtra("packageType", packagetype);
+                    if(chkMedication.isChecked())
+                        intent.putExtra("medication","true");
+                    else
+                        intent.putExtra("medication","false");
+                    intent.putExtra("medicineCharge",""+medicationAmount);
+                    intent.putExtra("originalAmount", ""+originalAmount);
+                    startActivity(intent);
                 }
             }
         });

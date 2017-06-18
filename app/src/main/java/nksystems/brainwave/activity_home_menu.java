@@ -721,9 +721,12 @@ public class activity_home_menu extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView tvTitle=(TextView)view.findViewById(R.id.tvTitle);
                 String title=tvTitle.getText().toString();
+                TextView tvProductDescription = (TextView) findViewById(R.id.tvAuthor);
+                String description = tvProductDescription.getText().toString();
 
                 Intent intent=new Intent(activity_home_menu.this,activity_product_info.class);
                 intent.putExtra("title",title);
+                intent.putExtra("shortDescription",description);
                 startActivity(intent);
             }
         });

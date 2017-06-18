@@ -21,8 +21,8 @@
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <ProgressBar
-        android:layout_width="139dp"
-        android:layout_height="139dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/progress"
         android:visibility="visible"
         android:layout_marginRight="8dp"
