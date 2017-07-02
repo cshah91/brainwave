@@ -129,7 +129,7 @@ public class activity_purchase_services extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.purchase_services_layout);
+        //setContentView(R.layout.purchase_services_layout);
 
         buyButton=(Button)findViewById(R.id.buyButton);
 

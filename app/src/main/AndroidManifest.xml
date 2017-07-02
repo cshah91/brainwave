@@ -51,7 +51,8 @@
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
 
-        <activity android:name=".activity_order_confirmation"></activity>
+        <activity android:name=".activity_order_confirmation" />
+        <activity android:name=".activity_order_successful"></activity>
     </application>
 
 </manifest>

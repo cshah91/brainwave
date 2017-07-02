@@ -57,6 +57,9 @@ public class activity_counselling_form extends AppCompatActivity{
     String packagetype, selectedDate;
     Button btnSubmit;
     IInAppBillingService mService;
+    String name, email, briefProblem, detailedProblem, date, time, address, city, state, pincode, isMedication;
+    EditText  txtQuestName, txtQuestEmail, txtQuestProblem, txtQuestProblemDetailed, txtCounselDueDate,
+            txtCounselDueTime, txtAddress, txtCity, txtState, txtPincode;
 
     @Override
     public void onBackPressed() {
@@ -89,6 +92,65 @@ public class activity_counselling_form extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.counselling_form_layout);
         setDateTimePicker();
+
+        txtQuestName = (EditText) findViewById(R.id.txtQuestName);
+        txtQuestEmail = (EditText) findViewById(R.id.txtQuestEmail);
+        txtQuestProblem = (EditText) findViewById(R.id.txtQuestProblem);
+        txtQuestProblemDetailed = (EditText) findViewById(R.id.txtQuestProblemDetailed);
+        txtCounselDueDate = (EditText) findViewById(R.id.txtCounselDueDate);
+        txtCounselDueTime = (EditText) findViewById(R.id.txtCounselDueTime);
+        txtAddress = (EditText) findViewById(R.id.txtCounselAddress);
+        txtCity = (EditText) findViewById(R.id.txtAddressCity);
+        txtState = (EditText) findViewById(R.id.txtAddressState);
+        txtPincode = (EditText) findViewById(R.id.txtAddressPincode);
+        chkMedication = (CheckBox) findViewById(R.id.chkMedication);
+
+        name = getIntent().getStringExtra("name");
+        email = getIntent().getStringExtra("email");
+        briefProblem = getIntent().getStringExtra("briefProblem");
+        detailedProblem = getIntent().getStringExtra("detailedProblem");
+        date = getIntent().getStringExtra("date");
+        time = getIntent().getStringExtra("time");
+        address = getIntent().getStringExtra("address");
+        city = getIntent().getStringExtra("city");
+        state = getIntent().getStringExtra("state");
+        pincode = getIntent().getStringExtra("pincode");
+        isMedication = getIntent().getStringExtra("isMedication");
+
+        if(isMedication != null && isMedication.equals("true"))
+            chkMedication.setChecked(true);
+        else
+            chkMedication.setChecked(false);
+
+        if(name != null && name.length() > 0)
+            txtQuestName.setText(name);
+
+        if(email != null && email.length() > 0)
+            txtQuestEmail.setText(email);
+
+        if(briefProblem != null && briefProblem.length() > 0)
+            txtQuestProblem.setText(briefProblem);
+
+        if(detailedProblem != null && detailedProblem.length() > 0)
+            txtQuestProblemDetailed.setText(detailedProblem);
+
+        if(date != null && date.length() > 0)
+            txtCounselDueDate.setText(date);
+
+        if(time != null && time.length() > 0)
+            txtCounselDueTime.setText(time);
+
+        if(address != null && address.length() > 0)
+            txtAddress.setText(address);
+
+        if(city != null && city.length() > 0)
+            txtCity.setText(city);
+
+        if(state != null && state.length() > 0)
+            txtState.setText(state);
+
+        if(pincode != null && pincode.length() > 0)
+            txtPincode.setText(pincode);
 
         packagetype = getIntent().getStringExtra("packagetype");
 
@@ -124,7 +186,6 @@ public class activity_counselling_form extends AppCompatActivity{
 
         newAmount = originalAmount;
 
-        chkMedication = (CheckBox) findViewById(R.id.chkMedication);
         chkMedication.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -148,17 +209,6 @@ public class activity_counselling_form extends AppCompatActivity{
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText txtQuestName = (EditText) findViewById(R.id.txtQuestName);
-                EditText txtQuestEmail = (EditText) findViewById(R.id.txtQuestEmail);
-                EditText txtQuestProblem = (EditText) findViewById(R.id.txtQuestProblem);
-                EditText txtQuestProblemDetailed = (EditText) findViewById(R.id.txtQuestProblemDetailed);
-                EditText txtCounselDueDate = (EditText) findViewById(R.id.txtCounselDueDate);
-                EditText txtCounselDueTime = (EditText) findViewById(R.id.txtCounselDueTime);
-                EditText txtAddress = (EditText) findViewById(R.id.txtCounselAddress);
-                EditText txtCity = (EditText) findViewById(R.id.txtAddressCity);
-                EditText txtState = (EditText) findViewById(R.id.txtAddressState);
-                EditText txtPincode = (EditText) findViewById(R.id.txtAddressPincode);
-                CheckBox chkMedication = (CheckBox) findViewById(R.id.chkMedication);
 
                 // Package Type - 1 = Long Personal Session
                 // Package Type - 2 = Short Telephonic Session
@@ -213,6 +263,16 @@ public class activity_counselling_form extends AppCompatActivity{
                             intent.putExtra("medication","false");
                         intent.putExtra("medicineCharge",""+medicationAmount);
                         intent.putExtra("originalAmount", ""+originalAmount);
+                        intent.putExtra("name",txtQuestName.getText().toString());
+                        intent.putExtra("email", txtQuestEmail.getText().toString());
+                        intent.putExtra("briefProblem", txtQuestProblem.getText().toString());
+                        intent.putExtra("detailedProblem", txtQuestProblemDetailed.getText().toString());
+                        intent.putExtra("date", txtCounselDueDate.getText().toString());
+                        intent.putExtra("time", txtCounselDueTime.getText()).toString();
+                        intent.putExtra("address", txtAddress.getText().toString());
+                        intent.putExtra("city", txtCity.getText().toString());
+                        intent.putExtra("state", txtState.getText().toString());
+                        intent.putExtra("pincode", txtPincode.getText().toString());
                         startActivity(intent);
                     }
                 }
@@ -226,6 +286,16 @@ public class activity_counselling_form extends AppCompatActivity{
                         intent.putExtra("medication","false");
                     intent.putExtra("medicineCharge",""+medicationAmount);
                     intent.putExtra("originalAmount", ""+originalAmount);
+                    intent.putExtra("name",txtQuestName.getText().toString());
+                    intent.putExtra("email", txtQuestEmail.getText().toString());
+                    intent.putExtra("briefProblem", txtQuestProblem.getText().toString());
+                    intent.putExtra("detailedProblem", txtQuestProblemDetailed.getText().toString());
+                    intent.putExtra("date", txtCounselDueDate.getText().toString());
+                    intent.putExtra("time", txtCounselDueTime.getText()).toString();
+                    intent.putExtra("address", txtAddress.getText().toString());
+                    intent.putExtra("city", txtCity.getText().toString());
+                    intent.putExtra("state", txtState.getText().toString());
+                    intent.putExtra("pincode", txtPincode.getText().toString());
                     startActivity(intent);
                 }
             }
