@@ -29,6 +29,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -47,6 +48,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -71,13 +74,21 @@ public class activity_home_menu extends AppCompatActivity
     Dialog commonDialog;
     String selectedDate;
 
-    protected DrawerLayout drawerLayout;
+    int[] bachImages = {R.drawable.bach_flowers_1, R.drawable.bach_flowers_2, R.drawable.bach_flowers_4, R.drawable.bach_flowers_7, R.drawable.bach_flowers_8, R.drawable.bach_flowers_9};
+    CarouselView carouselView;
+    ImageListener imageListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_menu);
 
-
+        imageListener = new ImageListener() {
+            @Override
+            public void setImageForPosition(int position, ImageView imageView) {
+                imageView.setImageResource(bachImages[position]);
+            }
+        };
 
         contentAbout=(ViewStub)findViewById(R.id.contentAbout);
         contentAbout.setLayoutResource(R.layout.activity_card_view);
@@ -230,6 +241,10 @@ public class activity_home_menu extends AppCompatActivity
     }
 
     public void actionsCounsellingServices(){
+
+        carouselView = (CarouselView) findViewById(R.id.carouselView);
+        carouselView.setImageListener(imageListener);
+        carouselView.setPageCount(bachImages.length);
 
         CardView cvAbout = (CardView) findViewById(R.id.cvAbout);
         cvAbout.setOnClickListener(new View.OnClickListener() {

@@ -4,28 +4,22 @@
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_height="match_parent"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:background="#D9D9D9"
-        xmlns:android="http://schemas.android.com/apk/res/android">
+        android:layout_height="wrap_content"
+        android:background="#D9D9D9">
 
-        <android.support.constraint.Guideline
+        <com.synnapps.carouselview.CarouselView
+            android:id="@+id/carouselView"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:id="@+id/thirty"
-            app:layout_constraintGuide_percent="0.26"
-            android:orientation="horizontal"
-            />
-
-        <android.support.constraint.Guideline
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:id="@+id/sixty"
-            app:layout_constraintGuide_percent="0.66"
-            android:orientation="horizontal"
-            />
+            android:layout_height="200dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="10dp"
+            app:pageColor="#00000000"
+            app:slideInterval="5000"
+            app:indicatorVisibility="gone"/>
 
         <!--Our Services Card View-->
         <android.support.v7.widget.CardView
@@ -34,14 +28,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="10dp"
             app:cardCornerRadius="8dp"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintVertical_bias="0.017"
-            app:layout_constraintBottom_toTopOf="@+id/thirty"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_alignBottom="@+id/carouselView">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,13 +62,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginTop="10dp"
             app:cardCornerRadius="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/sixty"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvAbout"
-            app:layout_constraintVertical_bias="0.051">
+            android:layout_alignBottom="@+id/cvAbout">
 
             <TextView
                 android:id="@+id/textView"
@@ -196,44 +181,6 @@
 
         </android.support.v7.widget.CardView>
 
-        <!--Medicines Card View-->
-        <android.support.v7.widget.CardView
-            android:id="@+id/cvMedicines"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            app:cardCornerRadius="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvPackages"
-            app:layout_constraintVertical_bias="0.141">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="63dp"
-                android:orientation="vertical"
-                android:weightSum="1">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="0.60"
-                    android:gravity="center"
-                    android:text="Medicines"
-                    android:textAlignment="center"
-                    android:textColor="#383689"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-
-        </android.support.v7.widget.CardView>
-
         <!--Packages Card View-->
         <android.support.v7.widget.CardView
             android:id="@+id/cvPackages"
@@ -241,13 +188,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginTop="10dp"
             app:cardCornerRadius="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvSchedule"
-            app:layout_constraintVertical_bias="0.058">
+            android:layout_alignBottom="@id/cvSchedule">
 
             <TextView
                 android:layout_width="match_parent"
@@ -294,7 +237,42 @@
 
         </android.support.v7.widget.CardView>
 
+        <!--Medicines Card View-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvMedicines"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="8dp"
+            android:layout_alignBottom="@+id/cvPackages">
 
-    </android.support.constraint.ConstraintLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.60"
+                    android:gravity="center"
+                    android:text="Medicines"
+                    android:textAlignment="center"
+                    android:textColor="#383689"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+
+    </LinearLayout>
 
 </ScrollView>
