@@ -139,8 +139,20 @@ public class activity_order_confirmation extends AppCompatActivity
             state = getIntent().getStringExtra("state");
             pincode = getIntent().getStringExtra("pincode");
         }
-        else{
+        else if(orderType.equals("product")){
             imgPlaceholder.setVisibility(View.VISIBLE);
+            tvOrderMedicine.setVisibility(View.GONE);
+            tvOrderShipping.setVisibility(View.VISIBLE);
+            labelMedicine.setVisibility(View.GONE);
+            labelShipping.setVisibility(View.VISIBLE);
+            productName = getIntent().getStringExtra("productName");
+            productDescription = getIntent().getStringExtra("productDescription");
+            tvOrderTitle.setText(productName);
+            tvOrderDescription.setText(productDescription);
+            shippingCharge = 50;
+        }
+        else{
+            imgPlaceholder.setVisibility(View.GONE);
             tvOrderMedicine.setVisibility(View.GONE);
             tvOrderShipping.setVisibility(View.VISIBLE);
             labelMedicine.setVisibility(View.GONE);
@@ -517,10 +529,15 @@ public class activity_order_confirmation extends AppCompatActivity
                     finish();
                     startActivity(intent);
                 }
-                else{
+                else if(orderType.equals("product")){
                     Intent intent=new Intent(activity_order_confirmation.this,activity_product_info.class);
                     intent.putExtra("title",productName);
                     intent.putExtra("shortDescription",productDescription);
+                    finish();
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent=new Intent(activity_order_confirmation.this,activity_medicines.class);
                     finish();
                     startActivity(intent);
                 }
@@ -550,10 +567,15 @@ public class activity_order_confirmation extends AppCompatActivity
             finish();
             startActivity(intent);
         }
-        else{
+        else if(orderType.equals("product")){
             Intent intent=new Intent(activity_order_confirmation.this,activity_product_info.class);
             intent.putExtra("title",productName);
             intent.putExtra("shortDescription",productDescription);
+            finish();
+            startActivity(intent);
+        }
+        else{
+            Intent intent=new Intent(activity_order_confirmation.this,activity_medicines.class);
             finish();
             startActivity(intent);
         }

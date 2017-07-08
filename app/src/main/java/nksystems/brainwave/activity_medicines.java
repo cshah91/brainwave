@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
@@ -18,11 +19,17 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class activity_medicines extends AppCompatActivity implements View.OnClickListener {
 
     DatabaseReference mReference;
+    double originalAmount = 0;
+    String shortDescription = "";
+    Map<String, String> medicinesPriceMap = new HashMap<>();
+    Map<String, String> medicinesDescriptionMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,8 @@ public class activity_medicines extends AppCompatActivity implements View.OnClic
                 for (DataSnapshot data :dataSnapshot.getChildren()){
                     if((Boolean) data.child("active").getValue()){
                         medicineList.add(data.getKey());
+                        medicinesPriceMap.put(data.getKey(), data.child("price").getValue().toString());
+                        medicinesDescriptionMap.put(data.getKey(), data.child("shortdesc").getValue().toString());
                     }
                 }
 
@@ -61,18 +70,10 @@ public class activity_medicines extends AppCompatActivity implements View.OnClic
         });
     }
 
+
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(activity_medicines.this, activity_order_confirmation.class);
-        intent.putExtra("orderType","product");
-        /*intent.putExtra("originalAmount", ""+originalAmount);
-        intent.putExtra("name",txtQuestName.getText().toString());
-        intent.putExtra("email", txtQuestEmail.getText().toString());
-        intent.putExtra("address", txtAddress.getText().toString());
-        intent.putExtra("city", txtCity.getText().toString());
-        intent.putExtra("state", txtState.getText().toString());
-        intent.putExtra("pincode", txtPincode.getText().toString());*/
-        startActivity(intent);
+
     }
 
     @Override
@@ -99,6 +100,24 @@ public class activity_medicines extends AppCompatActivity implements View.OnClic
     }
 
     public void buyMedicine(View view){
-        Toast.makeText(this, "Summary page will open", Toast.LENGTH_SHORT).show();
+        TextView txtMedicine = (TextView) view.findViewById(R.id.medItem);
+        Intent intent = new Intent(activity_medicines.this, activity_order_confirmation.class);
+        intent.putExtra("orderType","medicine");
+        intent.putExtra("productName", txtMedicine.getText());
+        for(Map.Entry<String, String> entry: medicinesPriceMap.entrySet()){
+            // Each medicine name should be unique else the code will fail
+            if(entry.getKey().equals(txtMedicine.getText())){
+                originalAmount = Double.parseDouble(entry.getValue());
+            }
+        }
+        for(Map.Entry<String, String> entry: medicinesDescriptionMap.entrySet()){
+            // Each medicine name should be unique else the code will fail
+            if(entry.getKey().equals(txtMedicine.getText())){
+                shortDescription = entry.getValue();
+            }
+        }
+        intent.putExtra("originalAmount", ""+originalAmount);
+        intent.putExtra("productDescription", shortDescription);
+        startActivity(intent);
     }
 }
