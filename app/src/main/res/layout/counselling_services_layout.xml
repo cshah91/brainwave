@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_height="match_parent"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -26,16 +27,15 @@
             android:orientation="horizontal"
             />
 
+        <!--Our Services Card View-->
         <android.support.v7.widget.CardView
             android:id="@+id/cvAbout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="12dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -66,22 +66,20 @@
 
         </android.support.v7.widget.CardView>
 
+        <!--Schedule an appointment Card View-->
         <android.support.v7.widget.CardView
             android:id="@+id/cvSchedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
             app:layout_constraintBottom_toTopOf="@+id/sixty"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cvAbout"
-            app:layout_constraintVertical_bias="0.147">
+            app:layout_constraintVertical_bias="0.051">
 
             <TextView
                 android:id="@+id/textView"
@@ -198,22 +196,58 @@
 
         </android.support.v7.widget.CardView>
 
+        <!--Medicines Card View-->
+        <android.support.v7.widget.CardView
+            android:id="@+id/cvMedicines"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvPackages"
+            app:layout_constraintVertical_bias="0.141">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="0.60"
+                    android:gravity="center"
+                    android:text="Medicines"
+                    android:textAlignment="center"
+                    android:textColor="#383689"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+        <!--Packages Card View-->
         <android.support.v7.widget.CardView
             android:id="@+id/cvPackages"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cvSchedule"
-            app:layout_constraintVertical_bias="0.141">
+            app:layout_constraintVertical_bias="0.058">
 
             <TextView
                 android:layout_width="match_parent"

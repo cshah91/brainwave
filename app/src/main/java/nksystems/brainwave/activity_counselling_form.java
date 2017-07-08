@@ -154,6 +154,8 @@ public class activity_counselling_form extends AppCompatActivity{
 
         packagetype = getIntent().getStringExtra("packagetype");
 
+        chkMedication.setVisibility(View.GONE);
+
         // Package Type - 1 = Long Personal Session
         // Package Type - 2 = Short Telephonic Session
         if(packagetype.equals("1")){
@@ -257,10 +259,11 @@ public class activity_counselling_form extends AppCompatActivity{
                         Intent intent = new Intent(activity_counselling_form.this, activity_order_confirmation.class);
                         intent.putExtra("orderType","service");
                         intent.putExtra("packageType", packagetype);
-                        if(chkMedication.isChecked())
+                        intent.putExtra("medication","false");
+                        /*if(chkMedication.isChecked())
                             intent.putExtra("medication","true");
                         else
-                            intent.putExtra("medication","false");
+                            intent.putExtra("medication","false");*/
                         intent.putExtra("medicineCharge",""+medicationAmount);
                         intent.putExtra("originalAmount", ""+originalAmount);
                         intent.putExtra("name",txtQuestName.getText().toString());
@@ -280,10 +283,11 @@ public class activity_counselling_form extends AppCompatActivity{
                     Intent intent = new Intent(activity_counselling_form.this, activity_order_confirmation.class);
                     intent.putExtra("orderType","service");
                     intent.putExtra("packageType", packagetype);
-                    if(chkMedication.isChecked())
+                    intent.putExtra("medication","false");
+                    /*if(chkMedication.isChecked())
                         intent.putExtra("medication","true");
                     else
-                        intent.putExtra("medication","false");
+                        intent.putExtra("medication","false");*/
                     intent.putExtra("medicineCharge",""+medicationAmount);
                     intent.putExtra("originalAmount", ""+originalAmount);
                     intent.putExtra("name",txtQuestName.getText().toString());

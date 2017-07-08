@@ -62,10 +62,6 @@ public class activity_home_menu extends AppCompatActivity
     ViewStub contentAbout,contentCounselling,contentFlower,contentPlay,contentHandwriting,contentAstrology, contentPari,
     contentProducts, contentTips;
     LinearLayout root;
-    /*ExpandableListView expandableListView;
-    ExpandableListAdapter listAdapter;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;*/
     ViewStub stub1, stub2, stub3, stubf1, stubf2, stubf3, stubh1, stubh2, stubh3;
     DatabaseReference mReference;
     StorageReference sReference;
@@ -90,10 +86,6 @@ public class activity_home_menu extends AppCompatActivity
         contentCounselling=(ViewStub)findViewById(R.id.contentCounselling);
         contentCounselling.setLayoutResource(R.layout.counselling_services_layout);
         contentCounselling.inflate();
-
-        /*contentFlower=(ViewStub)findViewById(R.id.contentFlower);
-        contentFlower.setLayoutResource(R.layout.flower_therapy_layout);
-        contentFlower.inflate();*/
 
         contentPari=(ViewStub)findViewById(R.id.contentPari);
         contentPari.setLayoutResource(R.layout.pari_herbal_product_layout);
@@ -320,6 +312,16 @@ public class activity_home_menu extends AppCompatActivity
                 Button btnAppointment = (Button) dialog.findViewById(R.id.btnCounselSetAppointment);
                 btnAppointment.setText("Set Personal Appointment");
                 dialog.show();
+            }
+        });
+
+        CardView cvMedicines = (CardView) findViewById(R.id.cvMedicines);
+        cvMedicines.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(activity_home_menu.this,activity_medicines.class);
+                startActivity(intent);
             }
         });
     }

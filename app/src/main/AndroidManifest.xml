@@ -52,7 +52,8 @@
             android:value="true" />
 
         <activity android:name=".activity_order_confirmation" />
-        <activity android:name=".activity_order_successful"></activity>
+        <activity android:name=".activity_order_successful" />
+        <activity android:name=".activity_medicines"></activity>
     </application>
 
 </manifest>

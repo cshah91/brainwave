@@ -31,7 +31,7 @@ public class activity_loading extends AppCompatActivity {
                 finish();
                 startActivity(intent);
             }
-        }, 7000);
+        }, 5000);
 
 
     }
