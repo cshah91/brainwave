@@ -48,11 +48,15 @@ public class CustomGridItem extends BaseAdapter{
         this.mReference.orderByChild(orderby).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                count=(int)dataSnapshot.getChildrenCount();
+                //count=(int)dataSnapshot.getChildrenCount();
                 snapshot=dataSnapshot;
                 Iterable<DataSnapshot> childrenIterator= dataSnapshot.getChildren();
+                count = 0;
                 for(DataSnapshot productName : childrenIterator){
-                    productsList.add(productName);
+                    if((Boolean) productName.child("active").getValue()){
+                        productsList.add(productName);
+                        count++;
+                    }
                 }
             }
 

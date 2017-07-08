@@ -24,6 +24,11 @@ import com.braintreepayments.api.interfaces.BraintreeErrorListener;
 import com.braintreepayments.api.interfaces.BraintreeResponseListener;
 import com.braintreepayments.api.interfaces.PaymentMethodNonceCreatedListener;
 import com.braintreepayments.api.models.PaymentMethodNonce;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -37,6 +42,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Date;
 
 import static nksystems.brainwave.activity_purchase_services.CONNECTION_TIMEOUT;
 import static nksystems.brainwave.activity_purchase_services.READ_TIMEOUT;
@@ -63,6 +69,10 @@ public class activity_order_confirmation extends AppCompatActivity
     String tokenizationKey = "sandbox_6w3f54dk_jvrhmcgz2n7fydvy";
 
     String name, email, briefProblem, detailedProblem, date, time, address, city, state, pincode;
+    DatabaseReference mReference,ordersReference;
+    int currentOrderId;
+    boolean stat = false;
+    boolean val = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,11 +101,13 @@ public class activity_order_confirmation extends AppCompatActivity
             packageType = getIntent().getStringExtra("packageType");
             isMedication = getIntent().getStringExtra("medication");
             if(packageType.equals("1")){
-                tvOrderTitle.setText("Counselling Services - Long Session");
+                productName = "Counselling Services - Long Session";
+                tvOrderTitle.setText(productName);
                 tvOrderDescription.setText("Long Session Description text");
             }
             else{
-                tvOrderTitle.setText("Counselling Services - Brief Session");
+                productName = "Counselling Services - Brief Session";
+                tvOrderTitle.setText(productName);
                 tvOrderDescription.setText("Brief session description text");
             }
 
@@ -399,10 +411,12 @@ public class activity_order_confirmation extends AppCompatActivity
             Log.i("Purchase", status);
             Toast.makeText(activity_order_confirmation.this, "Result: " + status, Toast.LENGTH_LONG).show();
             if(status != null && status.equals("submitted_for_settlement")){
-                finish();
-                Intent intent = new Intent(activity_order_confirmation.this, activity_order_successful.class);
-                intent.putExtra("amount",totalAmount);
-                startActivity(intent);
+                if(updateOrderDetails()){
+                    finish();
+                    Intent intent = new Intent(activity_order_confirmation.this, activity_order_successful.class);
+                    intent.putExtra("amount",totalAmount);
+                    startActivity(intent);
+                }
             }
         }
     }
@@ -543,5 +557,41 @@ public class activity_order_confirmation extends AppCompatActivity
             finish();
             startActivity(intent);
         }
+    }
+
+    private boolean updateOrderDetails(){
+        mReference= FirebaseDatabase.getInstance().getReference("currentorderid");
+        mReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                currentOrderId=Integer.parseInt(dataSnapshot.getValue().toString());
+                currentOrderId+=1;
+
+                stat = stat?false:true;
+                if(callDatabase())
+                    val = true;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        ordersReference=FirebaseDatabase.getInstance().getReference("orders");
+
+        return val;
+    }
+
+    private boolean callDatabase(){
+        if(stat){
+            Order order=new Order(address,city,state,pincode,email,name,""+shippingCharge,""+calculatedTax,""+medicineCharge
+                                    ,productName,""+originalAmount,"","DD-MM-YYYY",""+totalAmount,orderType,""+taxPercent);
+
+            ordersReference.child(""+currentOrderId).setValue(order);
+            mReference.setValue(""+currentOrderId);
+            return true;
+        }
+        return false;
     }
 }
