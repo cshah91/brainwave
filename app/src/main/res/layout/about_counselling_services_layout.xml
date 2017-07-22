@@ -143,10 +143,11 @@
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="4dp"
         card_view:contentPadding="10dp"
-        card_view:cardBackgroundColor="#209765fd"
+        card_view:cardBackgroundColor="#20ff0000"
         android:layout_margin="5dp"
         android:layout_gravity="center"
-        android:id="@+id/cvService7">
+        android:id="@+id/cvService7"
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -165,7 +166,7 @@
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="4dp"
         card_view:contentPadding="10dp"
-        card_view:cardBackgroundColor="#20ff0000"
+        card_view:cardBackgroundColor="#209765fd"
         android:layout_margin="5dp"
         android:layout_gravity="center"
         android:id="@+id/cvService8">

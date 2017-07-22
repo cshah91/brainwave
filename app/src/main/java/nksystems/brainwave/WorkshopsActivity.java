@@ -309,7 +309,7 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
                 break;
         }
         dialog.findViewById(R.id.llWorkshops).setVisibility(View.VISIBLE);
-        dialog.findViewById(R.id.viewServiceContent).setVisibility(View.GONE);
+        dialog.findViewById(R.id.llServices).setVisibility(View.GONE);
         dialog.show();
     }
 

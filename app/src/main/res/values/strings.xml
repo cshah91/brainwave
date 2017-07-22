@@ -17,12 +17,12 @@
     <string name="license_key">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgI1TflDTJPU8Bk5fNt7+EZAxazq9DDYtZDEZ96CpCCrDY+Bep2bPtu9LTBjiVjuW5j/drMyQJEcxRjxLoWlq883XkoJ/LvLiFnKLAf1obnDLqdXnflaKT3ABDHU2sLEZbDOoVaBeBgHk5kRzxqqPaGcRZcNBUM8tDk5WeXy7U5/hNXDC5o5vripSc0NK796HLCAFSFjgrv+hLHnQEsJJDzgVE3pVeBIGrrFOrWEq5wWKZZB6fTcnzAfSpOPHd4pxuA1YWiVn17xQrfcpD1543SJCh21Jf4dNOA6cuVlfOpVxb2S1+pVGO8coxW7abmVA7Pd/6PcBk3qkcpIOwfrzPwIDAQAB</string>
 
     <string name="service1">Psychological Testing</string>
-    <string name="service2">Screening behavioural &amp; learning problems in children</string>
-    <string name="service3">Individual Counselling - children, parents and adults</string>
+    <string name="service2">Screening Emotional, Behavioural and Academic Problems in Children</string>
+    <string name="service3">Individual Personal Counselling (For Adults &amp; Children)</string>
     <string name="service4">Telephonic &amp; Skype Counselling</string>
     <string name="service5">Career Guidance &amp; Counselling</string>
-    <string name="service6">Handwriting &amp; Signature Analysis</string>
-    <string name="service7">Bach Flower Therapy</string>
+    <string name="service6">Bach Flower Therapy</string>
+    <string name="service7">Handwriting &amp; Signature Analysis</string>
     <string name="service8">Workshops for Parents, Caretakers, Teachers, Adults &amp; Counsellors</string>
 
     <string name="title_activity_workshops">WorkshopsActivity</string>
