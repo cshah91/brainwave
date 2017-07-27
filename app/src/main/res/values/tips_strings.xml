@@ -1,0 +1,43 @@
+<resources>
+    <string name="tips_title_1"><u>Symptoms to determine Mental Illness</u></string>
+    <string name="tips_title_2"><u>Ask Yourself These Questions to Help Decide if You Should See a Mental Health Professional</u></string>
+
+    <string name="tips_content_1_1">Some of the symptoms that you may find:</string>
+    <string name="tips_content_1_2"><b>Prognosis</b></string>
+    <string name="tips_content_1_3">How well a person does depends on the cause of the mental illness.</string>
+    <string name="tips_content_1_4">If the cause can be corrected, the outlook is often good, and treatment with antipsychotic
+        medication may be brief.</string>
+    <string name="tips_content_1_5">Some chronic conditions, such as schizophrenia, may need life-long treatment with antipsychotic
+        medications to control symptoms.</string>
+    <string name="tips_content_1_6"><b>Possible Complications</b></string>
+    <string name="tips_content_1_7">Mental Illness can prevent people from functioning normally and caring for themselves. If the
+        condition is left untreated, people can sometimes harm themselves or others.</string>
+    <string name="tips_content_1_8"><b>When to Contact a Medical Professional</b></string>
+    <string name="tips_content_1_9">Call your Mental Health Professional if you or a member of your family is losing contact with
+        reality. If there is any concern about safety, immediately take the person to the nearest emergency room to be seen by a doctor.</string>
+
+    <string name="tips_content_2_1">No matter what, even if there is not much bothering you, seeing a qualified mental health
+        therapist can still be a good idea. However below are some questions to ask yourself, if you are in debate about
+        considering Counselling:</string>
+
+    <string name="tips_bullets_1">
+        &#8226; Illusions,\n&#8226; No self-care,\n&#8226; Irrelevant talks,\n&#8226; Extreme anxiety,\n&#8226; Abusive language,
+        \n&#8226; Extreme depression,\n&#8226; Over-sleep or insomnia,\n&#8226; Problems with memory,\n&#8226; Inability to make decisions,
+        \n&#8226; Disorientation or confusion,\n&#8226; Unusual behavior and dress,\n&#8226; Excessive spending of money,
+        \n&#8226; Extremely negative thoughts,\n&#8226; Low self-esteem and confidence,\n&#8226; No hygiene of self and environment,
+        \n&#8226; Continuous physical and verbal abuse,\n&#8226; Running away from home without informing,\n&#8226; Speech or language that doesn\'t make sense,
+        \n&#8226; Changes in eating or sleeping habits, energy level, or weight,\n&#8226; Hallucinations: Hearing, seeing, or feeling things that are not there,
+        \n&#8226; Disorganized thinking: Thoughts that "jump" between unrelated topics,\n&#8226; Delusions: False beliefs that are not based in reality, especially unfounded fear or suspicion,
+        \n&#8226; Other major signs where the person finds it difficult to function in his/her day to day life.
+    </string>
+
+    <string name="tips_bullets_2">
+        &#8226; Is your relationship in peril?\n&#8226; Do you have loss of appetite?\n&#8226; Are you feeling more frustrated?\n&#8226; Do you have sleeping difficulties?
+        \n&#8226; Has your weight drastically changed?\n&#8226; Are you dealing with elderly parents?\n&#8226; Are you exhibiting more signs of anger?
+        \n&#8226; Are you feeling hopeless, or in despair?\n&#8226; Do you find yourself worrying excessively?\n&#8226; Do you have unexplained aches and pains?
+        \n&#8226; Are you grieving for someone or even a pet?\n&#8226; Have you ever experienced a traumatic event?\n&#8226; Do you have feelings of isolation and loneliness?
+        \n&#8226; Do you have less patience with people in your life?\n&#8226; Are you abusing substances like alcohol and/or drugs?\n&#8226; Do you find yourself feeling sad, and not being able to shake it?
+        \n&#8226; Do you have trouble concentrating, or focusing on getting tasks done?\n&#8226; Are you dealing with diffiulties in your relationship with your children?
+        \n&#8226; Do you feel more stressed, or are there things going on that are stressful to you?\n&#8226; Are there changes in behavior in your mate or other close family members that are bothering you?
+    </string>
+</resources>

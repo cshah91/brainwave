@@ -160,7 +160,7 @@ public class activity_product_info extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(activity_product_info.this,activity_order_confirmation.class);
+                Intent intent = new Intent(activity_product_info.this,activity_shipping_address.class);
                 intent.putExtra("productName",productName)
                         .putExtra("orderType","product")
                         .putExtra("productDescription",shortDescription)

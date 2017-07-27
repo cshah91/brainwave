@@ -10,8 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_bw_blue"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".activity_loading">
+        android:theme="@style/AppTheme" >
+        <activity android:name=".activity_loading" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +36,7 @@
             android:label="Workshops" />
         <activity
             android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -53,7 +53,9 @@
 
         <activity android:name=".activity_order_confirmation" />
         <activity android:name=".activity_order_successful" />
-        <activity android:name=".activity_medicines"></activity>
+        <activity android:name=".activity_medicines" />
+        <activity android:name=".activity_shipping_address" >
+        </activity>
     </application>
 
 </manifest>

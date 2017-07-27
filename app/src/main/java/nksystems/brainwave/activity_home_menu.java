@@ -40,6 +40,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.braintreepayments.api.Card;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -178,13 +179,17 @@ public class activity_home_menu extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         int id = item.getItemId();
 
+        Log.d("Home Menu", "id = " + id + " R.id.menu_tips = " + R.id.menu_tips);
+        Log.d("Home Menu", "id = " + id + " R.id.menu_products = " + R.id.menu_products);
+
         if(id == R.id.menu_products){
             switchContent(contentProducts);
             actionsProductsList();
         }
         else if(id == R.id.menu_tips){
             switchContent(contentTips);
-            actionTips();
+            /*actionTips();*/
+
         }
 
         return true;
@@ -235,6 +240,8 @@ public class activity_home_menu extends AppCompatActivity
         contentHandwriting.setVisibility(View.GONE);
         contentAstrology.setVisibility(View.GONE);
         contentAbout.setVisibility(View.GONE);
+        contentProducts.setVisibility(View.GONE);
+        contentTips.setVisibility(View.GONE);
 
         v.setVisibility(View.VISIBLE);
 
@@ -744,5 +751,23 @@ public class activity_home_menu extends AppCompatActivity
 
     public void actionTips(){
 
+        /*CardView tipsContent1 = (CardView) findViewById(R.id.tipsContent1);
+        CardView tipsContent2 = (CardView) findViewById(R.id.tipsContent2);
+        Dialog dialog = new Dialog(activity_home_menu.this, R.style.custom_dialog_services_style);
+        dialog.setContentView(R.layout.dialog_services_layout);
+        TextView viewTitle = (TextView) dialog.findViewById(R.id.viewServiceTitle);
+        tipsContent1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        tipsContent2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });*/
     }
 }
