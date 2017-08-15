@@ -51,16 +51,16 @@ public class activity_order_confirmation extends AppCompatActivity
         implements PaymentMethodNonceCreatedListener,BraintreeCancelListener,BraintreeErrorListener {
 
     String orderType, packageType, productName, productDescription;
-    String isMedication;
+    String isMedication="false";
     TextView tvOrderTitle, tvOrderDescription, tvOrderMedicine, tvOrderShipping, tvOrderPrice, tvOrderTax, tvOrderTotal;
     TextView labelMedicine, labelShipping;
     ImageView imgPlaceholder;
     int taxPercent = 10;
     double originalAmount, calculatedTax, medicineCharge, totalAmount, shippingCharge = 0;
 
-    private static String request_url = "http://192.168.0.105:81/braintree/request";
-    private static String response_url = "http://192.168.0.105:81/braintree/response";
-    private static String nonce_url = "http://192.168.0.105:81/braintree/nonce";
+    private static String request_url = "http://192.168.0.107:81/braintree/request";
+    private static String response_url = "http://192.168.0.107:81/braintree/response";
+    private static String nonce_url = "http://192.168.0.107:81/braintree/nonce";
     String clientToken;
     DropInRequest dropInRequest;
     String nonce, deviceData;
@@ -423,12 +423,7 @@ public class activity_order_confirmation extends AppCompatActivity
             Log.i("Purchase", status);
             Toast.makeText(activity_order_confirmation.this, "Result: " + status, Toast.LENGTH_LONG).show();
             if(status != null && status.equals("submitted_for_settlement")){
-                if(updateOrderDetails()){
-                    finish();
-                    Intent intent = new Intent(activity_order_confirmation.this, activity_order_successful.class);
-                    intent.putExtra("amount",totalAmount);
-                    startActivity(intent);
-                }
+                if(updateOrderDetails());
             }
         }
     }
@@ -590,8 +585,14 @@ public class activity_order_confirmation extends AppCompatActivity
                 currentOrderId+=1;
 
                 stat = stat?false:true;
-                if(callDatabase())
+                if(callDatabase()){
                     val = true;
+                    finish();
+                    Intent intent = new Intent(activity_order_confirmation.this, activity_order_successful.class);
+                    intent.putExtra("orderNo",currentOrderId);
+                    intent.putExtra("isProduct",(isMedication.equals("true") || orderType.equals("product")) ? "true" : "false");
+                    startActivity(intent);
+                }
             }
 
             @Override
