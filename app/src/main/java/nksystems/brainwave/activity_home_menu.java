@@ -651,6 +651,7 @@ public class activity_home_menu extends AppCompatActivity
                 Intent intent=new Intent(activity_home_menu.this,activity_product_info.class);
                 intent.putExtra("title",title);
                 intent.putExtra("shortDescription",description);
+                finish();
                 startActivity(intent);
             }
         });

@@ -276,6 +276,7 @@ public class activity_counselling_form extends AppCompatActivity{
                         intent.putExtra("city", txtCity.getText().toString());
                         intent.putExtra("state", txtState.getText().toString());
                         intent.putExtra("pincode", txtPincode.getText().toString());
+                        finish();
                         startActivity(intent);
                     }
                 }
@@ -300,6 +301,7 @@ public class activity_counselling_form extends AppCompatActivity{
                     intent.putExtra("city", txtCity.getText().toString());
                     intent.putExtra("state", txtState.getText().toString());
                     intent.putExtra("pincode", txtPincode.getText().toString());
+                    finish();
                     startActivity(intent);
                 }
             }

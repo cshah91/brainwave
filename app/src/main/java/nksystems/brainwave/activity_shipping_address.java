@@ -105,6 +105,7 @@ public class activity_shipping_address extends AppCompatActivity implements View
             intent.putExtra("orderType",orderType);
             intent.putExtra("productDescription",shortDescription);
             intent.putExtra("originalAmount",productPrice);
+            finish();
             startActivity(intent);
         }
     }

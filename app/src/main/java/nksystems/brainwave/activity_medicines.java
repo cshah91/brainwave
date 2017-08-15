@@ -118,6 +118,7 @@ public class activity_medicines extends AppCompatActivity implements View.OnClic
         }
         intent.putExtra("originalAmount", ""+originalAmount);
         intent.putExtra("productDescription", shortDescription);
+        finish();
         startActivity(intent);
     }
 }

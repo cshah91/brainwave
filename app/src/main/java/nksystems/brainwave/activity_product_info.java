@@ -177,6 +177,7 @@ public class activity_product_info extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(pdfuri));
                 intent.setPackage("com.android.chrome");
+                finish();
                 startActivity(intent);
             }
         });
