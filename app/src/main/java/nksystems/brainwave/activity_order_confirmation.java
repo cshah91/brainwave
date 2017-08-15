@@ -420,8 +420,6 @@ public class activity_order_confirmation extends AppCompatActivity
         @Override
         protected void onPostExecute(String status) {
             super.onPostExecute(status);
-            Log.i("Purchase", status);
-            Toast.makeText(activity_order_confirmation.this, "Result: " + status, Toast.LENGTH_LONG).show();
             if(status != null && status.equals("submitted_for_settlement")){
                 if(updateOrderDetails());
             }
