@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017. NKSystems
+ *
+ * Created on : 28-04-2017
+ * Author     : Charmy Shah
+ *
+ * All rights reserved
+ */
+
 package nksystems.brainwave;
 
 import android.support.v7.widget.RecyclerView;
@@ -7,16 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by Charmy on 28/04/2017.
- */
 
 public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.DataObjectHolder> {
 
-    private List<AboutBrainwaveObject> mDataset;
+    private List<object_about_brainwave> mDataset;
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder
             implements View
@@ -37,7 +41,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.DataOb
         }
     }
 
-    public CardViewAdapter(List<AboutBrainwaveObject> myDataset) {
+    public CardViewAdapter(List<object_about_brainwave> myDataset) {
         mDataset = myDataset;
     }
 

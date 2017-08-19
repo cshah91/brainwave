@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017. NKSystems
+ *
+ * Created on : 08-07-2017
+ * Author     : Charmy Shah
+ *
+ * All rights reserved
+ */
+
 package nksystems.brainwave;
 
 import android.content.Intent;
@@ -9,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;

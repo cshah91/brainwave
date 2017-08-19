@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017. NKSystems
+ *
+ * Created on : 18-06-2017
+ * Author     : Charmy Shah
+ *
+ * All rights reserved
+ */
+
 package nksystems.brainwave;
 
 import android.content.Intent;
@@ -29,9 +38,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;

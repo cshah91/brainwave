@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017. NKSystems
+ *
+ * Created on : 19-08-2017
+ * Author     : Charmy Shah
+ *
+ * All rights reserved
+ */
+
 package nksystems.brainwave;
 
 import java.security.AccessController;

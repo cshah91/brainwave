@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017. NKSystems
+ *
+ * Created on : 27-05-2017
+ * Author     : Charmy Shah
+ *
+ * All rights reserved
+ */
+
 package nksystems.brainwave;
 
 import android.app.Dialog;
@@ -12,12 +21,7 @@ import android.text.style.BulletSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-/**
- * Created by Charmy on 27/05/2017.
- */
 
 public class activity_about_services extends AppCompatActivity implements View.OnClickListener {
 
@@ -381,7 +385,7 @@ public class activity_about_services extends AppCompatActivity implements View.O
                 break;
             case R.id.cvService8:
                 showDialog = false;
-                Intent intent = new Intent(activity_about_services.this, WorkshopsActivity.class);
+                Intent intent = new Intent(activity_about_services.this, activity_workshops.class);
                 finish();
                 startActivity(intent);
                 break;

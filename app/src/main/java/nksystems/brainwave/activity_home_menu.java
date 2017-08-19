@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017. NKSystems
+ *
+ * Created on : 24-04-2017
+ * Author     : Nemi Shah
+ *
+ * All rights reserved
+ */
+
 package nksystems.brainwave;
 
 import android.app.DatePickerDialog;
@@ -7,8 +16,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,7 +48,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.braintreepayments.api.Card;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -58,8 +64,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-
-import static java.util.Calendar.SATURDAY;
 
 public class activity_home_menu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -665,18 +669,18 @@ public class activity_home_menu extends AppCompatActivity
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private List<AboutBrainwaveObject> getDataSet() {
-        List<AboutBrainwaveObject> results = new ArrayList<AboutBrainwaveObject>();
+    private List<object_about_brainwave> getDataSet() {
+        List<object_about_brainwave> results = new ArrayList<object_about_brainwave>();
         String title = getResources().getString(R.string.bw_name);
         String content = getResources().getString(R.string.bw_intro);
-        AboutBrainwaveObject obj = new AboutBrainwaveObject(title, content);
+        object_about_brainwave obj = new object_about_brainwave(title, content);
         results.add(obj);
 
         title = getResources().getString(R.string.bw_history_title);
         content = getResources().getString(R.string.bw_history_info1) + "\n\n" +
                 getResources().getString(R.string.bw_history_info2) + "\n\n" +
                 getResources().getString(R.string.bw_history_info3);
-        AboutBrainwaveObject obj1 = new AboutBrainwaveObject(title, content);
+        object_about_brainwave obj1 = new object_about_brainwave(title, content);
         results.add(obj1);
 
         title = getResources().getString(R.string.bw_founder_title);
@@ -684,17 +688,17 @@ public class activity_home_menu extends AppCompatActivity
                 getResources().getString(R.string.bw_founder_info2) + "\n\n" +
                 getResources().getString(R.string.bw_founder_info3) + "\n\n" +
                 getResources().getString(R.string.bw_founder_info4);
-        AboutBrainwaveObject obj2 = new AboutBrainwaveObject(title, content);
+        object_about_brainwave obj2 = new object_about_brainwave(title, content);
         results.add(obj2);
 
         title = getResources().getString(R.string.bw_slogan_title);
         content = getResources().getString(R.string.bw_slogan_info);
-        AboutBrainwaveObject obj3 = new AboutBrainwaveObject(title, content);
+        object_about_brainwave obj3 = new object_about_brainwave(title, content);
         results.add(obj3);
 
         title = getResources().getString(R.string.bw_mission_title);
         content = getResources().getString(R.string.bw_mission_info);
-        AboutBrainwaveObject obj4 = new AboutBrainwaveObject(title, content);
+        object_about_brainwave obj4 = new object_about_brainwave(title, content);
         results.add(obj4);
 
         title = getResources().getString(R.string.bw_more_about);
@@ -709,7 +713,7 @@ public class activity_home_menu extends AppCompatActivity
                 getResources().getString(R.string.bw_bullet_point_8) + "\n" +
                 getResources().getString(R.string.bw_bullet_point_9) + "\n" +
                 getResources().getString(R.string.bw_bullet_point_10) + "\n";
-        AboutBrainwaveObject obj5 = new AboutBrainwaveObject(title, content);
+        object_about_brainwave obj5 = new object_about_brainwave(title, content);
         results.add(obj5);
 
         return results;

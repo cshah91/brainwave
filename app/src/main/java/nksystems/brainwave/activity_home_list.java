@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017. NKSystems
+ *
+ * Created on : 24-04-2017
+ * Author     : Nemi Shah
+ *
+ * All rights reserved
+ */
+
 package nksystems.brainwave;
 
 import android.support.v7.app.AppCompatActivity;

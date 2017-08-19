@@ -33,7 +33,7 @@
             android:label="Purchase Services" />
         <activity android:name=".activity_about_services" />
         <activity
-            android:name=".WorkshopsActivity"
+            android:name=".activity_workshops"
             android:label="Workshops" />
         <activity
             android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity"

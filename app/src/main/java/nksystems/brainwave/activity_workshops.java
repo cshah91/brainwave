@@ -1,3 +1,12 @@
+/*
+ * Copyright (c) 2017. NKSystems
+ *
+ * Created on : 10-06-2017
+ * Author     : Charmy Shah
+ *
+ * All rights reserved
+ */
+
 package nksystems.brainwave;
 
 import android.app.Dialog;
@@ -12,7 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class WorkshopsActivity extends AppCompatActivity implements View.OnClickListener{
+public class activity_workshops extends AppCompatActivity implements View.OnClickListener{
 
     CardView cvWorkshop1,cvWorkshop2,cvWorkshop3,cvWorkshop4,cvWorkshop5,cvWorkshop6;
 
@@ -41,7 +50,7 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        Dialog dialog = new Dialog(WorkshopsActivity.this, R.style.custom_dialog_services_style);
+        Dialog dialog = new Dialog(activity_workshops.this, R.style.custom_dialog_services_style);
         dialog.setContentView(R.layout.dialog_services_layout);
         TextView viewTitle = (TextView) dialog.findViewById(R.id.viewServiceTitle);
         TextView textView1 = (TextView) dialog.findViewById(R.id.viewWkBullets1);
@@ -318,7 +327,7 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
         switch(item.getItemId())
         {
             case android.R.id.home:
-                Intent intent=new Intent(WorkshopsActivity.this,activity_about_services.class);
+                Intent intent=new Intent(activity_workshops.this,activity_about_services.class);
                 finish();
                 startActivity(intent);
                 break;
@@ -329,7 +338,7 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(WorkshopsActivity.this,activity_about_services.class);
+        Intent intent=new Intent(activity_workshops.this,activity_about_services.class);
         finish();
         startActivity(intent);
     }

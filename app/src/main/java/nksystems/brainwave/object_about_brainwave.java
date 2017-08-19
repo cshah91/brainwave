@@ -1,15 +1,20 @@
-package nksystems.brainwave;
-
-/**
- * Created by Charmy on 28/04/2017.
+/*
+ * Copyright (c) 2017. NKSystems
+ *
+ * Created on : 28-04-2017
+ * Author     : Charmy Shah
+ *
+ * All rights reserved
  */
 
-public class AboutBrainwaveObject {
+package nksystems.brainwave;
+
+public class object_about_brainwave {
 
     private String mText1;
     private String mText2;
 
-    AboutBrainwaveObject (String text1, String text2){
+    object_about_brainwave(String text1, String text2){
         mText1 = text1;
         mText2 = text2;
     }
