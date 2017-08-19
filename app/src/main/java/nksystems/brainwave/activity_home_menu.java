@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
@@ -569,45 +570,43 @@ public class activity_home_menu extends AppCompatActivity
                 }
                 else{
                     String appointmentType = "";
-                    String message = "";
+
+                    String message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
+                            "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
+                            "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
+                            "\n Problem in brief: " + txtProblem.getText().toString() + "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
+
+                    String userMessage = "Dear " + txtName.getText().toString() + ", \n\n Thank you for setting up an appointment with us. Below is your appointment details: \n\n Name: " + txtName.getText().toString() +
+                            "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
+                            "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
+                            "\n Problem in brief: " + txtProblem.getText().toString() + "\n\n Thank you for your time. \n\n Regards,\n Brainwave Support Team";
+
                     if(type == 1){
                         appointmentType = "Telephonic";
-                        message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
-                                "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
-                                "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
-                                "\n Problem in brief: " + txtProblem.getText().toString() + "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
                     }
                     else if(type == 2){
                         appointmentType = "Skype";
-                        message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
-                                "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
-                                "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
-                                "\n Problem in brief: " + txtProblem.getText().toString() + "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
                     }
                     else if(type == 3){
                         appointmentType = "Personal";
-                        message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
-                                "\n Email: " + txtEmail.getText().toString() + "\n Contact Number: " + txtContact.getText().toString() +
-                                "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
-                                "\n Problem in brief: " + txtProblem.getText().toString() + "\n\n Thank you for your time. \n\n Regards,\n " + txtName.getText().toString();
                     }
 
-                    String to = activity_home_menu.this.getResources().getString(R.string.emailTo);
+                    String to = txtEmail.getText().toString();
                     String subject = "";
-                    if(id == 1)
+                    if(id == 1){
                         subject = "Counselling Services - " + appointmentType + ": Appointment";
-                    else if(id == 2)
+                    }
+                    else if(id == 2){
                         subject = "Flower Therapy - " + appointmentType + ": Appointment";
-                    else if(id == 3)
+                    }
+                    else if(id == 3){
                         subject = "Handwriting & Signature Analysis - " + appointmentType + ": Appointment";
+                    }
 
-                    Intent email = new Intent(Intent.ACTION_SEND);
-                    email.putExtra(Intent.EXTRA_EMAIL, new String[]{to});
-                    email.putExtra(Intent.EXTRA_SUBJECT, subject);
-                    email.putExtra(Intent.EXTRA_TEXT, message);
-
-                    email.setType("message/rfc822");
-                    startActivity(Intent.createChooser(email, "Choose an email client:"));
+                    // Send mail to admin with appointment details
+                    new AsyncSendMail().execute(getResources().getString(R.string.adminEmail),subject,message, getResources().getString(R.string.appointmentMailFrom));
+                    // Send mail to user with appointment details
+                    new AsyncSendMail().execute(to,subject, userMessage, getResources().getString(R.string.appointmentMailFrom));
                 }
             }
         });
@@ -770,5 +769,28 @@ public class activity_home_menu extends AppCompatActivity
 
             }
         });*/
+    }
+
+    private class AsyncSendMail extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                GMailSender sender = new GMailSender(getResources().getString(R.string.gmailUsername), getResources().getString(R.string.gmailPassword));
+                sender.sendMail(params[1],
+                        params[2],
+                        params[3],
+                        params[0]);
+            } catch (Exception e) {
+
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            commonDialog.hide();
+            Toast.makeText(activity_home_menu.this, "Your appointment details have been sent your email. Thank you !", Toast.LENGTH_LONG).show();
+        }
     }
 }

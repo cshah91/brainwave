@@ -43,5 +43,8 @@ dependencies {
     compile 'com.airbnb.android:lottie:2.0.0'
     compile 'com.synnapps:carouselview:0.1.4'
     testCompile 'junit:junit:4.12'
+    compile files('libs/activation.jar')
+    compile files('libs/additionnal.jar')
+    compile files('libs/mail.jar')
 }
 apply plugin: 'com.google.gms.google-services'

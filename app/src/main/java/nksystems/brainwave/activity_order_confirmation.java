@@ -44,13 +44,10 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Date;
 
-import static nksystems.brainwave.activity_purchase_services.CONNECTION_TIMEOUT;
-import static nksystems.brainwave.activity_purchase_services.READ_TIMEOUT;
-
 public class activity_order_confirmation extends AppCompatActivity
         implements PaymentMethodNonceCreatedListener,BraintreeCancelListener,BraintreeErrorListener {
 
-    String orderType, packageType, productName, productDescription;
+    String orderType, packageType, productName, productDescription, serviceType, serviceProblem;
     String isMedication="false";
     TextView tvOrderTitle, tvOrderDescription, tvOrderMedicine, tvOrderShipping, tvOrderPrice, tvOrderTax, tvOrderTotal;
     TextView labelMedicine, labelShipping;
@@ -58,8 +55,10 @@ public class activity_order_confirmation extends AppCompatActivity
     int taxPercent = 10;
     double originalAmount, calculatedTax, medicineCharge, totalAmount, shippingCharge = 0;
 
+    public static final int CONNECTION_TIMEOUT = 10000;
+    public static final int READ_TIMEOUT = 15000;
+
     private static String request_url = "http://192.168.0.107:81/braintree/request";
-    private static String response_url = "http://192.168.0.107:81/braintree/response";
     private static String nonce_url = "http://192.168.0.107:81/braintree/nonce";
     String clientToken;
     DropInRequest dropInRequest;
@@ -95,17 +94,20 @@ public class activity_order_confirmation extends AppCompatActivity
         labelShipping = (TextView) findViewById(R.id.label_shipping);
 
         orderType = getIntent().getStringExtra("orderType");
+        serviceType = "NA";
 
         if(orderType.equals("service")){
             imgPlaceholder.setVisibility(View.GONE);
             packageType = getIntent().getStringExtra("packageType");
             isMedication = getIntent().getStringExtra("medication");
             if(packageType.equals("1")){
+                serviceType = "long";
                 productName = "Counselling Services - Long Session";
                 tvOrderTitle.setText(productName);
                 tvOrderDescription.setText("Long Session Description text");
             }
             else{
+                serviceType = "short";
                 productName = "Counselling Services - Brief Session";
                 tvOrderTitle.setText(productName);
                 tvOrderDescription.setText("Brief session description text");
@@ -184,10 +186,6 @@ public class activity_order_confirmation extends AppCompatActivity
                 .collectDeviceData(true);
 
         startActivityForResult(dropInRequest.getIntent(activity_order_confirmation.this), REQUEST_CODE);
-        /*finish();
-        Intent intent = new Intent(activity_order_confirmation.this, activity_purchase_services.class);
-        intent.putExtra("amount",totalAmount);
-        startActivity(intent);*/
     }
 
     @Override
@@ -334,7 +332,6 @@ public class activity_order_confirmation extends AppCompatActivity
 
         HttpURLConnection conn;
         URL url = null;
-        JSONObject postDataParams = new JSONObject();
         String data  = null;
 
         @Override
@@ -362,15 +359,10 @@ public class activity_order_confirmation extends AppCompatActivity
 
                 // Setup HttpURLConnection class to send and receive data from php
                 conn = (HttpURLConnection) url.openConnection();
-
-                /*conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);*/
                 conn.setRequestMethod("POST");
-
                 conn.setDoInput(true);
                 // setDoOutput to true as we recieve data from json file
                 conn.setDoOutput(true);
-
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
@@ -385,7 +377,6 @@ public class activity_order_confirmation extends AppCompatActivity
                 int response_code = conn.getResponseCode();
                 // Check if successful connection made
                 if (response_code == HttpURLConnection.HTTP_OK) {
-
                     // Read data sent from server
                     InputStream input = conn.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(input));
@@ -398,12 +389,9 @@ public class activity_order_confirmation extends AppCompatActivity
 
                     // Pass data to onPostExecute method
                     return (result.toString());
-
                 } else {
-
                     return ("unsuccessful");
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
                 return e.toString();
@@ -420,82 +408,13 @@ public class activity_order_confirmation extends AppCompatActivity
         @Override
         protected void onPostExecute(String status) {
             super.onPostExecute(status);
+            Log.i("Status",status);
             if(status != null && status.equals("submitted_for_settlement")){
                 if(updateOrderDetails());
             }
-        }
-    }
-
-    private class AsyncResponse extends AsyncTask<String, String, String>{
-
-        HttpURLConnection conn;
-        URL url = null;
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                // Enter URL address where your php file resides
-                url = new URL(response_url);
-
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-                return e.toString();
+            else if(status != null && status.equals("processor_declined")){
+                Toast.makeText(activity_order_confirmation.this, "There was a problem processing your card; please double check your payment information and try again.", Toast.LENGTH_LONG).show();
             }
-
-            try {
-
-                // Setup HttpURLConnection class to send and receive data from php
-                conn = (HttpURLConnection) url.openConnection();
-                conn.setReadTimeout(READ_TIMEOUT);
-                conn.setConnectTimeout(CONNECTION_TIMEOUT);
-                conn.setRequestMethod("GET");
-
-                // setDoOutput to true as we recieve data from json file
-                conn.setDoOutput(true);
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-                return e1.toString();
-            }
-
-            try {
-
-                int response_code = conn.getResponseCode();
-
-                // Check if successful connection made
-                if (response_code == HttpURLConnection.HTTP_OK) {
-
-                    // Read data sent from server
-                    InputStream input = conn.getInputStream();
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-                    StringBuilder result = new StringBuilder();
-                    String line;
-
-                    while ((line = reader.readLine()) != null) {
-                        result.append(line);
-                    }
-
-                    // Pass data to onPostExecute method
-                    return (result.toString());
-
-                } else {
-
-                    return ("unsuccessful");
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                return e.toString();
-            } finally {
-                conn.disconnect();
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
         }
     }
 
@@ -584,12 +503,21 @@ public class activity_order_confirmation extends AppCompatActivity
 
                 stat = stat?false:true;
                 if(callDatabase()){
+                    sendInvoiceMail(currentOrderId);
                     val = true;
                     finish();
-                    Intent intent = new Intent(activity_order_confirmation.this, activity_order_successful.class);
-                    intent.putExtra("orderNo",currentOrderId);
-                    intent.putExtra("isProduct",(isMedication.equals("true") || orderType.equals("product")) ? "true" : "false");
-                    startActivity(intent);
+                    Toast.makeText(activity_order_confirmation.this, "Your payment has been done successfully.", Toast.LENGTH_LONG).show();
+                    if(orderType.equalsIgnoreCase("service")){
+                        Intent intent=new Intent(activity_order_confirmation.this,activity_home_menu.class);
+                        intent.putExtra("active_activity","contentCounselling");
+                        startActivity(intent);
+                    }
+                    else{
+                        Intent intent = new Intent(activity_order_confirmation.this, activity_order_successful.class);
+                        intent.putExtra("orderNo",currentOrderId);
+                        intent.putExtra("isProduct",(isMedication.equals("true") || orderType.equals("product")) ? "true" : "false");
+                        startActivity(intent);
+                    }
                 }
             }
 
@@ -598,21 +526,96 @@ public class activity_order_confirmation extends AppCompatActivity
 
             }
         });
-
         ordersReference=FirebaseDatabase.getInstance().getReference("orders");
-
         return val;
     }
 
     private boolean callDatabase(){
         if(stat){
+            switch (serviceType){
+                case "long":
+                    serviceProblem = briefProblem;
+                    break;
+                case "short":
+                    serviceProblem = detailedProblem;
+                    break;
+                default:
+                    serviceProblem = "NA";
+                    break;
+            }
             Order order=new Order(address,city,state,pincode,email,name,""+shippingCharge,""+calculatedTax,""+medicineCharge
-                                    ,productName,""+originalAmount,"","DD-MM-YYYY",""+totalAmount,orderType,""+taxPercent);
+                    ,productName,""+originalAmount,"","DD-MM-YYYY",""+totalAmount,orderType,""+taxPercent, serviceType,serviceProblem);
 
             ordersReference.child(""+currentOrderId).setValue(order);
             mReference.setValue(""+currentOrderId);
+
             return true;
         }
         return false;
+    }
+
+    private void sendInvoiceMail(int orderNo){
+        String subject = "Brainwave Order No. " + orderNo;
+        String message = "";
+        if(orderType.equalsIgnoreCase("service")){
+            switch (serviceType){
+                case "long":
+                    message = "Hello, \n\nAn order has been placed by " + email +" for the following service. " +
+                            "\n\nService Type: " + serviceType +
+                            "\nName: " + name +
+                            "\nEmail: " + email +
+                            "\nDate of Appointment: " + date +
+                            "\nTime of Appointment: " + time +
+                            "\nProblem in brief: " + serviceProblem +
+                            "\n\nRegards,\n " + name;
+                    break;
+                case "short":
+                    message = "Hello, \n\nAn order has been placed by " + email +" for the following service. " +
+                            "\n\nService Type: " + serviceType +
+                            "\nName: " + name +
+                            "\nEmail: " + email +
+                            "\nProblem in detail: " + serviceProblem +
+                            "\n\nRegards,\n " + name;
+                    break;
+            }
+            String userMessage = "Dear " + name + ", \n\n Thank you for using Brainwave. Your order has been placed successfully.\n\n Regards,\n Brainwave Team";
+            // Send mail to admin with order invoice details
+            new AsyncSendMail().execute(getResources().getString(R.string.adminEmail),subject,message, getResources().getString(R.string.appointmentMailFrom));
+            // Send mail to user with order number
+            new AsyncSendMail().execute(email,subject,userMessage, getResources().getString(R.string.appointmentMailFrom));
+        }
+        else {
+            message = "Hello, \n\n An order has been placed for the following product. " +
+                    "\n\n Product Name: " + productName +
+                    "\n Product Description: " + productDescription +
+                    "\n Name: " + name +
+                    "\n Email: " + email +
+                    "\n Total Amount: " + totalAmount +
+                    "\n\n Regards,\n " + name;
+            // Send mail to admin with order invoice details
+            new AsyncSendMail().execute(getResources().getString(R.string.adminEmail),subject,message, getResources().getString(R.string.appointmentMailFrom));
+        }
+    }
+
+    private class AsyncSendMail extends AsyncTask<String, String, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                GMailSender sender = new GMailSender(getResources().getString(R.string.gmailUsername), getResources().getString(R.string.gmailPassword));
+                sender.sendMail(params[1],
+                        params[2],
+                        params[3],
+                        params[0]);
+            } catch (Exception e) {
+
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Toast.makeText(activity_order_confirmation.this, "An invoice of your order has been sent to your mail. Thank you !", Toast.LENGTH_LONG).show();
+        }
     }
 }

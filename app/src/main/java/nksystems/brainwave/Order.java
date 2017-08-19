@@ -8,13 +8,13 @@ public class Order {
 
     String customeraddress,customercity,customerstate,customerpincode,customeremail,customername,orderdeliverycharge,
             ordergstamount,ordermedicationamount,ordername,orderoriginalamount,orderstatus,ordersubmissiondate,
-            ordertotalamount,ordertype,taxpercent;
+            ordertotalamount,ordertype,taxpercent,servicetype,serviceproblem;
 
     public Order(String customeraddress,String customercity,String customerstate,String customerpincode,
                  String customeremail,String customername,String orderdeliverycharge,
                  String ordergstamount,String ordermedicationamount,String ordername,String orderoriginalamount,
                  String orderstatus,String ordersubmissiondate,
-                 String ordertotalamount,String ordertype, String taxpercent){
+                 String ordertotalamount,String ordertype, String taxpercent, String servicetype, String serviceproblem){
 
         this.customeraddress=customeraddress;
         this.customercity=customercity;
@@ -32,5 +32,7 @@ public class Order {
         this.ordertotalamount=ordertotalamount;
         this.ordertype=ordertype;
         this.taxpercent=taxpercent;
+        this.servicetype=servicetype;
+        this.serviceproblem=serviceproblem;
     }
 }

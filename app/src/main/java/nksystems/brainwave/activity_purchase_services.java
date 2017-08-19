@@ -452,7 +452,7 @@ public class activity_purchase_services extends AppCompatActivity
         protected String doInBackground(String... params) {
             try {
                 // Enter URL address where your php file resides
-                url = new URL("http://192.168.0.104:81/braintree/nonce");
+                url = new URL("http://192.168.0.107:81/braintree/nonce");
 
                 data = URLEncoder.encode("payment_method_nonce", "UTF-8") + "=" +
                         URLEncoder.encode(nonce, "UTF-8");
@@ -528,7 +528,6 @@ public class activity_purchase_services extends AppCompatActivity
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Log.i("Purchase", s);
             Toast.makeText(activity_purchase_services.this, "Result: " + s, Toast.LENGTH_LONG).show();
         }
     }
