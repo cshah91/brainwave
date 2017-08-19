@@ -42,7 +42,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class activity_order_confirmation extends AppCompatActivity
         implements PaymentMethodNonceCreatedListener,BraintreeCancelListener,BraintreeErrorListener {
@@ -543,8 +544,13 @@ public class activity_order_confirmation extends AppCompatActivity
                     serviceProblem = "NA";
                     break;
             }
+
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+            String formattedDate = df.format(c.getTime());
+
             Order order=new Order(address,city,state,pincode,email,name,""+shippingCharge,""+calculatedTax,""+medicineCharge
-                    ,productName,""+originalAmount,"","DD-MM-YYYY",""+totalAmount,orderType,""+taxPercent, serviceType,serviceProblem);
+                    ,productName,""+originalAmount,"",formattedDate,""+totalAmount,orderType,""+taxPercent, serviceType,serviceProblem);
 
             ordersReference.child(""+currentOrderId).setValue(order);
             mReference.setValue(""+currentOrderId);
