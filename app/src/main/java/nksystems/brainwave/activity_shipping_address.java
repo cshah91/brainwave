@@ -18,10 +18,17 @@ public class activity_shipping_address extends AppCompatActivity implements View
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(activity_shipping_address.this,activity_home_menu.class);
-        intent.putExtra("active_activity","herbalProducts");
-        finish();
-        startActivity(intent);
+        if(orderType.equalsIgnoreCase("product")){
+            Intent intent=new Intent(activity_shipping_address.this,activity_home_menu.class);
+            intent.putExtra("active_activity","herbalProducts");
+            finish();
+            startActivity(intent);
+        }
+        else{
+            Intent intent=new Intent(activity_shipping_address.this,activity_medicines.class);
+            finish();
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -29,10 +36,17 @@ public class activity_shipping_address extends AppCompatActivity implements View
         switch(item.getItemId())
         {
             case android.R.id.home:
-                Intent intent=new Intent(activity_shipping_address.this,activity_home_menu.class);
-                intent.putExtra("active_activity","herbalProducts");
-                finish();
-                startActivity(intent);
+                if(orderType.equalsIgnoreCase("product")){
+                    Intent intent=new Intent(activity_shipping_address.this,activity_home_menu.class);
+                    intent.putExtra("active_activity","herbalProducts");
+                    finish();
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent=new Intent(activity_shipping_address.this,activity_medicines.class);
+                    finish();
+                    startActivity(intent);
+                }
                 break;
         }
         return true;

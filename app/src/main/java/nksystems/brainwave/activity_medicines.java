@@ -101,7 +101,7 @@ public class activity_medicines extends AppCompatActivity implements View.OnClic
 
     public void buyMedicine(View view){
         TextView txtMedicine = (TextView) view.findViewById(R.id.medItem);
-        Intent intent = new Intent(activity_medicines.this, activity_order_confirmation.class);
+        Intent intent = new Intent(activity_medicines.this, activity_shipping_address.class);
         intent.putExtra("orderType","medicine");
         intent.putExtra("productName", txtMedicine.getText());
         for(Map.Entry<String, String> entry: medicinesPriceMap.entrySet()){
