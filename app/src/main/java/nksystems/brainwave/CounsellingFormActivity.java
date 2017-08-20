@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 13-05-2017
- * Author     : Charmy Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
 import android.app.DatePickerDialog;
@@ -33,7 +24,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class activity_counselling_form extends AppCompatActivity{
+/**
+ * This class is used for displaying the counselling form
+ *
+ * @author  Charmy Shah
+ * @date    13-05-2017
+ * @version 1.0
+ */
+public class CounsellingFormActivity extends AppCompatActivity{
 
     CheckBox chkMedication;
     TextView txtTotal;
@@ -48,7 +46,7 @@ public class activity_counselling_form extends AppCompatActivity{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(activity_counselling_form.this, activity_home_menu.class);
+        Intent intent = new Intent(CounsellingFormActivity.this, HomeMenuActivity.class);
         intent.putExtra("active_activity", "contentCounselling");
         finish();
         startActivity(intent);
@@ -58,7 +56,7 @@ public class activity_counselling_form extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(activity_counselling_form.this, activity_home_menu.class);
+                Intent intent = new Intent(CounsellingFormActivity.this, HomeMenuActivity.class);
                 intent.putExtra("active_activity", "contentCounselling");
                 finish();
                 startActivity(intent);
@@ -73,7 +71,7 @@ public class activity_counselling_form extends AppCompatActivity{
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.counselling_form_layout);
+        setContentView(R.layout.activity_counselling_form);
         setDateTimePicker();
 
         txtQuestName = (EditText) findViewById(R.id.txtQuestName);
@@ -208,38 +206,38 @@ public class activity_counselling_form extends AppCompatActivity{
                 // Package Type - 1 = Long Personal Session
                 // Package Type - 2 = Short Telephonic Session
                 if (txtQuestName.getText().equals("") || txtQuestName.getText().length() == 0) {
-                    Toast.makeText(activity_counselling_form.this, "Please enter your name.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CounsellingFormActivity.this, "Please enter your name.", Toast.LENGTH_LONG).show();
                     txtQuestName.requestFocus();
                 } else if (txtQuestEmail.getText().equals("") || txtQuestEmail.getText().length() == 0) {
-                    Toast.makeText(activity_counselling_form.this, "Please enter your email.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CounsellingFormActivity.this, "Please enter your email.", Toast.LENGTH_SHORT).show();
                     txtQuestEmail.requestFocus();
                 } else if (packagetype.equals("1") && (txtQuestProblem.getText().equals("") || txtQuestProblem.getText().length() == 0)) {
-                    Toast.makeText(activity_counselling_form.this, "Briefly explain your problem here.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CounsellingFormActivity.this, "Briefly explain your problem here.", Toast.LENGTH_SHORT).show();
                     txtQuestProblem.requestFocus();
                 } else if (packagetype.equals("1") && (txtCounselDueDate.getText().equals("") || txtCounselDueDate.getText().length() == 0)) {
-                    Toast.makeText(activity_counselling_form.this, "Please select a date of appointment.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CounsellingFormActivity.this, "Please select a date of appointment.", Toast.LENGTH_SHORT).show();
                     txtCounselDueDate.requestFocus();
                 } else if (packagetype.equals("1") && (txtCounselDueTime.getText().equals("") || txtCounselDueTime.getText().length() == 0)) {
-                    Toast.makeText(activity_counselling_form.this, "Please select a time of appointment.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CounsellingFormActivity.this, "Please select a time of appointment.", Toast.LENGTH_SHORT).show();
                     txtCounselDueTime.requestFocus();
                 } else if (packagetype.equals("2") && (txtQuestProblemDetailed.getText().equals("") || txtQuestProblemDetailed.getText().length() == 0)) {
-                    Toast.makeText(activity_counselling_form.this, "Please provide a detailed explanation of your problem.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CounsellingFormActivity.this, "Please provide a detailed explanation of your problem.", Toast.LENGTH_SHORT).show();
                     txtQuestProblemDetailed.requestFocus();
                 } else if (packagetype.equals("2") && chkMedication.isChecked()) {
                     if (txtAddress.getText().equals("") || txtAddress.getText().length() == 0) {
-                        Toast.makeText(activity_counselling_form.this, "Please enter your shipping address.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CounsellingFormActivity.this, "Please enter your shipping address.", Toast.LENGTH_SHORT).show();
                         txtAddress.requestFocus();
                     } else if (txtCity.getText().equals("") || txtCity.getText().length() == 0) {
-                        Toast.makeText(activity_counselling_form.this, "Please enter your city.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CounsellingFormActivity.this, "Please enter your city.", Toast.LENGTH_SHORT).show();
                         txtCity.requestFocus();
                     } else if (txtState.getText().equals("") || txtState.getText().length() == 0) {
-                        Toast.makeText(activity_counselling_form.this, "Please enter your state.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CounsellingFormActivity.this, "Please enter your state.", Toast.LENGTH_SHORT).show();
                         txtState.requestFocus();
                     } else if (txtPincode.getText().equals("") || txtPincode.getText().length() == 0) {
-                        Toast.makeText(activity_counselling_form.this, "Please enter your pincode.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CounsellingFormActivity.this, "Please enter your pincode.", Toast.LENGTH_SHORT).show();
                         txtPincode.requestFocus();
                     } else {
-                        Intent intent = new Intent(activity_counselling_form.this, activity_order_confirmation.class);
+                        Intent intent = new Intent(CounsellingFormActivity.this, OrderConfirmationActivity.class);
                         intent.putExtra("orderType", "service");
                         intent.putExtra("packageType", packagetype);
                         intent.putExtra("medication", "false");
@@ -259,7 +257,7 @@ public class activity_counselling_form extends AppCompatActivity{
                         startActivity(intent);
                     }
                 } else {
-                    Intent intent = new Intent(activity_counselling_form.this, activity_order_confirmation.class);
+                    Intent intent = new Intent(CounsellingFormActivity.this, OrderConfirmationActivity.class);
                     intent.putExtra("orderType", "service");
                     intent.putExtra("packageType", packagetype);
                     intent.putExtra("medication", "false");
@@ -298,7 +296,7 @@ public class activity_counselling_form extends AppCompatActivity{
                 mMonth = calendar.get(Calendar.MONTH);
                 mDay = calendar.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(activity_counselling_form.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(CounsellingFormActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         // Get day of the week for the selected date
@@ -312,7 +310,7 @@ public class activity_counselling_form extends AppCompatActivity{
                         } else {
                             String message = "Appointments available only for Wednesday, Saturday and Sunday. " +
                                     "Please select another date.";
-                            Toast.makeText(activity_counselling_form.this, message, Toast.LENGTH_LONG).show();
+                            Toast.makeText(CounsellingFormActivity.this, message, Toast.LENGTH_LONG).show();
                         }
                     }
                 }, mYear, mMonth, mDay);
@@ -331,7 +329,7 @@ public class activity_counselling_form extends AppCompatActivity{
                 mHour = calendar.get(Calendar.HOUR_OF_DAY);
                 mMinute = calendar.get(Calendar.MINUTE);
 
-                TimePickerDialog timePickerDialog = new TimePickerDialog(activity_counselling_form.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(CounsellingFormActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hour, int minute) {
                         EditText txtTime = (EditText) findViewById(R.id.txtCounselDueTime);
@@ -350,7 +348,7 @@ public class activity_counselling_form extends AppCompatActivity{
                                     txtTime.setText((hour > 12 ? (hour - 12) : hour) + ":" + min + (hour > 11 ? " PM" : " AM"));
                                 } else {
                                     txtTime.setText("");
-                                    Toast.makeText(activity_counselling_form.this, "Selected time is not available. Please see the appointment schedule " +
+                                    Toast.makeText(CounsellingFormActivity.this, "Selected time is not available. Please see the appointment schedule " +
                                             "time slots mentioned below.", Toast.LENGTH_SHORT).show();
                                 }
                             } else if (week == Calendar.SATURDAY) {
@@ -358,7 +356,7 @@ public class activity_counselling_form extends AppCompatActivity{
                                     txtTime.setText((hour > 12 ? (hour - 12) : hour) + ":" + min + (hour > 11 ? " PM" : " AM"));
                                 } else {
                                     txtTime.setText("");
-                                    Toast.makeText(activity_counselling_form.this, "Selected time is not available. Please see the appointment schedule " +
+                                    Toast.makeText(CounsellingFormActivity.this, "Selected time is not available. Please see the appointment schedule " +
                                             "time slots mentioned below.", Toast.LENGTH_SHORT).show();
                                 }
                             } else if (week == Calendar.SUNDAY) {
@@ -366,17 +364,17 @@ public class activity_counselling_form extends AppCompatActivity{
                                     txtTime.setText((hour > 12 ? (hour - 12) : hour) + ":" + min + (hour > 11 ? " PM" : " AM"));
                                 } else {
                                     txtTime.setText("");
-                                    Toast.makeText(activity_counselling_form.this, "Selected time is not available. Please see the appointment schedule " +
+                                    Toast.makeText(CounsellingFormActivity.this, "Selected time is not available. Please see the appointment schedule " +
                                             "time slots mentioned below.", Toast.LENGTH_SHORT).show();
                                 }
                             } else {
                                 txtTime.setText("");
-                                Toast.makeText(activity_counselling_form.this, "Selected time is not available. Please see the appointment schedule " +
+                                Toast.makeText(CounsellingFormActivity.this, "Selected time is not available. Please see the appointment schedule " +
                                         "time slots mentioned below.", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             txtTime.setText("");
-                            Toast.makeText(activity_counselling_form.this, "Please select a date before setting time.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CounsellingFormActivity.this, "Please select a date before setting time.", Toast.LENGTH_LONG).show();
                         }
                     }
                 }, mHour, mMinute, false);

@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 28-04-2017
- * Author     : Charmy Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
 import android.support.v7.widget.RecyclerView;
@@ -18,9 +9,16 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ * This class is used for creating a card view adapter for the About Brainwave page
+ *
+ * @author  Charmy Shah
+ * @date    28-04-2017
+ * @version 1.0
+ */
 public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.DataObjectHolder> {
 
-    private List<object_about_brainwave> mDataset;
+    private List<Brainwave> mDataset;
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder
             implements View
@@ -41,7 +39,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.DataOb
         }
     }
 
-    public CardViewAdapter(List<object_about_brainwave> myDataset) {
+    public CardViewAdapter(List<Brainwave> myDataset) {
         mDataset = myDataset;
     }
 
@@ -49,7 +47,7 @@ public class CardViewAdapter extends RecyclerView.Adapter<CardViewAdapter.DataOb
     public DataObjectHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.about_brainwave_cardview_item, parent, false);
+                .inflate(R.layout.item_about_brainwave, parent, false);
 
         DataObjectHolder dataObjectHolder = new DataObjectHolder(view);
         return dataObjectHolder;

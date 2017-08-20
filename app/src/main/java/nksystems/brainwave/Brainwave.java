@@ -1,20 +1,16 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 28-04-2017
- * Author     : Charmy Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
-public class object_about_brainwave {
+/**
+ * @author  Charmy Shah
+ * @date    28-04-2017
+ * @version 1.0
+ */
+public class Brainwave {
 
     private String mText1;
     private String mText2;
 
-    object_about_brainwave(String text1, String text2){
+    Brainwave(String text1, String text2){
         mText1 = text1;
         mText2 = text2;
     }

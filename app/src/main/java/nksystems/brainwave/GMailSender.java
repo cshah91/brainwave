@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 19-08-2017
- * Author     : Charmy Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
 import android.util.Log;
@@ -28,7 +19,13 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.util.ByteArrayDataSource;
-
+/**
+ * This class is used for sending out automatic mails from the system
+ *
+ * @author  Charmy Shah
+ * @date    19-08-2017
+ * @version 1.0
+ */
 public class GMailSender extends Authenticator{
 
     private String mailHost = "smtp.gmail.com";

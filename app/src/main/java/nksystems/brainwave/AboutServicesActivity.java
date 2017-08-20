@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 27-05-2017
- * Author     : Charmy Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
 import android.app.Dialog;
@@ -23,17 +14,27 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class activity_about_services extends AppCompatActivity implements View.OnClickListener {
+/**
+ * This class is used for displaying the different services being offered with its contents
+ *
+ * @author  Charmy Shah
+ * @date    27-05-2017
+ * @version 1.0
+ */
+public class AboutServicesActivity extends AppCompatActivity implements View.OnClickListener {
 
-    CardView cvService1,cvService2,cvService3,cvService4,cvService5,cvService6,cvService7,cvService8;
+    CardView cvService1, cvService2, cvService3, cvService4, cvService5, cvService6, cvService7, cvService8;
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.about_counselling_services_layout);
+        setContentView(R.layout.activity_about_services);
 
         cvService1 = (CardView) findViewById(R.id.cvService1);
         cvService2 = (CardView) findViewById(R.id.cvService2);
@@ -54,11 +55,16 @@ public class activity_about_services extends AppCompatActivity implements View.O
         cvService8.setOnClickListener(this);
     }
 
+    /**
+     * Show dialog with service title and its description
+     *
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         boolean showDialog = true;
-        Dialog dialog = new Dialog(activity_about_services.this, R.style.custom_dialog_services_style);
-        dialog.setContentView(R.layout.dialog_services_layout);
+        Dialog dialog = new Dialog(AboutServicesActivity.this, R.style.custom_dialog_services_style);
+        dialog.setContentView(R.layout.dialog_counselling_service);
         TextView viewTitle = (TextView) dialog.findViewById(R.id.viewServiceTitle);
 
         LinearLayout llSvContent2 = (LinearLayout) dialog.findViewById(R.id.llSvContent2);
@@ -76,7 +82,7 @@ public class activity_about_services extends AppCompatActivity implements View.O
         TextView viewSvBullets67 = (TextView) dialog.findViewById(R.id.viewSvBullets67);
         TextView viewSvBullets68 = (TextView) dialog.findViewById(R.id.viewSvBullets68);
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.cvService1:
                 viewTitle.setText(getResources().getString(R.string.service1));
                 break;
@@ -99,7 +105,7 @@ public class activity_about_services extends AppCompatActivity implements View.O
                 SpannableString sp_bull_2_2_4 = new SpannableString(cs_bull_2_2_4);
                 sp_bull_2_2_4.setSpan(new BulletSpan(15), 0, cs_bull_2_2_4.length(), 0);
 
-                viewSvBullets22.setText(TextUtils.concat(sp_bull_2_2_1, "\n" , sp_bull_2_2_2, "\n", sp_bull_2_2_3, "\n",
+                viewSvBullets22.setText(TextUtils.concat(sp_bull_2_2_1, "\n", sp_bull_2_2_2, "\n", sp_bull_2_2_3, "\n",
                         sp_bull_2_2_4));
                 llSvContent2.setVisibility(View.VISIBLE);
 
@@ -127,7 +133,7 @@ public class activity_about_services extends AppCompatActivity implements View.O
                 SpannableString sp_bull_4_3_4 = new SpannableString(cs_bull_4_3_4);
                 sp_bull_4_3_4.setSpan(new BulletSpan(15), 0, cs_bull_4_3_4.length(), 0);
 
-                viewSvBullets43.setText(TextUtils.concat(sp_bull_4_3_1, "\n" , sp_bull_4_3_2, "\n", sp_bull_4_3_3, "\n",
+                viewSvBullets43.setText(TextUtils.concat(sp_bull_4_3_1, "\n", sp_bull_4_3_2, "\n", sp_bull_4_3_3, "\n",
                         sp_bull_4_3_4));
 
                 CharSequence cs_bull_4_4_1 = getResources().getString(R.string.sv_bull_4_4_1);
@@ -154,7 +160,7 @@ public class activity_about_services extends AppCompatActivity implements View.O
                 SpannableString sp_bull_4_4_6 = new SpannableString(cs_bull_4_4_6);
                 sp_bull_4_4_6.setSpan(new BulletSpan(15), 0, cs_bull_4_4_6.length(), 0);
 
-                viewSvBullets44.setText(TextUtils.concat(sp_bull_4_4_1, "\n" , sp_bull_4_4_2, "\n", sp_bull_4_4_3, "\n",
+                viewSvBullets44.setText(TextUtils.concat(sp_bull_4_4_1, "\n", sp_bull_4_4_2, "\n", sp_bull_4_4_3, "\n",
                         sp_bull_4_4_4, "\n", sp_bull_4_4_5, "\n", sp_bull_4_4_6));
 
                 llSvContent4.setVisibility(View.VISIBLE);
@@ -222,10 +228,10 @@ public class activity_about_services extends AppCompatActivity implements View.O
                 SpannableString sp_bull_5_5_15 = new SpannableString(cs_bull_5_5_15);
                 sp_bull_5_5_15.setSpan(new BulletSpan(15), 0, cs_bull_5_5_15.length(), 0);
 
-                viewSvBullets55.setText(TextUtils.concat(sp_bull_5_5_1, "\n" , sp_bull_5_5_2, "\n", sp_bull_5_5_3, "\n",
+                viewSvBullets55.setText(TextUtils.concat(sp_bull_5_5_1, "\n", sp_bull_5_5_2, "\n", sp_bull_5_5_3, "\n",
                         sp_bull_5_5_4, "\n", sp_bull_5_5_5, "\n", sp_bull_5_5_6, "\n", sp_bull_5_5_7, "\n",
-                        sp_bull_5_5_8, "\n", sp_bull_5_5_9, "\n" , sp_bull_5_5_10, "\n", sp_bull_5_5_11, "\n",
-                        sp_bull_5_5_12, "\n", sp_bull_5_5_13, "\n", sp_bull_5_5_14, "\n" , sp_bull_5_5_15));
+                        sp_bull_5_5_8, "\n", sp_bull_5_5_9, "\n", sp_bull_5_5_10, "\n", sp_bull_5_5_11, "\n",
+                        sp_bull_5_5_12, "\n", sp_bull_5_5_13, "\n", sp_bull_5_5_14, "\n", sp_bull_5_5_15));
 
                 CharSequence cs_bull_5_6_1 = getResources().getString(R.string.sv_bull_5_6_1);
                 SpannableString sp_bull_5_6_1 = new SpannableString(cs_bull_5_6_1);
@@ -239,7 +245,7 @@ public class activity_about_services extends AppCompatActivity implements View.O
                 SpannableString sp_bull_5_6_3 = new SpannableString(cs_bull_5_6_3);
                 sp_bull_5_6_3.setSpan(new BulletSpan(15), 0, cs_bull_5_6_3.length(), 0);
 
-                viewSvBullets56.setText(TextUtils.concat(sp_bull_5_6_1, "\n" , sp_bull_5_6_2, "\n", sp_bull_5_6_3));
+                viewSvBullets56.setText(TextUtils.concat(sp_bull_5_6_1, "\n", sp_bull_5_6_2, "\n", sp_bull_5_6_3));
 
                 llSvContent5.setVisibility(View.VISIBLE);
                 break;
@@ -286,9 +292,9 @@ public class activity_about_services extends AppCompatActivity implements View.O
                 SpannableString sp_bull_6_4_10 = new SpannableString(cs_bull_6_4_10);
                 sp_bull_6_4_10.setSpan(new BulletSpan(15), 0, cs_bull_6_4_10.length(), 0);
 
-                viewSvBullets64.setText(TextUtils.concat(sp_bull_6_4_1, "\n" , sp_bull_6_4_2, "\n", sp_bull_6_4_3, "\n",
-                        sp_bull_6_4_4, "\n", sp_bull_6_4_5, "\n", sp_bull_6_4_6, "\n" , sp_bull_6_4_7, "\n",
-                        sp_bull_6_4_8, "\n", sp_bull_6_4_9, "\n" , sp_bull_6_4_10));
+                viewSvBullets64.setText(TextUtils.concat(sp_bull_6_4_1, "\n", sp_bull_6_4_2, "\n", sp_bull_6_4_3, "\n",
+                        sp_bull_6_4_4, "\n", sp_bull_6_4_5, "\n", sp_bull_6_4_6, "\n", sp_bull_6_4_7, "\n",
+                        sp_bull_6_4_8, "\n", sp_bull_6_4_9, "\n", sp_bull_6_4_10));
 
                 CharSequence cs_bull_6_7_1 = getResources().getString(R.string.sv_bull_6_7_1);
                 SpannableString sp_bull_6_7_1 = new SpannableString(cs_bull_6_7_1);
@@ -358,10 +364,10 @@ public class activity_about_services extends AppCompatActivity implements View.O
                 SpannableString sp_bull_6_7_17 = new SpannableString(cs_bull_6_7_17);
                 sp_bull_6_7_17.setSpan(new BulletSpan(15), 0, cs_bull_6_7_17.length(), 0);
 
-                viewSvBullets67.setText(TextUtils.concat(sp_bull_6_7_1, "\n" , sp_bull_6_7_2, "\n", sp_bull_6_7_3, "\n",
-                        sp_bull_6_7_4, "\n", sp_bull_6_7_5, "\n", sp_bull_6_7_6, "\n" , sp_bull_6_7_7, "\n",
-                        sp_bull_6_7_8, "\n", sp_bull_6_7_9, "\n" , sp_bull_6_7_10, "\n" , sp_bull_6_7_11, "\n",
-                        sp_bull_6_7_12, "\n", sp_bull_6_7_13, "\n" , sp_bull_6_7_14, "\n" , sp_bull_6_7_15, "\n",
+                viewSvBullets67.setText(TextUtils.concat(sp_bull_6_7_1, "\n", sp_bull_6_7_2, "\n", sp_bull_6_7_3, "\n",
+                        sp_bull_6_7_4, "\n", sp_bull_6_7_5, "\n", sp_bull_6_7_6, "\n", sp_bull_6_7_7, "\n",
+                        sp_bull_6_7_8, "\n", sp_bull_6_7_9, "\n", sp_bull_6_7_10, "\n", sp_bull_6_7_11, "\n",
+                        sp_bull_6_7_12, "\n", sp_bull_6_7_13, "\n", sp_bull_6_7_14, "\n", sp_bull_6_7_15, "\n",
                         sp_bull_6_7_16, "\n", sp_bull_6_7_17));
 
                 CharSequence cs_bull_6_8_1 = getResources().getString(R.string.sv_bull_6_8_1);
@@ -376,7 +382,7 @@ public class activity_about_services extends AppCompatActivity implements View.O
                 SpannableString sp_bull_6_8_3 = new SpannableString(cs_bull_6_8_3);
                 sp_bull_6_8_3.setSpan(new BulletSpan(15), 0, cs_bull_6_8_3.length(), 0);
 
-                viewSvBullets68.setText(TextUtils.concat(sp_bull_6_8_1, "\n" , sp_bull_6_8_2, "\n", sp_bull_6_8_3));
+                viewSvBullets68.setText(TextUtils.concat(sp_bull_6_8_1, "\n", sp_bull_6_8_2, "\n", sp_bull_6_8_3));
 
                 llSvContent6.setVisibility(View.VISIBLE);
                 break;
@@ -385,7 +391,7 @@ public class activity_about_services extends AppCompatActivity implements View.O
                 break;
             case R.id.cvService8:
                 showDialog = false;
-                Intent intent = new Intent(activity_about_services.this, activity_workshops.class);
+                Intent intent = new Intent(AboutServicesActivity.this, WorkshopsActivity.class);
                 finish();
                 startActivity(intent);
                 break;
@@ -393,20 +399,25 @@ public class activity_about_services extends AppCompatActivity implements View.O
                 break;
         }
 
-        if(showDialog){
+        if (showDialog) {
             dialog.findViewById(R.id.llWorkshops).setVisibility(View.GONE);
             dialog.findViewById(R.id.llServices).setVisibility(View.VISIBLE);
             dialog.show();
         }
     }
 
+    /**
+     * Go back to the counselling page on clicking the back arrow
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId())
-        {
+        switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent=new Intent(activity_about_services.this,activity_home_menu.class);
-                intent.putExtra("active_activity","contentCounselling");
+                Intent intent = new Intent(AboutServicesActivity.this, HomeMenuActivity.class);
+                intent.putExtra("active_activity", "contentCounselling");
                 finish();
                 startActivity(intent);
                 break;
@@ -414,11 +425,14 @@ public class activity_about_services extends AppCompatActivity implements View.O
         return true;
     }
 
+    /**
+     * Go back to the counselling page on clicking the phone's back key
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(activity_about_services.this,activity_home_menu.class);
-        intent.putExtra("active_activity","contentCounselling");
+        Intent intent = new Intent(AboutServicesActivity.this, HomeMenuActivity.class);
+        intent.putExtra("active_activity", "contentCounselling");
         finish();
         startActivity(intent);
     }

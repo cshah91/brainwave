@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 08-07-2017
- * Author     : Charmy Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
 import android.content.Intent;
@@ -31,7 +22,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class activity_medicines extends AppCompatActivity implements View.OnClickListener {
+/**
+ * This class is used for displaying the list of medicines for purchase
+ *
+ * @author  Charmy Shah
+ * @date    08-07-2017
+ * @version 1.0
+ */
+public class MedicinesActivity extends AppCompatActivity implements View.OnClickListener {
 
     DatabaseReference mReference;
     double originalAmount = 0;
@@ -64,7 +62,7 @@ public class activity_medicines extends AppCompatActivity implements View.OnClic
                     }
                 }
 
-                ArrayAdapter adapter = new ArrayAdapter(activity_medicines.this,R.layout.activity_medicines_item_layout,R.id.medItem,medicineList);
+                ArrayAdapter adapter = new ArrayAdapter(MedicinesActivity.this,R.layout.item_medicine,R.id.medItem,medicineList);
                 ListView listView = (ListView) findViewById(R.id.list_view_medicines);
                 listView.setAdapter(adapter);
                 pd_progress.setVisibility(View.GONE);
@@ -89,7 +87,7 @@ public class activity_medicines extends AppCompatActivity implements View.OnClic
         switch(item.getItemId())
         {
             case android.R.id.home:
-                Intent intent=new Intent(activity_medicines.this,activity_home_menu.class);
+                Intent intent=new Intent(MedicinesActivity.this,HomeMenuActivity.class);
                 intent.putExtra("active_activity","contentCounselling");
                 finish();
                 startActivity(intent);
@@ -101,7 +99,7 @@ public class activity_medicines extends AppCompatActivity implements View.OnClic
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(activity_medicines.this,activity_home_menu.class);
+        Intent intent=new Intent(MedicinesActivity.this,HomeMenuActivity.class);
         intent.putExtra("active_activity","contentCounselling");
         finish();
         startActivity(intent);
@@ -109,7 +107,7 @@ public class activity_medicines extends AppCompatActivity implements View.OnClic
 
     public void buyMedicine(View view){
         TextView txtMedicine = (TextView) view.findViewById(R.id.medItem);
-        Intent intent = new Intent(activity_medicines.this, activity_shipping_address.class);
+        Intent intent = new Intent(MedicinesActivity.this, ShippingAddressActivity.class);
         intent.putExtra("orderType","medicine");
         intent.putExtra("productName", txtMedicine.getText());
         for(Map.Entry<String, String> entry: medicinesPriceMap.entrySet()){

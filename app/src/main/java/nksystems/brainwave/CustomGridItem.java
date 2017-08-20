@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 28-04-2017
- * Author     : Charmy Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
 import android.content.Context;
@@ -31,6 +22,13 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is used for creating individual item for displaying respective product description
+ *
+ * @author  Charmy Shah
+ * @date    28-04-2017
+ * @version 1.0
+ */
 public class CustomGridItem extends BaseAdapter{
 
     LayoutInflater inflater;
@@ -82,7 +80,7 @@ public class CustomGridItem extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         View root;
         if(convertView==null){
-            root=inflater.inflate(R.layout.custom_grid_products_layout,null);
+            root=inflater.inflate(R.layout.item_pari_herbal_product,null);
 
         }
         else{

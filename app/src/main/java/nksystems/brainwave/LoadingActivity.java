@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 24-04-2017
- * Author     : Nemi Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
 import android.content.Intent;
@@ -16,7 +7,14 @@ import android.os.Bundle;
 
 import com.airbnb.lottie.LottieAnimationView;
 
-public class activity_loading extends AppCompatActivity {
+/**
+ * This class is used for displaying the loading screen at the start of the app
+ *
+ * @author  Nemi Shah
+ * @date    24-04-2017
+ * @version 1.0
+ */
+public class LoadingActivity extends AppCompatActivity {
 
     LottieAnimationView animView;
 
@@ -34,7 +32,7 @@ public class activity_loading extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             public void run() {
                 // Actions to do after 10 seconds
-                Intent intent = new Intent(activity_loading.this, activity_home_menu.class);
+                Intent intent = new Intent(LoadingActivity.this, HomeMenuActivity.class);
                 intent.putExtra("active_activity", "");
                 finish();
                 startActivity(intent);

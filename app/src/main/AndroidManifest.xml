@@ -12,28 +12,27 @@
         android:roundIcon="@mipmap/ic_bw_blue"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
-        <activity android:name=".activity_loading" >
+        <activity android:name=".LoadingActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity_home_list" />
         <activity
-            android:name=".activity_home_menu"
+            android:name=".HomeMenuActivity"
             android:label="@string/title_activity_home_menu"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity_product_info" />
+        <activity android:name=".ProductDescriptionActivity" />
         <activity
-            android:name=".activity_counselling_form"
+            android:name=".CounsellingFormActivity"
             android:label="Counselling Form" />
         <activity
             android:name=".activity_purchase_services"
             android:label="Purchase Services" />
-        <activity android:name=".activity_about_services" />
+        <activity android:name=".AboutServicesActivity" />
         <activity
-            android:name=".activity_workshops"
+            android:name=".WorkshopsActivity"
             android:label="Workshops" />
         <activity
             android:name="com.braintreepayments.api.BraintreeBrowserSwitchActivity"
@@ -52,10 +51,10 @@
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
 
-        <activity android:name=".activity_order_confirmation" />
-        <activity android:name=".activity_order_successful" />
-        <activity android:name=".activity_medicines" />
-        <activity android:name=".activity_shipping_address" >
+        <activity android:name=".OrderConfirmationActivity" />
+        <activity android:name=".OrderSuccessfulActivity" />
+        <activity android:name=".MedicinesActivity" />
+        <activity android:name=".ShippingAddressActivity" >
         </activity>
     </application>
 

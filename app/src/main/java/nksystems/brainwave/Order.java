@@ -1,14 +1,10 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 02-07-2017
- * Author     : Charmy Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
+/**
+ * @author  Charmy Shah
+ * @date    02-07-2017
+ * @version 1.0
+ */
 public class Order {
 
     String customeraddress,customercity,customerstate,customerpincode,customeremail,customername,orderdeliverycharge,

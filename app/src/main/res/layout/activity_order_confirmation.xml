@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="nksystems.brainwave.activity_order_confirmation"
+    tools:context="nksystems.brainwave.OrderConfirmationActivity"
     android:padding="10dp"
     android:background="@color/bt_very_light_gray">
 

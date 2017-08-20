@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 18-06-2017
- * Author     : Charmy Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
 import android.content.Intent;
@@ -51,7 +42,14 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class activity_order_confirmation extends AppCompatActivity
+/**
+ * This class is used for displaying the confirmation page before making a purchase
+ *
+ * @author  Charmy Shah
+ * @date    18-06-2017
+ * @version 1.0
+ */
+public class OrderConfirmationActivity extends AppCompatActivity
         implements PaymentMethodNonceCreatedListener,BraintreeCancelListener,BraintreeErrorListener {
 
     String orderType, packageType, productName, productDescription, serviceType, serviceProblem;
@@ -137,7 +135,7 @@ public class activity_order_confirmation extends AppCompatActivity
             }
 
 
-            name =activity_order_confirmation.this.getIntent().getStringExtra("name");
+            name =OrderConfirmationActivity.this.getIntent().getStringExtra("name");
             email = getIntent().getStringExtra("email");
             briefProblem = getIntent().getStringExtra("briefProblem");
             detailedProblem = getIntent().getStringExtra("detailedProblem");
@@ -192,7 +190,7 @@ public class activity_order_confirmation extends AppCompatActivity
                 .tokenizationKey(tokenizationKey)
                 .collectDeviceData(true);
 
-        startActivityForResult(dropInRequest.getIntent(activity_order_confirmation.this), REQUEST_CODE);
+        startActivityForResult(dropInRequest.getIntent(OrderConfirmationActivity.this), REQUEST_CODE);
     }
 
     @Override
@@ -206,7 +204,7 @@ public class activity_order_confirmation extends AppCompatActivity
                 nonce = result.getPaymentMethodNonce().getNonce();
 
                 try {
-                    braintreeFragment = BraintreeFragment.newInstance(activity_order_confirmation.this, tokenizationKey);
+                    braintreeFragment = BraintreeFragment.newInstance(OrderConfirmationActivity.this, tokenizationKey);
                     // use the result to update your ui and send payment method nonce to your server
                     DataCollector.collectDeviceData(braintreeFragment, new BraintreeResponseListener<String>() {
                         @Override
@@ -252,7 +250,7 @@ public class activity_order_confirmation extends AppCompatActivity
                 BraintreeError expirationMonthError = cardErrors.errorFor("expirationMonth");
                 if(expirationMonthError != null){
                     // There is an issue with the expiration month.
-                    Toast.makeText(activity_order_confirmation.this, "Error: " + expirationMonthError.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OrderConfirmationActivity.this, "Error: " + expirationMonthError.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -420,7 +418,7 @@ public class activity_order_confirmation extends AppCompatActivity
                 if(updateOrderDetails());
             }
             else if(status != null && status.equals("processor_declined")){
-                Toast.makeText(activity_order_confirmation.this, "There was a problem processing your card; please double check your payment information and try again.", Toast.LENGTH_LONG).show();
+                Toast.makeText(OrderConfirmationActivity.this, "There was a problem processing your card; please double check your payment information and try again.", Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -431,7 +429,7 @@ public class activity_order_confirmation extends AppCompatActivity
         {
             case android.R.id.home:
                 if(orderType.equals("service")){
-                    Intent intent=new Intent(activity_order_confirmation.this,activity_counselling_form.class);
+                    Intent intent=new Intent(OrderConfirmationActivity.this,CounsellingFormActivity.class);
                     intent.putExtra("packagetype",packageType);
                     intent.putExtra("amount",""+(int)originalAmount);
                     intent.putExtra("name",name);
@@ -449,14 +447,14 @@ public class activity_order_confirmation extends AppCompatActivity
                     startActivity(intent);
                 }
                 else if(orderType.equals("product")){
-                    Intent intent=new Intent(activity_order_confirmation.this,activity_product_info.class);
+                    Intent intent=new Intent(OrderConfirmationActivity.this,ProductDescriptionActivity.class);
                     intent.putExtra("title",productName);
                     intent.putExtra("shortDescription",productDescription);
                     finish();
                     startActivity(intent);
                 }
                 else{
-                    Intent intent=new Intent(activity_order_confirmation.this,activity_medicines.class);
+                    Intent intent=new Intent(OrderConfirmationActivity.this,MedicinesActivity.class);
                     finish();
                     startActivity(intent);
                 }
@@ -469,7 +467,7 @@ public class activity_order_confirmation extends AppCompatActivity
     public void onBackPressed() {
         super.onBackPressed();
         if(orderType.equals("service")){
-            Intent intent=new Intent(activity_order_confirmation.this,activity_counselling_form.class);
+            Intent intent=new Intent(OrderConfirmationActivity.this,CounsellingFormActivity.class);
             intent.putExtra("packagetype",packageType);
             intent.putExtra("amount",""+(int)originalAmount);
             intent.putExtra("name",name);
@@ -487,14 +485,14 @@ public class activity_order_confirmation extends AppCompatActivity
             startActivity(intent);
         }
         else if(orderType.equals("product")){
-            Intent intent=new Intent(activity_order_confirmation.this,activity_product_info.class);
+            Intent intent=new Intent(OrderConfirmationActivity.this,ProductDescriptionActivity.class);
             intent.putExtra("title",productName);
             intent.putExtra("shortDescription",productDescription);
             finish();
             startActivity(intent);
         }
         else{
-            Intent intent=new Intent(activity_order_confirmation.this,activity_medicines.class);
+            Intent intent=new Intent(OrderConfirmationActivity.this,MedicinesActivity.class);
             finish();
             startActivity(intent);
         }
@@ -513,14 +511,14 @@ public class activity_order_confirmation extends AppCompatActivity
                     sendInvoiceMail(currentOrderId);
                     val = true;
                     finish();
-                    Toast.makeText(activity_order_confirmation.this, "Your payment has been done successfully.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(OrderConfirmationActivity.this, "Your payment has been done successfully.", Toast.LENGTH_LONG).show();
                     if(orderType.equalsIgnoreCase("service")){
-                        Intent intent=new Intent(activity_order_confirmation.this,activity_home_menu.class);
+                        Intent intent=new Intent(OrderConfirmationActivity.this,HomeMenuActivity.class);
                         intent.putExtra("active_activity","contentCounselling");
                         startActivity(intent);
                     }
                     else{
-                        Intent intent = new Intent(activity_order_confirmation.this, activity_order_successful.class);
+                        Intent intent = new Intent(OrderConfirmationActivity.this, OrderSuccessfulActivity.class);
                         intent.putExtra("orderNo",currentOrderId);
                         intent.putExtra("isProduct",(isMedication.equals("true") || orderType.equals("product")) ? "true" : "false");
                         startActivity(intent);
@@ -627,7 +625,7 @@ public class activity_order_confirmation extends AppCompatActivity
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            Toast.makeText(activity_order_confirmation.this, "An invoice of your order has been sent to your mail. Thank you !", Toast.LENGTH_LONG).show();
+            Toast.makeText(OrderConfirmationActivity.this, "An invoice of your order has been sent to your mail. Thank you !", Toast.LENGTH_LONG).show();
         }
     }
 }

@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 02-07-2017
- * Author     : Charmy Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
 import android.content.Intent;
@@ -16,7 +7,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class activity_order_successful extends AppCompatActivity {
+/**
+ * This class is used for displaying the order success page after making a successful purchase
+ *
+ * @author  Charmy Shah
+ * @date    02-07-2017
+ * @version 1.0
+ */
+public class OrderSuccessfulActivity extends AppCompatActivity {
 
     String orderNo;
     Boolean isProduct;
@@ -44,7 +42,7 @@ public class activity_order_successful extends AppCompatActivity {
         switch(item.getItemId())
         {
             case android.R.id.home:
-                Intent intent=new Intent(activity_order_successful.this,activity_home_menu.class);
+                Intent intent=new Intent(OrderSuccessfulActivity.this,HomeMenuActivity.class);
                 intent.putExtra("active_activity","");
                 finish();
                 startActivity(intent);
@@ -56,7 +54,7 @@ public class activity_order_successful extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(activity_order_successful.this,activity_home_menu.class);
+        Intent intent=new Intent(OrderSuccessfulActivity.this,HomeMenuActivity.class);
         intent.putExtra("active_activity","");
         finish();
         startActivity(intent);

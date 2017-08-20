@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    tools:context="nksystems.brainwave.activity_workshops"
+    tools:context="nksystems.brainwave.WorkshopsActivity"
     android:orientation="vertical">
 
     <android.support.v7.widget.CardView

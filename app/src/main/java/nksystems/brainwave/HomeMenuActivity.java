@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 24-04-2017
- * Author     : Nemi Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
 import android.app.DatePickerDialog;
@@ -16,19 +7,18 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -65,11 +55,18 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class activity_home_menu extends AppCompatActivity
+/**
+ * This class is used for creating the navigation drawer and ViewStubs for each menu item
+ *
+ * @author  Nemi Shah
+ * @date    24-04-2017
+ * @version 1.0
+ */
+public class HomeMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ViewStub contentAbout,contentCounselling,contentFlower,contentPlay,contentHandwriting,contentAstrology, contentPari,
-    contentProducts, contentTips;
+    ViewStub contentAbout, contentCounselling, contentFlower, contentPlay, contentHandwriting, contentAstrology, contentPari,
+            contentProducts, contentTips;
     LinearLayout root;
     ViewStub stub1, stub2, stub3, stubf1, stubf2, stubf3, stubh1, stubh2, stubh3;
     DatabaseReference mReference;
@@ -84,6 +81,9 @@ public class activity_home_menu extends AppCompatActivity
     CarouselView carouselView;
     ImageListener imageListener;
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,36 +96,45 @@ public class activity_home_menu extends AppCompatActivity
             }
         };
 
-        contentAbout=(ViewStub)findViewById(R.id.contentAbout);
+        // Navigation Drawer Menu: About Brainwave
+        contentAbout = (ViewStub) findViewById(R.id.contentAbout);
         contentAbout.setLayoutResource(R.layout.activity_card_view);
         contentAbout.inflate();
 
-        contentCounselling=(ViewStub)findViewById(R.id.contentCounselling);
-        contentCounselling.setLayoutResource(R.layout.counselling_services_layout);
+        // Navigation Drawer Menu: Counselling Services
+        contentCounselling = (ViewStub) findViewById(R.id.contentCounselling);
+        contentCounselling.setLayoutResource(R.layout.activity_counselling_services);
         contentCounselling.inflate();
 
-        contentPari=(ViewStub)findViewById(R.id.contentPari);
-        contentPari.setLayoutResource(R.layout.pari_herbal_product_layout);
+        // Navigation Drawer Menu: Pari Herbal Products
+        contentPari = (ViewStub) findViewById(R.id.contentPari);
+        contentPari.setLayoutResource(R.layout.activity_pari_herbal_products);
         contentPari.inflate();
 
-        contentPlay=(ViewStub)findViewById(R.id.contentPlay);
+        // Navigation Drawer Menu: Play Therapy
+        contentPlay = (ViewStub) findViewById(R.id.contentPlay);
 
-        contentHandwriting=(ViewStub)findViewById(R.id.contentHandwriting);
+        // Navigation Drawer Menu: Handwriting & Signature Analysis
+        contentHandwriting = (ViewStub) findViewById(R.id.contentHandwriting);
         contentHandwriting.setLayoutResource(R.layout.handwriting_layout);
         contentHandwriting.inflate();
 
-        contentAstrology=(ViewStub)findViewById(R.id.contentAstrology);
+        // Navigation Drawer Menu: Astrology
+        contentAstrology = (ViewStub) findViewById(R.id.contentAstrology);
 
-        contentProducts=(ViewStub)findViewById(R.id.contentProducts);
-        contentProducts.setLayoutResource(R.layout.product_names_list_layout);
+        // Settings Menu: Products
+        contentProducts = (ViewStub) findViewById(R.id.contentProducts);
+        contentProducts.setLayoutResource(R.layout.activity_product_names);
         contentProducts.inflate();
 
-        contentTips=(ViewStub)findViewById(R.id.contentTips);
-        contentTips.setLayoutResource(R.layout.tips_layout);
+        // Settings Menu: Tips
+        contentTips = (ViewStub) findViewById(R.id.contentTips);
+        contentTips.setLayoutResource(R.layout.activity_tips);
         contentTips.inflate();
 
-        String activeStub=getIntent().getStringExtra("active_activity");
-        switch (activeStub){
+        // Used for returning to home page from another activity with selected menu item
+        String activeStub = getIntent().getStringExtra("active_activity");
+        switch (activeStub) {
             case "contentCounselling":
                 switchContent(contentCounselling);
                 actionsCounsellingServices();
@@ -139,11 +148,9 @@ public class activity_home_menu extends AppCompatActivity
                 break;
         }
 
-        root=(LinearLayout)findViewById(R.id.rootLayout);
+        root = (LinearLayout) findViewById(R.id.rootLayout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -154,9 +161,13 @@ public class activity_home_menu extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Open the About Brainwave page by default
         actionAboutBrainwave();
     }
 
+    /**
+     * Close drawer when phone's back key pressed
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -167,46 +178,49 @@ public class activity_home_menu extends AppCompatActivity
         }
     }
 
+    /**
+     * Inflate the menu; this adds items to the action bar if it is present.
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_home_menu, menu);
         return true;
     }
 
+    /**
+     * Handle action bar item clicks here. The action bar will automatically
+     * handle clicks on the Home/Up button, so long as you specify a parent
+     * activity in AndroidManifest.xml.
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-
-
-        //noinspection SimplifiableIfStatement
         int id = item.getItemId();
-
-        Log.d("Home Menu", "id = " + id + " R.id.menu_tips = " + R.id.menu_tips);
-        Log.d("Home Menu", "id = " + id + " R.id.menu_products = " + R.id.menu_products);
-
         if(id == R.id.menu_products){
             switchContent(contentProducts);
             actionsProductsList();
         }
         else if(id == R.id.menu_tips){
             switchContent(contentTips);
-            /*actionTips();*/
-
         }
 
         return true;
     }
 
+    /**
+     * Handles navigation view item clicks.
+     *
+     * @param item
+     * @return
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-
         int id = item.getItemId();
 
         if (id == R.id.nav_counseling) {
@@ -237,8 +251,12 @@ public class activity_home_menu extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Used for switching content between created ViewStubs
+     *
+     * @param v
+     */
     public void switchContent(View v){
-
         contentCounselling.setVisibility(View.GONE);
         contentPari.setVisibility(View.GONE);
         contentPlay.setVisibility(View.GONE);
@@ -247,11 +265,12 @@ public class activity_home_menu extends AppCompatActivity
         contentAbout.setVisibility(View.GONE);
         contentProducts.setVisibility(View.GONE);
         contentTips.setVisibility(View.GONE);
-
         v.setVisibility(View.VISIBLE);
-
     }
 
+    /**
+     *
+     */
     public void actionsCounsellingServices(){
 
         carouselView = (CarouselView) findViewById(R.id.carouselView);
@@ -263,7 +282,7 @@ public class activity_home_menu extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(activity_home_menu.this,activity_about_services.class);
+                Intent intent = new Intent(HomeMenuActivity.this,AboutServicesActivity.class);
                 startActivity(intent);
             }
         });
@@ -275,7 +294,7 @@ public class activity_home_menu extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(activity_home_menu.this,activity_counselling_form.class);
+                Intent intent = new Intent(HomeMenuActivity.this,CounsellingFormActivity.class);
                 intent.putExtra("amount","500");
                 intent.putExtra("packagetype","2");
                 startActivity(intent);
@@ -286,7 +305,7 @@ public class activity_home_menu extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(activity_home_menu.this,activity_counselling_form.class);
+                Intent intent = new Intent(HomeMenuActivity.this,CounsellingFormActivity.class);
                 intent.putExtra("amount","2000");
                 intent.putExtra("packagetype","1");
                 startActivity(intent);
@@ -300,8 +319,8 @@ public class activity_home_menu extends AppCompatActivity
         btnTelephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(activity_home_menu.this);
-                dialog.setContentView(R.layout.contact_expand_item_layout);
+                Dialog dialog = new Dialog(HomeMenuActivity.this);
+                dialog.setContentView(R.layout.dialog_appointment_form);
                 setDateTimePicker(dialog);
                 // Third parameter for setAppointment is type of appointment
                 // Telephonic: 1, Skype: 2, Personal: 3
@@ -315,8 +334,8 @@ public class activity_home_menu extends AppCompatActivity
         btnSkype.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(activity_home_menu.this);
-                dialog.setContentView(R.layout.contact_expand_item_layout);
+                Dialog dialog = new Dialog(HomeMenuActivity.this);
+                dialog.setContentView(R.layout.dialog_appointment_form);
                 setDateTimePicker(dialog);
                 // Third parameter for setAppointment is type of appointment
                 // Telephonic: 1, Skype: 2, Personal: 3
@@ -330,8 +349,8 @@ public class activity_home_menu extends AppCompatActivity
         btnPersonal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(activity_home_menu.this);
-                dialog.setContentView(R.layout.contact_expand_item_layout);
+                Dialog dialog = new Dialog(HomeMenuActivity.this);
+                dialog.setContentView(R.layout.dialog_appointment_form);
                 setDateTimePicker(dialog);
                 // Third parameter for setAppointment is type of appointment
                 // Telephonic: 1, Skype: 2, Personal: 3
@@ -347,12 +366,15 @@ public class activity_home_menu extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(activity_home_menu.this,activity_medicines.class);
+                Intent intent = new Intent(HomeMenuActivity.this,MedicinesActivity.class);
                 startActivity(intent);
             }
         });
     }
 
+    /**
+     *
+     */
     public void actionsHandwritingServices(){
 
         stubh1 = (ViewStub) findViewById(R.id.vshSchedule);
@@ -367,7 +389,7 @@ public class activity_home_menu extends AppCompatActivity
                 if(radioButton.getId() == R.id.rbhSchedule){
                     stubh1.inflate();
                     Spinner spinner = (Spinner) findViewById(R.id.spnContacttype);
-                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(activity_home_menu.this,
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(HomeMenuActivity.this,
                             R.array.contact_type_list, android.R.layout.simple_spinner_item);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinner.setAdapter(adapter);
@@ -394,7 +416,7 @@ public class activity_home_menu extends AppCompatActivity
         btnAboutHand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(activity_home_menu.this, android.R.style.Theme_Dialog);
+                Dialog dialog = new Dialog(HomeMenuActivity.this, android.R.style.Theme_Dialog);
                 dialog.setContentView(R.layout.about_handwriting_layout);
                 dialog.show();
             }
@@ -404,8 +426,8 @@ public class activity_home_menu extends AppCompatActivity
         btnTelephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Dialog dialog = new Dialog(activity_home_menu.this);
-                dialog.setContentView(R.layout.contact_expand_item_layout);
+                Dialog dialog = new Dialog(HomeMenuActivity.this);
+                dialog.setContentView(R.layout.dialog_appointment_form);
                 setDateTimePicker(dialog);
                 // Third parameter for setAppointment is type of appointment
                 // Telephonic: 1, Skype: 2, Personal: 3
@@ -419,6 +441,9 @@ public class activity_home_menu extends AppCompatActivity
         });*/
     }
 
+    /**
+     * @param dialog
+     */
     public void setDateTimePicker(Dialog dialog){
         ImageButton btnDate, btnTime;
 
@@ -438,7 +463,7 @@ public class activity_home_menu extends AppCompatActivity
                 mMonth = calendar.get(Calendar.MONTH);
                 mDay = calendar.get(Calendar.DAY_OF_MONTH);
 
-                DatePickerDialog datePickerDialog = new DatePickerDialog(activity_home_menu.this, new DatePickerDialog.OnDateSetListener() {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(HomeMenuActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         // Get day of the week for the selected date
@@ -453,7 +478,7 @@ public class activity_home_menu extends AppCompatActivity
                         else{
                             String message = "Appointments available only for Wednesday, Saturday and Sunday. " +
                                     "Please select another date.";
-                            Toast.makeText(activity_home_menu.this,message,Toast.LENGTH_LONG).show();
+                            Toast.makeText(HomeMenuActivity.this,message,Toast.LENGTH_LONG).show();
                         }
                     }
                 },mYear,mMonth,mDay);
@@ -473,7 +498,7 @@ public class activity_home_menu extends AppCompatActivity
                 mHour = calendar.get(Calendar.HOUR_OF_DAY);
                 mMinute = calendar.get(Calendar.MINUTE);
 
-                TimePickerDialog timePickerDialog = new TimePickerDialog(activity_home_menu.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(HomeMenuActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                         EditText txtTime = (EditText) commonDialog.findViewById(R.id.txtDueTime);
@@ -493,7 +518,7 @@ public class activity_home_menu extends AppCompatActivity
                                 }
                                 else{
                                     txtTime.setText("");
-                                    Toast.makeText(activity_home_menu.this, "Selected time is not available. Please see the appointment schedule " +
+                                    Toast.makeText(HomeMenuActivity.this, "Selected time is not available. Please see the appointment schedule " +
                                             "time slots mentioned below.", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -503,7 +528,7 @@ public class activity_home_menu extends AppCompatActivity
                                 }
                                 else{
                                     txtTime.setText("");
-                                    Toast.makeText(activity_home_menu.this, "Selected time is not available. Please see the appointment schedule " +
+                                    Toast.makeText(HomeMenuActivity.this, "Selected time is not available. Please see the appointment schedule " +
                                             "time slots mentioned below.", Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -513,19 +538,19 @@ public class activity_home_menu extends AppCompatActivity
                                 }
                                 else{
                                     txtTime.setText("");
-                                    Toast.makeText(activity_home_menu.this, "Selected time is not available. Please see the appointment schedule " +
+                                    Toast.makeText(HomeMenuActivity.this, "Selected time is not available. Please see the appointment schedule " +
                                             "time slots mentioned below.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             else{
                                 txtTime.setText("");
-                                Toast.makeText(activity_home_menu.this, "Selected time is not available. Please see the appointment schedule " +
+                                Toast.makeText(HomeMenuActivity.this, "Selected time is not available. Please see the appointment schedule " +
                                         "time slots mentioned below.", Toast.LENGTH_SHORT).show();
                             }
                         }
                         else{
                             txtTime.setText("");
-                            Toast.makeText(activity_home_menu.this, "Please select a date before setting time.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(HomeMenuActivity.this, "Please select a date before setting time.", Toast.LENGTH_LONG).show();
                         }
                     }
                 },mHour,mMinute,false);
@@ -534,6 +559,11 @@ public class activity_home_menu extends AppCompatActivity
         });
     }
 
+    /**
+     * @param id
+     * @param dialog
+     * @param type
+     */
     public void setAppointment(final int id, Dialog dialog, final int type){
         commonDialog = dialog;
         Button btnCounselSetAppointment = (Button) dialog.findViewById(R.id.btnCounselSetAppointment);
@@ -549,27 +579,27 @@ public class activity_home_menu extends AppCompatActivity
                 txtProblem = (EditText) commonDialog.findViewById(R.id.txtProblem);
 
                 if(txtName.getText().equals("") || txtName.getText().length() == 0){
-                    Toast.makeText(activity_home_menu.this, "Please enter your name.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeMenuActivity.this, "Please enter your name.", Toast.LENGTH_SHORT).show();
                     txtName.requestFocus();
                 }
                 else if(txtContact.getText().equals("") || txtContact.getText().length() == 0){
-                    Toast.makeText(activity_home_menu.this, "Please enter your contact number.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeMenuActivity.this, "Please enter your contact number.", Toast.LENGTH_SHORT).show();
                     txtContact.requestFocus();
                 }
                 else if(txtEmail.getText().equals("") || txtEmail.getText().length() == 0){
-                    Toast.makeText(activity_home_menu.this, "Please enter your email.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeMenuActivity.this, "Please enter your email.", Toast.LENGTH_SHORT).show();
                     txtEmail.requestFocus();
                 }
                 else if(txtDate.getText().equals("") || txtDate.getText().length() == 0){
-                    Toast.makeText(activity_home_menu.this, "Please select a date of appointment.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeMenuActivity.this, "Please select a date of appointment.", Toast.LENGTH_SHORT).show();
                     txtDate.requestFocus();
                 }
                 else if(txtTime.getText().equals("") || txtTime.getText().length() == 0){
-                    Toast.makeText(activity_home_menu.this, "Please select a time for your appointment", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeMenuActivity.this, "Please select a time for your appointment", Toast.LENGTH_SHORT).show();
                     txtTime.requestFocus();
                 }
                 else if(txtProblem.getText().equals("") || txtProblem.getText().length() == 0){
-                    Toast.makeText(activity_home_menu.this, "Briefly describe your problem here.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(HomeMenuActivity.this, "Briefly describe your problem here.", Toast.LENGTH_SHORT).show();
                     txtProblem.requestFocus();
                 }
                 else{
@@ -616,6 +646,9 @@ public class activity_home_menu extends AppCompatActivity
         });
     }
 
+    /**
+     *
+     */
     public void actionsPariHerbalProducts(){
         final GridView productslist;
         final ProgressBar progress;
@@ -651,7 +684,7 @@ public class activity_home_menu extends AppCompatActivity
                 TextView tvProductDescription = (TextView) findViewById(R.id.tvAuthor);
                 String description = tvProductDescription.getText().toString();
 
-                Intent intent=new Intent(activity_home_menu.this,activity_product_info.class);
+                Intent intent=new Intent(HomeMenuActivity.this,ProductDescriptionActivity.class);
                 intent.putExtra("title",title);
                 intent.putExtra("shortDescription",description);
                 finish();
@@ -660,6 +693,9 @@ public class activity_home_menu extends AppCompatActivity
         });
     }
 
+    /**
+     *
+     */
     public void actionAboutBrainwave(){
         mRecyclerView = (RecyclerView) findViewById(R.id.recViewAboutBW);
         mRecyclerView.setHasFixedSize(true);
@@ -669,18 +705,21 @@ public class activity_home_menu extends AppCompatActivity
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private List<object_about_brainwave> getDataSet() {
-        List<object_about_brainwave> results = new ArrayList<object_about_brainwave>();
+    /**
+     * @return
+     */
+    private List<Brainwave> getDataSet() {
+        List<Brainwave> results = new ArrayList<Brainwave>();
         String title = getResources().getString(R.string.bw_name);
         String content = getResources().getString(R.string.bw_intro);
-        object_about_brainwave obj = new object_about_brainwave(title, content);
+        Brainwave obj = new Brainwave(title, content);
         results.add(obj);
 
         title = getResources().getString(R.string.bw_history_title);
         content = getResources().getString(R.string.bw_history_info1) + "\n\n" +
                 getResources().getString(R.string.bw_history_info2) + "\n\n" +
                 getResources().getString(R.string.bw_history_info3);
-        object_about_brainwave obj1 = new object_about_brainwave(title, content);
+        Brainwave obj1 = new Brainwave(title, content);
         results.add(obj1);
 
         title = getResources().getString(R.string.bw_founder_title);
@@ -688,17 +727,17 @@ public class activity_home_menu extends AppCompatActivity
                 getResources().getString(R.string.bw_founder_info2) + "\n\n" +
                 getResources().getString(R.string.bw_founder_info3) + "\n\n" +
                 getResources().getString(R.string.bw_founder_info4);
-        object_about_brainwave obj2 = new object_about_brainwave(title, content);
+        Brainwave obj2 = new Brainwave(title, content);
         results.add(obj2);
 
         title = getResources().getString(R.string.bw_slogan_title);
         content = getResources().getString(R.string.bw_slogan_info);
-        object_about_brainwave obj3 = new object_about_brainwave(title, content);
+        Brainwave obj3 = new Brainwave(title, content);
         results.add(obj3);
 
         title = getResources().getString(R.string.bw_mission_title);
         content = getResources().getString(R.string.bw_mission_info);
-        object_about_brainwave obj4 = new object_about_brainwave(title, content);
+        Brainwave obj4 = new Brainwave(title, content);
         results.add(obj4);
 
         title = getResources().getString(R.string.bw_more_about);
@@ -713,12 +752,15 @@ public class activity_home_menu extends AppCompatActivity
                 getResources().getString(R.string.bw_bullet_point_8) + "\n" +
                 getResources().getString(R.string.bw_bullet_point_9) + "\n" +
                 getResources().getString(R.string.bw_bullet_point_10) + "\n";
-        object_about_brainwave obj5 = new object_about_brainwave(title, content);
+        Brainwave obj5 = new Brainwave(title, content);
         results.add(obj5);
 
         return results;
     }
 
+    /**
+     *
+     */
     public void actionsProductsList(){
 
         final List<String> productList = new ArrayList();
@@ -738,7 +780,7 @@ public class activity_home_menu extends AppCompatActivity
                     }
                 }
 
-                ArrayAdapter adapter = new ArrayAdapter(activity_home_menu.this,R.layout.product_names_list_item,productList);
+                ArrayAdapter adapter = new ArrayAdapter(HomeMenuActivity.this,R.layout.item_product_name,productList);
                 ListView listView = (ListView) findViewById(R.id.list_view_products);
                 listView.setAdapter(adapter);
                 pd_progress.setVisibility(View.GONE);
@@ -753,28 +795,9 @@ public class activity_home_menu extends AppCompatActivity
 
     }
 
-    public void actionTips(){
-
-        /*CardView tipsContent1 = (CardView) findViewById(R.id.tipsContent1);
-        CardView tipsContent2 = (CardView) findViewById(R.id.tipsContent2);
-        Dialog dialog = new Dialog(activity_home_menu.this, R.style.custom_dialog_services_style);
-        dialog.setContentView(R.layout.dialog_services_layout);
-        TextView viewTitle = (TextView) dialog.findViewById(R.id.viewServiceTitle);
-        tipsContent1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        tipsContent2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
-    }
-
+    /**
+     *
+     */
     private class AsyncSendMail extends AsyncTask<String, String, String> {
         @Override
         protected String doInBackground(String... params) {
@@ -794,7 +817,7 @@ public class activity_home_menu extends AppCompatActivity
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             commonDialog.hide();
-            Toast.makeText(activity_home_menu.this, "Your appointment details have been sent your email. Thank you !", Toast.LENGTH_LONG).show();
+            Toast.makeText(HomeMenuActivity.this, "Your appointment details have been sent your email. Thank you !", Toast.LENGTH_LONG).show();
         }
     }
 }

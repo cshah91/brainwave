@@ -1,18 +1,16 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 19-08-2017
- * Author     : Charmy Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.security.Provider;
 
+/**
+ * This class is used in sending out mails from system
+ *
+ * @author  Charmy Shah
+ * @date    19-08-2017
+ * @version 1.0
+ */
 public final class JSSEProvider extends Provider{
 
     public JSSEProvider() {

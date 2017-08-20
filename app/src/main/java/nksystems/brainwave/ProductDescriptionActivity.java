@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017. NKSystems
- *
- * Created on : 28-04-2017
- * Author     : Charmy Shah
- *
- * All rights reserved
- */
-
 package nksystems.brainwave;
 
 import android.content.Intent;
@@ -32,7 +23,14 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
-public class activity_product_info extends AppCompatActivity {
+/**
+ * This class is used for displaying list of products fetched from the database
+ *
+ * @author  Charmy Shah
+ * @date    28-04-2017
+ * @version 1.0
+ */
+public class ProductDescriptionActivity extends AppCompatActivity {
 
     TextView tvProductName,tvProductDescription,tvProductPrice,tvProductId;
     ImageView ivThumbnail;
@@ -51,7 +49,7 @@ public class activity_product_info extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(activity_product_info.this,activity_home_menu.class);
+        Intent intent=new Intent(ProductDescriptionActivity.this,HomeMenuActivity.class);
         intent.putExtra("active_activity","herbalProducts");
         finish();
         startActivity(intent);
@@ -61,7 +59,7 @@ public class activity_product_info extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case android.R.id.home:
-                Intent intent=new Intent(activity_product_info.this,activity_home_menu.class);
+                Intent intent=new Intent(ProductDescriptionActivity.this,HomeMenuActivity.class);
                 intent.putExtra("active_activity","herbalProducts");
                 finish();
                 startActivity(intent);
@@ -77,7 +75,7 @@ public class activity_product_info extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        setContentView(R.layout.product_list_info_layout);
+        setContentView(R.layout.activity_product_description);
 
         shortDescription = getIntent().getStringExtra("shortDescription");
 
@@ -109,13 +107,13 @@ public class activity_product_info extends AppCompatActivity {
                 sReference.child(imageName+".jpg").getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        Picasso.with(activity_product_info.this).load(uri).into(ivThumbnail);
+                        Picasso.with(ProductDescriptionActivity.this).load(uri).into(ivThumbnail);
                         ivThumbnail.setScaleType(ImageView.ScaleType.FIT_XY);
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        /*Toast.makeText(activity_product_info.this, "Failed", Toast.LENGTH_SHORT).show();*/
+                        /*Toast.makeText(ProductDescriptionActivity.this, "Failed", Toast.LENGTH_SHORT).show();*/
                     }
                 });
 
@@ -140,13 +138,13 @@ public class activity_product_info extends AppCompatActivity {
 
                 if(isAllowed){
                     btView.setEnabled(true);
-                    btView.setBackgroundColor(activity_product_info.this.getResources().getColor(R.color.colorPrimary));
-                    btRent.setBackgroundColor(activity_product_info.this.getResources().getColor(R.color.disabledButton));
+                    btView.setBackgroundColor(ProductDescriptionActivity.this.getResources().getColor(R.color.colorPrimary));
+                    btRent.setBackgroundColor(ProductDescriptionActivity.this.getResources().getColor(R.color.disabledButton));
                     btRent.setEnabled(false);
                 }else{
                     btView.setEnabled(false);
-                    btView.setBackgroundColor(activity_product_info.this.getResources().getColor(R.color.disabledButton));
-                    btRent.setBackgroundColor(activity_product_info.this.getResources().getColor(R.color.colorPrimary));
+                    btView.setBackgroundColor(ProductDescriptionActivity.this.getResources().getColor(R.color.disabledButton));
+                    btRent.setBackgroundColor(ProductDescriptionActivity.this.getResources().getColor(R.color.colorPrimary));
                     btRent.setEnabled(true);
                 }*/
             }
@@ -161,7 +159,7 @@ public class activity_product_info extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(activity_product_info.this,activity_shipping_address.class);
+                Intent intent = new Intent(ProductDescriptionActivity.this,ShippingAddressActivity.class);
                 intent.putExtra("productName",productName)
                         .putExtra("orderType","product")
                         .putExtra("productDescription",shortDescription)
