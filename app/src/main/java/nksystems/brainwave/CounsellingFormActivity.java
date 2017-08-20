@@ -43,9 +43,6 @@ public class CounsellingFormActivity extends AppCompatActivity {
     EditText txtQuestName, txtQuestEmail, txtQuestProblem, txtQuestProblemDetailed, txtCounselDueDate,
             txtCounselDueTime, txtAddress, txtCity, txtState, txtPincode;
 
-    /**
-     *
-     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -246,7 +243,7 @@ public class CounsellingFormActivity extends AppCompatActivity {
                         Intent intent = new Intent(CounsellingFormActivity.this, OrderConfirmationActivity.class);
                         intent.putExtra("orderType", "service");
                         intent.putExtra("packageType", packagetype);
-                        intent.putExtra("medication", "false");
+                        intent.putExtra("isMedication", "false");
                         intent.putExtra("medicineCharge", "" + medicationAmount);
                         intent.putExtra("originalAmount", "" + originalAmount);
                         intent.putExtra("name", txtQuestName.getText().toString());
@@ -266,7 +263,7 @@ public class CounsellingFormActivity extends AppCompatActivity {
                     Intent intent = new Intent(CounsellingFormActivity.this, OrderConfirmationActivity.class);
                     intent.putExtra("orderType", "service");
                     intent.putExtra("packageType", packagetype);
-                    intent.putExtra("medication", "false");
+                    intent.putExtra("isMedication", "false");
                     intent.putExtra("medicineCharge", "" + medicationAmount);
                     intent.putExtra("originalAmount", "" + originalAmount);
                     intent.putExtra("name", txtQuestName.getText().toString());

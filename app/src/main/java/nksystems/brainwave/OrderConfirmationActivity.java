@@ -52,6 +52,13 @@ import java.util.Calendar;
 public class OrderConfirmationActivity extends AppCompatActivity
         implements PaymentMethodNonceCreatedListener, BraintreeCancelListener, BraintreeErrorListener {
 
+    private static final int CONNECTION_TIMEOUT = 10000;
+    private static final int READ_TIMEOUT = 15000;
+    private static final int REQUEST_CODE = 1;
+    private final String REQUEST_URL = "http://192.168.0.107:81/braintree/request";
+    private final String NONCE_URL = "http://192.168.0.107:81/braintree/nonce";
+    private final String TOKENIZATION_KEY = "sandbox_6w3f54dk_jvrhmcgz2n7fydvy";
+
     String orderType, packageType, productName, productDescription, serviceType, serviceProblem;
     String isMedication = "false";
     TextView tvOrderTitle, tvOrderDescription, tvOrderMedicine, tvOrderShipping, tvOrderPrice, tvOrderTax, tvOrderTotal;
@@ -60,17 +67,10 @@ public class OrderConfirmationActivity extends AppCompatActivity
     int taxPercent = 10;
     double originalAmount, calculatedTax, medicineCharge, totalAmount, shippingCharge = 0;
 
-    public static final int CONNECTION_TIMEOUT = 10000;
-    public static final int READ_TIMEOUT = 15000;
-
-    private static String request_url = "http://192.168.0.107:81/braintree/request";
-    private static String nonce_url = "http://192.168.0.107:81/braintree/nonce";
     String clientToken;
     DropInRequest dropInRequest;
     String nonce, deviceData;
-    private static final int REQUEST_CODE = 1;
     BraintreeFragment braintreeFragment;
-    String tokenizationKey = "sandbox_6w3f54dk_jvrhmcgz2n7fydvy";
 
     String name, email, briefProblem, detailedProblem, date, time, address, city, state, pincode;
     DatabaseReference mReference, ordersReference;
@@ -186,7 +186,7 @@ public class OrderConfirmationActivity extends AppCompatActivity
         new AsyncRequest().execute();
 
         dropInRequest = new DropInRequest()
-                .tokenizationKey(tokenizationKey)
+                .tokenizationKey(TOKENIZATION_KEY)
                 .collectDeviceData(true);
 
         startActivityForResult(dropInRequest.getIntent(OrderConfirmationActivity.this), REQUEST_CODE);
@@ -208,7 +208,7 @@ public class OrderConfirmationActivity extends AppCompatActivity
                 nonce = result.getPaymentMethodNonce().getNonce();
 
                 try {
-                    braintreeFragment = BraintreeFragment.newInstance(OrderConfirmationActivity.this, tokenizationKey);
+                    braintreeFragment = BraintreeFragment.newInstance(OrderConfirmationActivity.this, TOKENIZATION_KEY);
                     // use the result to update your ui and send payment method nonce to your server
                     DataCollector.collectDeviceData(braintreeFragment, new BraintreeResponseListener<String>() {
                         @Override
@@ -279,7 +279,7 @@ public class OrderConfirmationActivity extends AppCompatActivity
         protected String doInBackground(String... params) {
             try {
                 // Enter URL address where your php file resides
-                url = new URL(request_url);
+                url = new URL(REQUEST_URL);
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -352,7 +352,7 @@ public class OrderConfirmationActivity extends AppCompatActivity
         protected String doInBackground(String... params) {
             try {
                 // Enter URL address where your php file resides
-                url = new URL(nonce_url);
+                url = new URL(NONCE_URL);
                 data = URLEncoder.encode("payment_method_nonce", "UTF-8") + "=" +
                         URLEncoder.encode(nonce, "UTF-8");
 
@@ -439,7 +439,7 @@ public class OrderConfirmationActivity extends AppCompatActivity
             case android.R.id.home:
                 if (orderType.equals("service")) {
                     Intent intent = new Intent(OrderConfirmationActivity.this, CounsellingFormActivity.class);
-                    intent.putExtra("packagetype", packageType);
+                    intent.putExtra("packageType", packageType);
                     intent.putExtra("amount", "" + (int) originalAmount);
                     intent.putExtra("name", name);
                     intent.putExtra("email", email);
@@ -478,7 +478,7 @@ public class OrderConfirmationActivity extends AppCompatActivity
         super.onBackPressed();
         if (orderType.equals("service")) {
             Intent intent = new Intent(OrderConfirmationActivity.this, CounsellingFormActivity.class);
-            intent.putExtra("packagetype", packageType);
+            intent.putExtra("packageType", packageType);
             intent.putExtra("amount", "" + (int) originalAmount);
             intent.putExtra("name", name);
             intent.putExtra("email", email);
