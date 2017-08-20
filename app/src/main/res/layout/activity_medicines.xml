@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <ListView
+        android:id="@+id/list_view_medicines"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/list_view_medicines"
         android:visibility="gone">
 
     </ListView>
 
     <ProgressBar
+        android:id="@+id/pd_progress"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/pd_progress"
-        android:visibility="visible"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:visibility="visible" />
 
 </LinearLayout>

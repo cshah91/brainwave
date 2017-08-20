@@ -1,141 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    tools:context="nksystems.brainwave.WorkshopsActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="nksystems.brainwave.WorkshopsActivity">
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cvWorkshop1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        card_view:contentPadding="10dp"
-        card_view:cardBackgroundColor="#20ff0000"
-        android:layout_margin="5dp"
         android:layout_gravity="center"
-        android:id="@+id/cvWorkshop1">
+        android:layout_margin="5dp"
+        card_view:cardBackgroundColor="#20ff0000"
+        card_view:cardCornerRadius="4dp"
+        card_view:contentPadding="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:textStyle="bold"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:text="@string/workshop1"
-            android:textColor="@color/side_bar_color" />
+            android:textColor="@color/side_bar_color"
+            android:textStyle="bold" />
 
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cvWorkshop2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        card_view:contentPadding="10dp"
-        card_view:cardBackgroundColor="#209765fd"
-        android:layout_margin="5dp"
         android:layout_gravity="center"
-        android:id="@+id/cvWorkshop2">
+        android:layout_margin="5dp"
+        card_view:cardBackgroundColor="#209765fd"
+        card_view:cardCornerRadius="4dp"
+        card_view:contentPadding="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:textStyle="bold"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:text="@string/workshop2"
-            android:textColor="@color/side_bar_color" />
+            android:textColor="@color/side_bar_color"
+            android:textStyle="bold" />
 
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cvWorkshop3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        card_view:contentPadding="10dp"
-        card_view:cardBackgroundColor="#20ff0000"
-        android:layout_margin="5dp"
         android:layout_gravity="center"
-        android:id="@+id/cvWorkshop3">
+        android:layout_margin="5dp"
+        card_view:cardBackgroundColor="#20ff0000"
+        card_view:cardCornerRadius="4dp"
+        card_view:contentPadding="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:textStyle="bold"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:text="@string/workshop3"
-            android:textColor="@color/side_bar_color" />
+            android:textColor="@color/side_bar_color"
+            android:textStyle="bold" />
 
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cvWorkshop4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        card_view:contentPadding="10dp"
-        card_view:cardBackgroundColor="#209765fd"
-        android:layout_margin="5dp"
         android:layout_gravity="center"
-        android:id="@+id/cvWorkshop4">
+        android:layout_margin="5dp"
+        card_view:cardBackgroundColor="#209765fd"
+        card_view:cardCornerRadius="4dp"
+        card_view:contentPadding="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:textStyle="bold"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:text="@string/workshop4"
-            android:textColor="@color/side_bar_color" />
+            android:textColor="@color/side_bar_color"
+            android:textStyle="bold" />
 
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cvWorkshop5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        card_view:contentPadding="10dp"
-        card_view:cardBackgroundColor="#20ff0000"
-        android:layout_margin="5dp"
         android:layout_gravity="center"
-        android:id="@+id/cvWorkshop5">
+        android:layout_margin="5dp"
+        card_view:cardBackgroundColor="#20ff0000"
+        card_view:cardCornerRadius="4dp"
+        card_view:contentPadding="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:textStyle="bold"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:text="@string/workshop5"
-            android:textColor="@color/side_bar_color" />
+            android:textColor="@color/side_bar_color"
+            android:textStyle="bold" />
 
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+        android:id="@+id/cvWorkshop6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        card_view:cardCornerRadius="4dp"
-        card_view:contentPadding="10dp"
-        card_view:cardBackgroundColor="#209765fd"
-        android:layout_margin="5dp"
         android:layout_gravity="center"
-        android:id="@+id/cvWorkshop6">
+        android:layout_margin="5dp"
+        card_view:cardBackgroundColor="#209765fd"
+        card_view:cardCornerRadius="4dp"
+        card_view:contentPadding="10dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:textStyle="bold"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
             android:text="@string/workshop6"
-            android:textColor="@color/side_bar_color" />
+            android:textColor="@color/side_bar_color"
+            android:textStyle="bold" />
 
     </android.support.v7.widget.CardView>
 

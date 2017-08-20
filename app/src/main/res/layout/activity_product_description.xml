@@ -9,105 +9,104 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.constraint.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
             android:id="@+id/glTop"
-            app:layout_constraintGuide_percent="0.05"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteY="107dp"
-            tools:layout_editor_absoluteX="0dp"
-            android:visibility="gone"/>
-
-        <android.support.constraint.Guideline
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:id="@+id/glBot"
-            app:layout_constraintGuide_percent="0.95"
             android:orientation="horizontal"
-            tools:layout_editor_absoluteY="567dp"
+            android:visibility="gone"
+            app:layout_constraintGuide_percent="0.05"
             tools:layout_editor_absoluteX="0dp"
-            android:visibility="gone"/>
+            tools:layout_editor_absoluteY="107dp" />
 
         <android.support.constraint.Guideline
+            android:id="@+id/glBot"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            app:layout_constraintGuide_percent="0.95"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="567dp" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/glMiddle"
             android:layout_width="1dp"
             android:layout_height="1dp"
             android:orientation="vertical"
-            android:id="@+id/glMiddle"
-            app:layout_constraintGuide_percent="0.0"
             android:visibility="gone"
-            tools:layout_editor_absoluteY="81dp"
-            tools:layout_editor_absoluteX="0dp" />
+            app:layout_constraintGuide_percent="0.0"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="81dp" />
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="291dp"
-            android:scaleType="fitXY"
             android:layout_height="179dp"
             android:layout_margin="8dp"
+            android:scaleType="fitXY"
             android:src="@drawable/placeholder"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/glTop"
-            app:layout_constraintVertical_bias="0.0"
             app:layout_constraintBottom_toTopOf="@+id/glBot"
-            android:id="@+id/imageView"
-            />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/glTop"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
+            android:id="@+id/tvProductName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="Product"
             android:textAlignment="center"
+            android:textColor="@android:color/black"
             android:textSize="20sp"
-            android:textColor="@android:color/black"
             android:textStyle="bold"
-            android:id="@+id/tvProductName"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/glBot"
-            android:layout_marginTop="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
-            android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintVertical_bias="0.006"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
+            app:layout_constraintVertical_bias="0.006" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Description"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:textStyle="italic"
-            android:layout_margin="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/glBot"
             android:id="@+id/tvProductDescription"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvProductPrice"
-            app:layout_constraintVertical_bias="0.221"
-            android:padding="10dp"
-            app:layout_constraintHorizontal_bias="0.0" />
-
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textColor="@android:color/black"
-            android:textStyle="italic"
-            android:text="Price in INR"
-            android:id="@+id/tvProductPrice"
             android:layout_margin="8dp"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:padding="10dp"
+            android:text="Description"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@+id/glBot"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvProductPrice"
+            app:layout_constraintVertical_bias="0.221" />
+
+        <TextView
+            android:id="@+id/tvProductPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="Price in INR"
+            android:textColor="@android:color/black"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toTopOf="@+id/glBot"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvProductName"
             app:layout_constraintVertical_bias="0.032" />
 
@@ -133,8 +132,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:padding="5dp"
             android:background="@color/side_bar_color"
+            android:padding="5dp"
             android:text="BUY"
             android:textColor="@android:color/white"
             android:textStyle="bold"
@@ -144,20 +143,20 @@
             app:layout_constraintTop_toBottomOf="@+id/tvProductDescription" />
 
         <TextView
+            android:id="@+id/tvProductId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PRODUCT ID"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:id="@+id/tvProductId"
             android:background="@android:color/black"
             android:padding="3dp"
+            android:text="PRODUCT ID"
+            android:textColor="@android:color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/tvProductName"
-            app:layout_constraintRight_toRightOf="@+id/imageView"
-            app:layout_constraintLeft_toLeftOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="1.0"
-            android:visibility="gone"/>
+            app:layout_constraintLeft_toLeftOf="@+id/imageView"
+            app:layout_constraintRight_toRightOf="@+id/imageView" />
 
     </android.support.constraint.ConstraintLayout>
 

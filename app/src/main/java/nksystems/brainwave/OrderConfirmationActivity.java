@@ -45,15 +45,15 @@ import java.util.Calendar;
 /**
  * This class is used for displaying the confirmation page before making a purchase
  *
- * @author  Charmy Shah
- * @date    18-06-2017
+ * @author Charmy Shah
  * @version 1.0
+ * @date 18-06-2017
  */
 public class OrderConfirmationActivity extends AppCompatActivity
-        implements PaymentMethodNonceCreatedListener,BraintreeCancelListener,BraintreeErrorListener {
+        implements PaymentMethodNonceCreatedListener, BraintreeCancelListener, BraintreeErrorListener {
 
     String orderType, packageType, productName, productDescription, serviceType, serviceProblem;
-    String isMedication="false";
+    String isMedication = "false";
     TextView tvOrderTitle, tvOrderDescription, tvOrderMedicine, tvOrderShipping, tvOrderPrice, tvOrderTax, tvOrderTotal;
     TextView labelMedicine, labelShipping;
     ImageView imgPlaceholder;
@@ -73,11 +73,14 @@ public class OrderConfirmationActivity extends AppCompatActivity
     String tokenizationKey = "sandbox_6w3f54dk_jvrhmcgz2n7fydvy";
 
     String name, email, briefProblem, detailedProblem, date, time, address, city, state, pincode;
-    DatabaseReference mReference,ordersReference;
+    DatabaseReference mReference, ordersReference;
     int currentOrderId;
     boolean stat = false;
     boolean val = false;
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,41 +104,38 @@ public class OrderConfirmationActivity extends AppCompatActivity
         orderType = getIntent().getStringExtra("orderType");
         serviceType = "NA";
 
-        if(orderType.equals("service")){
+        if (orderType.equals("service")) {
             imgPlaceholder.setVisibility(View.GONE);
             packageType = getIntent().getStringExtra("packageType");
             isMedication = getIntent().getStringExtra("medication");
-            if(packageType.equals("1")){
+            if (packageType.equals("1")) {
                 serviceType = "long";
                 productName = "Counselling Services - Long Session";
                 tvOrderTitle.setText(productName);
                 tvOrderDescription.setText("Long Session Description text");
-            }
-            else{
+            } else {
                 serviceType = "short";
                 productName = "Counselling Services - Brief Session";
                 tvOrderTitle.setText(productName);
                 tvOrderDescription.setText("Brief session description text");
             }
 
-            if(isMedication.equals("true")){
+            if (isMedication.equals("true")) {
                 tvOrderMedicine.setVisibility(View.VISIBLE);
                 tvOrderShipping.setVisibility(View.VISIBLE);
                 labelMedicine.setVisibility(View.VISIBLE);
                 labelShipping.setVisibility(View.VISIBLE);
                 medicineCharge = Double.parseDouble(getIntent().getStringExtra("medicineCharge"));
-                tvOrderMedicine.setText(""+medicineCharge);
+                tvOrderMedicine.setText("" + medicineCharge);
                 shippingCharge = 50;
-            }
-            else{
+            } else {
                 tvOrderMedicine.setVisibility(View.GONE);
                 tvOrderShipping.setVisibility(View.GONE);
                 labelMedicine.setVisibility(View.GONE);
                 labelShipping.setVisibility(View.GONE);
             }
 
-
-            name =OrderConfirmationActivity.this.getIntent().getStringExtra("name");
+            name = OrderConfirmationActivity.this.getIntent().getStringExtra("name");
             email = getIntent().getStringExtra("email");
             briefProblem = getIntent().getStringExtra("briefProblem");
             detailedProblem = getIntent().getStringExtra("detailedProblem");
@@ -145,8 +145,7 @@ public class OrderConfirmationActivity extends AppCompatActivity
             city = getIntent().getStringExtra("city");
             state = getIntent().getStringExtra("state");
             pincode = getIntent().getStringExtra("pincode");
-        }
-        else if(orderType.equals("product")){
+        } else if (orderType.equals("product")) {
             imgPlaceholder.setVisibility(View.VISIBLE);
             tvOrderMedicine.setVisibility(View.GONE);
             tvOrderShipping.setVisibility(View.VISIBLE);
@@ -157,8 +156,7 @@ public class OrderConfirmationActivity extends AppCompatActivity
             tvOrderTitle.setText(productName);
             tvOrderDescription.setText(productDescription);
             shippingCharge = 50;
-        }
-        else{
+        } else {
             imgPlaceholder.setVisibility(View.GONE);
             tvOrderMedicine.setVisibility(View.GONE);
             tvOrderShipping.setVisibility(View.VISIBLE);
@@ -172,18 +170,19 @@ public class OrderConfirmationActivity extends AppCompatActivity
         }
 
         originalAmount = Double.parseDouble(getIntent().getStringExtra("originalAmount"));
-
         calculatedTax = originalAmount * taxPercent / 100;
-
         totalAmount = originalAmount + calculatedTax + medicineCharge + shippingCharge;
 
-        tvOrderPrice.setText(""+originalAmount);
-        tvOrderTax.setText(""+calculatedTax);
-        tvOrderShipping.setText(""+shippingCharge);
-        tvOrderTotal.setText(""+totalAmount);
+        tvOrderPrice.setText("" + originalAmount);
+        tvOrderTax.setText("" + calculatedTax);
+        tvOrderShipping.setText("" + shippingCharge);
+        tvOrderTotal.setText("" + totalAmount);
     }
 
-    public void checkout(View view){
+    /**
+     * @param view
+     */
+    public void checkout(View view) {
         new AsyncRequest().execute();
 
         dropInRequest = new DropInRequest()
@@ -193,12 +192,17 @@ public class OrderConfirmationActivity extends AppCompatActivity
         startActivityForResult(dropInRequest.getIntent(OrderConfirmationActivity.this), REQUEST_CODE);
     }
 
+    /**
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         /************Braintree & Paypal Integration Start************/
-        if(requestCode == REQUEST_CODE){
-            if(resultCode == RESULT_OK){
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
                 DropInResult result = data.getParcelableExtra(DropInResult.EXTRA_DROP_IN_RESULT);
                 deviceData = result.getDeviceData();
                 nonce = result.getPaymentMethodNonce().getNonce();
@@ -216,11 +220,9 @@ public class OrderConfirmationActivity extends AppCompatActivity
                 } catch (InvalidArgumentException e) {
                     e.printStackTrace();
                 }
-            }
-            else if(resultCode == RESULT_CANCELED){
+            } else if (resultCode == RESULT_CANCELED) {
                 // the user cancelled
-            }
-            else{
+            } else {
                 // handle errors here, an exception may be available in
                 Exception error = (Exception) data.getSerializableExtra(DropInActivity.EXTRA_ERROR);
             }
@@ -234,21 +236,27 @@ public class OrderConfirmationActivity extends AppCompatActivity
         // Send this nonce to your server
     }
 
+    /**
+     * @param requestCode
+     */
     @Override
     public void onCancel(int requestCode) {
         // Use this to handle a canceled activity, if the given requestCode is important.
         // You may want to use this callback to hide loading indicators, and prepare your UI for input
     }
 
+    /**
+     * @param error
+     */
     @Override
     public void onError(Exception error) {
-        if(error instanceof ErrorWithResponse){
+        if (error instanceof ErrorWithResponse) {
             ErrorWithResponse errorWithResponse = (ErrorWithResponse) error;
             BraintreeError cardErrors = ((ErrorWithResponse) error).errorFor("creditCard");
-            if(cardErrors != null){
+            if (cardErrors != null) {
                 // There is an issue with the credit card
                 BraintreeError expirationMonthError = cardErrors.errorFor("expirationMonth");
-                if(expirationMonthError != null){
+                if (expirationMonthError != null) {
                     // There is an issue with the expiration month.
                     Toast.makeText(OrderConfirmationActivity.this, "Error: " + expirationMonthError.getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -263,12 +271,15 @@ public class OrderConfirmationActivity extends AppCompatActivity
         HttpURLConnection conn;
         URL url = null;
 
+        /**
+         * @param params
+         * @return
+         */
         @Override
         protected String doInBackground(String... params) {
             try {
                 // Enter URL address where your php file resides
                 url = new URL(request_url);
-
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -276,16 +287,13 @@ public class OrderConfirmationActivity extends AppCompatActivity
             }
 
             try {
-
                 // Setup HttpURLConnection class to send and receive data from php
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(READ_TIMEOUT);
                 conn.setConnectTimeout(CONNECTION_TIMEOUT);
                 conn.setRequestMethod("GET");
-
                 // setDoOutput to true as we recieve data from json file
                 conn.setDoOutput(true);
-
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
@@ -293,10 +301,8 @@ public class OrderConfirmationActivity extends AppCompatActivity
             }
 
             try {
-
                 int response_code = conn.getResponseCode();
                 if (response_code == HttpURLConnection.HTTP_OK) {
-
                     // Read data sent from server
                     InputStream input = conn.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(input));
@@ -309,12 +315,9 @@ public class OrderConfirmationActivity extends AppCompatActivity
 
                     // Pass data to onPostExecute method
                     return (result.toString());
-
                 } else {
-
                     return ("unsuccessful");
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
                 return e.toString();
@@ -323,6 +326,9 @@ public class OrderConfirmationActivity extends AppCompatActivity
             }
         }
 
+        /**
+         * @param s
+         */
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
@@ -333,18 +339,20 @@ public class OrderConfirmationActivity extends AppCompatActivity
         }
     }
 
-    private class AsyncPost extends AsyncTask<String, String, String>{
-
+    private class AsyncPost extends AsyncTask<String, String, String> {
         HttpURLConnection conn;
         URL url = null;
-        String data  = null;
+        String data = null;
 
+        /**
+         * @param params
+         * @return
+         */
         @Override
         protected String doInBackground(String... params) {
             try {
                 // Enter URL address where your php file resides
                 url = new URL(nonce_url);
-
                 data = URLEncoder.encode("payment_method_nonce", "UTF-8") + "=" +
                         URLEncoder.encode(nonce, "UTF-8");
 
@@ -352,8 +360,7 @@ public class OrderConfirmationActivity extends AppCompatActivity
                         URLEncoder.encode(deviceData, "UTF-8");
 
                 data += "&" + URLEncoder.encode("total_amount", "UTF-8") + "=" +
-                        URLEncoder.encode(""+totalAmount, "UTF-8");
-
+                        URLEncoder.encode("" + totalAmount, "UTF-8");
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -361,7 +368,6 @@ public class OrderConfirmationActivity extends AppCompatActivity
             }
 
             try {
-
                 // Setup HttpURLConnection class to send and receive data from php
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("POST");
@@ -400,61 +406,62 @@ public class OrderConfirmationActivity extends AppCompatActivity
             } catch (IOException e) {
                 e.printStackTrace();
                 return e.toString();
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 return e.toString();
-            }
-            finally {
+            } finally {
                 conn.disconnect();
             }
         }
 
+        /**
+         * @param status
+         */
         @Override
         protected void onPostExecute(String status) {
             super.onPostExecute(status);
-            Log.i("Status",status);
-            if(status != null && status.equals("submitted_for_settlement")){
-                if(updateOrderDetails());
-            }
-            else if(status != null && status.equals("processor_declined")){
+            Log.i("Status", status);
+            if (status != null && status.equals("submitted_for_settlement")) {
+                if (updateOrderDetails()) ;
+            } else if (status != null && status.equals("processor_declined")) {
                 Toast.makeText(OrderConfirmationActivity.this, "There was a problem processing your card; please double check your payment information and try again.", Toast.LENGTH_LONG).show();
             }
         }
     }
 
+    /**
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId())
-        {
+        switch (item.getItemId()) {
             case android.R.id.home:
-                if(orderType.equals("service")){
-                    Intent intent=new Intent(OrderConfirmationActivity.this,CounsellingFormActivity.class);
-                    intent.putExtra("packagetype",packageType);
-                    intent.putExtra("amount",""+(int)originalAmount);
-                    intent.putExtra("name",name);
-                    intent.putExtra("email",email);
-                    intent.putExtra("briefProblem",briefProblem);
-                    intent.putExtra("detailedProblem",detailedProblem);
-                    intent.putExtra("date",date);
-                    intent.putExtra("time",time);
-                    intent.putExtra("address",address);
-                    intent.putExtra("city",city);
-                    intent.putExtra("state",state);
-                    intent.putExtra("pincode",pincode);
+                if (orderType.equals("service")) {
+                    Intent intent = new Intent(OrderConfirmationActivity.this, CounsellingFormActivity.class);
+                    intent.putExtra("packagetype", packageType);
+                    intent.putExtra("amount", "" + (int) originalAmount);
+                    intent.putExtra("name", name);
+                    intent.putExtra("email", email);
+                    intent.putExtra("briefProblem", briefProblem);
+                    intent.putExtra("detailedProblem", detailedProblem);
+                    intent.putExtra("date", date);
+                    intent.putExtra("time", time);
+                    intent.putExtra("address", address);
+                    intent.putExtra("city", city);
+                    intent.putExtra("state", state);
+                    intent.putExtra("pincode", pincode);
                     intent.putExtra("isMedication", isMedication);
                     finish();
                     startActivity(intent);
-                }
-                else if(orderType.equals("product")){
-                    Intent intent=new Intent(OrderConfirmationActivity.this,ProductDescriptionActivity.class);
-                    intent.putExtra("title",productName);
-                    intent.putExtra("shortDescription",productDescription);
+                } else if (orderType.equals("product")) {
+                    Intent intent = new Intent(OrderConfirmationActivity.this, ProductDescriptionActivity.class);
+                    intent.putExtra("title", productName);
+                    intent.putExtra("shortDescription", productDescription);
                     finish();
                     startActivity(intent);
-                }
-                else{
-                    Intent intent=new Intent(OrderConfirmationActivity.this,MedicinesActivity.class);
+                } else {
+                    Intent intent = new Intent(OrderConfirmationActivity.this, MedicinesActivity.class);
                     finish();
                     startActivity(intent);
                 }
@@ -463,81 +470,90 @@ public class OrderConfirmationActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     *
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        if(orderType.equals("service")){
-            Intent intent=new Intent(OrderConfirmationActivity.this,CounsellingFormActivity.class);
-            intent.putExtra("packagetype",packageType);
-            intent.putExtra("amount",""+(int)originalAmount);
-            intent.putExtra("name",name);
-            intent.putExtra("email",email);
-            intent.putExtra("briefProblem",briefProblem);
-            intent.putExtra("detailedProblem",detailedProblem);
-            intent.putExtra("date",date);
-            intent.putExtra("time",time);
-            intent.putExtra("address",address);
-            intent.putExtra("city",city);
-            intent.putExtra("state",state);
-            intent.putExtra("pincode",pincode);
+        if (orderType.equals("service")) {
+            Intent intent = new Intent(OrderConfirmationActivity.this, CounsellingFormActivity.class);
+            intent.putExtra("packagetype", packageType);
+            intent.putExtra("amount", "" + (int) originalAmount);
+            intent.putExtra("name", name);
+            intent.putExtra("email", email);
+            intent.putExtra("briefProblem", briefProblem);
+            intent.putExtra("detailedProblem", detailedProblem);
+            intent.putExtra("date", date);
+            intent.putExtra("time", time);
+            intent.putExtra("address", address);
+            intent.putExtra("city", city);
+            intent.putExtra("state", state);
+            intent.putExtra("pincode", pincode);
             intent.putExtra("isMedication", isMedication);
             finish();
             startActivity(intent);
-        }
-        else if(orderType.equals("product")){
-            Intent intent=new Intent(OrderConfirmationActivity.this,ProductDescriptionActivity.class);
-            intent.putExtra("title",productName);
-            intent.putExtra("shortDescription",productDescription);
+        } else if (orderType.equals("product")) {
+            Intent intent = new Intent(OrderConfirmationActivity.this, ProductDescriptionActivity.class);
+            intent.putExtra("title", productName);
+            intent.putExtra("shortDescription", productDescription);
             finish();
             startActivity(intent);
-        }
-        else{
-            Intent intent=new Intent(OrderConfirmationActivity.this,MedicinesActivity.class);
+        } else {
+            Intent intent = new Intent(OrderConfirmationActivity.this, MedicinesActivity.class);
             finish();
             startActivity(intent);
         }
     }
 
-    private boolean updateOrderDetails(){
-        mReference= FirebaseDatabase.getInstance().getReference("currentorderid");
+    /**
+     * @return
+     */
+    private boolean updateOrderDetails() {
+        mReference = FirebaseDatabase.getInstance().getReference("currentorderid");
         mReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                currentOrderId=Integer.parseInt(dataSnapshot.getValue().toString());
-                currentOrderId+=1;
+                currentOrderId = Integer.parseInt(dataSnapshot.getValue().toString());
+                currentOrderId += 1;
 
-                stat = stat?false:true;
-                if(callDatabase()){
+                stat = stat ? false : true;
+                if (callDatabase()) {
                     sendInvoiceMail(currentOrderId);
                     val = true;
                     finish();
                     Toast.makeText(OrderConfirmationActivity.this, "Your payment has been done successfully.", Toast.LENGTH_LONG).show();
-                    if(orderType.equalsIgnoreCase("service")){
-                        Intent intent=new Intent(OrderConfirmationActivity.this,HomeMenuActivity.class);
-                        intent.putExtra("active_activity","contentCounselling");
+                    if (orderType.equalsIgnoreCase("service")) {
+                        Intent intent = new Intent(OrderConfirmationActivity.this, HomeMenuActivity.class);
+                        intent.putExtra("active_activity", "contentCounselling");
                         startActivity(intent);
-                    }
-                    else{
+                    } else {
                         Intent intent = new Intent(OrderConfirmationActivity.this, OrderSuccessfulActivity.class);
-                        intent.putExtra("orderNo",currentOrderId);
-                        intent.putExtra("isProduct",(isMedication.equals("true") || orderType.equals("product")) ? "true" : "false");
+                        intent.putExtra("orderNo", currentOrderId);
+                        intent.putExtra("isProduct", (isMedication.equals("true") || orderType.equals("product")) ? "true" : "false");
                         startActivity(intent);
                     }
                 }
             }
 
+            /**
+             * @param databaseError
+             */
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-        ordersReference=FirebaseDatabase.getInstance().getReference("orders");
+        ordersReference = FirebaseDatabase.getInstance().getReference("orders");
         return val;
     }
 
-    private boolean callDatabase(){
-        if(stat){
-            switch (serviceType){
+    /**
+     * @return
+     */
+    private boolean callDatabase() {
+        if (stat) {
+            switch (serviceType) {
                 case "long":
                     serviceProblem = briefProblem;
                     break;
@@ -553,24 +569,26 @@ public class OrderConfirmationActivity extends AppCompatActivity
             SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
             String formattedDate = df.format(c.getTime());
 
-            Order order=new Order(address,city,state,pincode,email,name,""+shippingCharge,""+calculatedTax,""+medicineCharge
-                    ,productName,""+originalAmount,"",formattedDate,""+totalAmount,orderType,""+taxPercent, serviceType,serviceProblem);
+            Order order = new Order(address, city, state, pincode, email, name, "" + shippingCharge, "" + calculatedTax, "" + medicineCharge
+                    , productName, "" + originalAmount, "", formattedDate, "" + totalAmount, orderType, "" + taxPercent, serviceType, serviceProblem);
 
-            ordersReference.child(""+currentOrderId).setValue(order);
-            mReference.setValue(""+currentOrderId);
-
+            ordersReference.child("" + currentOrderId).setValue(order);
+            mReference.setValue("" + currentOrderId);
             return true;
         }
         return false;
     }
 
-    private void sendInvoiceMail(int orderNo){
+    /**
+     * @param orderNo
+     */
+    private void sendInvoiceMail(int orderNo) {
         String subject = "Brainwave Order No. " + orderNo;
         String message = "";
-        if(orderType.equalsIgnoreCase("service")){
-            switch (serviceType){
+        if (orderType.equalsIgnoreCase("service")) {
+            switch (serviceType) {
                 case "long":
-                    message = "Hello, \n\nAn order has been placed by " + email +" for the following service. " +
+                    message = "Hello, \n\nAn order has been placed by " + email + " for the following service. " +
                             "\n\nService Type: " + serviceType +
                             "\nName: " + name +
                             "\nEmail: " + email +
@@ -580,7 +598,7 @@ public class OrderConfirmationActivity extends AppCompatActivity
                             "\n\nRegards,\n " + name;
                     break;
                 case "short":
-                    message = "Hello, \n\nAn order has been placed by " + email +" for the following service. " +
+                    message = "Hello, \n\nAn order has been placed by " + email + " for the following service. " +
                             "\n\nService Type: " + serviceType +
                             "\nName: " + name +
                             "\nEmail: " + email +
@@ -590,11 +608,10 @@ public class OrderConfirmationActivity extends AppCompatActivity
             }
             String userMessage = "Dear " + name + ", \n\n Thank you for using Brainwave. Your order has been placed successfully.\n\n Regards,\n Brainwave Team";
             // Send mail to admin with order invoice details
-            new AsyncSendMail().execute(getResources().getString(R.string.adminEmail),subject,message, getResources().getString(R.string.appointmentMailFrom));
+            new AsyncSendMail().execute(getResources().getString(R.string.adminEmail), subject, message, getResources().getString(R.string.appointmentMailFrom));
             // Send mail to user with order number
-            new AsyncSendMail().execute(email,subject,userMessage, getResources().getString(R.string.appointmentMailFrom));
-        }
-        else {
+            new AsyncSendMail().execute(email, subject, userMessage, getResources().getString(R.string.appointmentMailFrom));
+        } else {
             message = "Hello, \n\n An order has been placed for the following product. " +
                     "\n\n Product Name: " + productName +
                     "\n Product Description: " + productDescription +
@@ -603,11 +620,16 @@ public class OrderConfirmationActivity extends AppCompatActivity
                     "\n Total Amount: " + totalAmount +
                     "\n\n Regards,\n " + name;
             // Send mail to admin with order invoice details
-            new AsyncSendMail().execute(getResources().getString(R.string.adminEmail),subject,message, getResources().getString(R.string.appointmentMailFrom));
+            new AsyncSendMail().execute(getResources().getString(R.string.adminEmail), subject, message, getResources().getString(R.string.appointmentMailFrom));
         }
     }
 
     private class AsyncSendMail extends AsyncTask<String, String, String> {
+
+        /**
+         * @param params
+         * @return
+         */
         @Override
         protected String doInBackground(String... params) {
             try {
@@ -622,6 +644,9 @@ public class OrderConfirmationActivity extends AppCompatActivity
             return null;
         }
 
+        /**
+         * @param s
+         */
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);

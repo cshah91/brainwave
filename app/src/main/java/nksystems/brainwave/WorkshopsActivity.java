@@ -15,14 +15,17 @@ import android.widget.TextView;
 /**
  * This class is used for displaying content of workshops being conducted
  *
- * @author  Charmy Shah
- * @date    10-06-2017
+ * @author Charmy Shah
  * @version 1.0
+ * @date 10-06-2017
  */
-public class WorkshopsActivity extends AppCompatActivity implements View.OnClickListener{
+public class WorkshopsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    CardView cvWorkshop1,cvWorkshop2,cvWorkshop3,cvWorkshop4,cvWorkshop5,cvWorkshop6;
+    CardView cvWorkshop1, cvWorkshop2, cvWorkshop3, cvWorkshop4, cvWorkshop5, cvWorkshop6;
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +49,14 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
         cvWorkshop6.setOnClickListener(this);
     }
 
+    /**
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         Dialog dialog = new Dialog(WorkshopsActivity.this, R.style.custom_dialog_services_style);
         dialog.setContentView(R.layout.dialog_counselling_service);
+
         TextView viewTitle = (TextView) dialog.findViewById(R.id.viewServiceTitle);
         TextView textView1 = (TextView) dialog.findViewById(R.id.viewWkBullets1);
         TextView textView2 = (TextView) dialog.findViewById(R.id.viewWkBullets2);
@@ -68,7 +75,7 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
         TextView wkContent61 = (TextView) dialog.findViewById(R.id.wkContent61);
         TextView wkContent62 = (TextView) dialog.findViewById(R.id.wkContent62);
 
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.cvWorkshop1:
                 viewTitle.setText(getResources().getString(R.string.workshopTitle1));
                 CharSequence cs_bull_1_1 = getResources().getString(R.string.wk_bull_1_1);
@@ -99,7 +106,7 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
                 SpannableString sp_bull_1_7 = new SpannableString(cs_bull_1_7);
                 sp_bull_1_7.setSpan(new BulletSpan(15), 0, cs_bull_1_7.length(), 0);
 
-                textView1.setText(TextUtils.concat(sp_bull_1_1, "\n" , sp_bull_1_2, "\n", sp_bull_1_3, "\n", sp_bull_1_4,
+                textView1.setText(TextUtils.concat(sp_bull_1_1, "\n", sp_bull_1_2, "\n", sp_bull_1_3, "\n", sp_bull_1_4,
                         "\n", sp_bull_1_5, "\n", sp_bull_1_6, "\n", sp_bull_1_7));
                 textView1.setVisibility(View.VISIBLE);
                 textView2.setVisibility(View.GONE);
@@ -144,7 +151,7 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
                 SpannableString sp_bull_2_6 = new SpannableString(cs_bull_2_6);
                 sp_bull_2_6.setSpan(new BulletSpan(15), 0, cs_bull_2_6.length(), 0);
 
-                textView2.setText(TextUtils.concat(sp_bull_2_1, "\n" , sp_bull_2_2, "\n", sp_bull_2_3, "\n", sp_bull_2_4,
+                textView2.setText(TextUtils.concat(sp_bull_2_1, "\n", sp_bull_2_2, "\n", sp_bull_2_3, "\n", sp_bull_2_4,
                         "\n", sp_bull_2_5, "\n", sp_bull_2_6));
                 textView1.setVisibility(View.GONE);
                 textView2.setVisibility(View.VISIBLE);
@@ -189,7 +196,7 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
                 SpannableString sp_bull_3_1_6 = new SpannableString(cs_bull_3_1_6);
                 sp_bull_3_1_6.setSpan(new BulletSpan(15), 0, cs_bull_3_1_6.length(), 0);
 
-                textView31.setText(TextUtils.concat(sp_bull_3_1_1, "\n" , sp_bull_3_1_2, "\n", sp_bull_3_1_3, "\n",
+                textView31.setText(TextUtils.concat(sp_bull_3_1_1, "\n", sp_bull_3_1_2, "\n", sp_bull_3_1_3, "\n",
                         sp_bull_3_1_4, "\n", sp_bull_3_1_5, "\n", sp_bull_3_1_6));
 
                 CharSequence cs_bull_3_2_1 = getResources().getString(R.string.wk_bull_3_2_1);
@@ -228,7 +235,7 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
                 SpannableString sp_bull_3_2_9 = new SpannableString(cs_bull_3_2_9);
                 sp_bull_3_2_9.setSpan(new BulletSpan(15), 0, cs_bull_3_2_9.length(), 0);
 
-                textView32.setText(TextUtils.concat(sp_bull_3_2_1, "\n" , sp_bull_3_2_2, "\n", sp_bull_3_2_3, "\n",
+                textView32.setText(TextUtils.concat(sp_bull_3_2_1, "\n", sp_bull_3_2_2, "\n", sp_bull_3_2_3, "\n",
                         sp_bull_3_2_4, "\n", sp_bull_3_2_5, "\n", sp_bull_3_2_6, "\n", sp_bull_3_2_7, "\n", sp_bull_3_2_8,
                         "\n", sp_bull_3_2_9));
                 textView1.setVisibility(View.GONE);
@@ -276,7 +283,7 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
                 SpannableString sp_bull_6_1_5 = new SpannableString(cs_bull_6_1_5);
                 sp_bull_6_1_5.setSpan(new BulletSpan(15), 0, cs_bull_6_1_5.length(), 0);
 
-                textView61.setText(TextUtils.concat(sp_bull_6_1_1, "\n" , sp_bull_6_1_2, "\n", sp_bull_6_1_3, "\n",
+                textView61.setText(TextUtils.concat(sp_bull_6_1_1, "\n", sp_bull_6_1_2, "\n", sp_bull_6_1_3, "\n",
                         sp_bull_6_1_4, "\n", sp_bull_6_1_5));
 
                 CharSequence cs_bull_6_2_1 = getResources().getString(R.string.wk_bull_6_2_1);
@@ -295,7 +302,7 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
                 SpannableString sp_bull_6_2_4 = new SpannableString(cs_bull_6_2_4);
                 sp_bull_6_2_4.setSpan(new BulletSpan(15), 0, cs_bull_6_2_4.length(), 0);
 
-                textView62.setText(TextUtils.concat(sp_bull_6_2_1, "\n" , sp_bull_6_2_2, "\n", sp_bull_6_2_3, "\n",
+                textView62.setText(TextUtils.concat(sp_bull_6_2_1, "\n", sp_bull_6_2_2, "\n", sp_bull_6_2_3, "\n",
                         sp_bull_6_2_4));
                 textView1.setVisibility(View.GONE);
                 textView2.setVisibility(View.GONE);
@@ -315,17 +322,21 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
                 wkContent62.setVisibility(View.VISIBLE);
                 break;
         }
+
         dialog.findViewById(R.id.llWorkshops).setVisibility(View.VISIBLE);
         dialog.findViewById(R.id.llServices).setVisibility(View.GONE);
         dialog.show();
     }
 
+    /**
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId())
-        {
+        switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent=new Intent(WorkshopsActivity.this,AboutServicesActivity.class);
+                Intent intent = new Intent(WorkshopsActivity.this, AboutServicesActivity.class);
                 finish();
                 startActivity(intent);
                 break;
@@ -333,10 +344,13 @@ public class WorkshopsActivity extends AppCompatActivity implements View.OnClick
         return true;
     }
 
+    /**
+     *
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent=new Intent(WorkshopsActivity.this,AboutServicesActivity.class);
+        Intent intent = new Intent(WorkshopsActivity.this, AboutServicesActivity.class);
         finish();
         startActivity(intent);
     }

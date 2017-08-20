@@ -17,9 +17,9 @@ import android.widget.TextView;
 /**
  * This class is used for displaying the different services being offered with its contents
  *
- * @author  Charmy Shah
- * @date    27-05-2017
+ * @author Charmy Shah
  * @version 1.0
+ * @date 27-05-2017
  */
 public class AboutServicesActivity extends AppCompatActivity implements View.OnClickListener {
 

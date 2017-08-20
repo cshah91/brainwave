@@ -9,11 +9,10 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/bwbackdrop_2"
-        android:tint="@android:color/white"
+        android:layout_marginTop="50dp"
         android:scaleX="2.5"
         android:scaleY="2.5"
-        android:layout_marginTop="50dp"
-        />
+        android:src="@mipmap/bwbackdrop_2"
+        android:tint="@android:color/white" />
 
 </LinearLayout>

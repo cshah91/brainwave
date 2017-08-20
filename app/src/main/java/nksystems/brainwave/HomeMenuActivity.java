@@ -58,17 +58,15 @@ import java.util.List;
 /**
  * This class is used for creating the navigation drawer and ViewStubs for each menu item
  *
- * @author  Nemi Shah
- * @date    24-04-2017
+ * @author Nemi Shah
  * @version 1.0
+ * @date 24-04-2017
  */
 public class HomeMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    ViewStub contentAbout, contentCounselling, contentFlower, contentPlay, contentHandwriting, contentAstrology, contentPari,
-            contentProducts, contentTips;
+    ViewStub contentAbout, contentCounselling, contentPari, contentProducts, contentTips;
     LinearLayout root;
-    ViewStub stub1, stub2, stub3, stubf1, stubf2, stubf3, stubh1, stubh2, stubh3;
     DatabaseReference mReference;
     StorageReference sReference;
     private RecyclerView mRecyclerView;
@@ -110,17 +108,6 @@ public class HomeMenuActivity extends AppCompatActivity
         contentPari = (ViewStub) findViewById(R.id.contentPari);
         contentPari.setLayoutResource(R.layout.activity_pari_herbal_products);
         contentPari.inflate();
-
-        // Navigation Drawer Menu: Play Therapy
-        contentPlay = (ViewStub) findViewById(R.id.contentPlay);
-
-        // Navigation Drawer Menu: Handwriting & Signature Analysis
-        contentHandwriting = (ViewStub) findViewById(R.id.contentHandwriting);
-        contentHandwriting.setLayoutResource(R.layout.handwriting_layout);
-        contentHandwriting.inflate();
-
-        // Navigation Drawer Menu: Astrology
-        contentAstrology = (ViewStub) findViewById(R.id.contentAstrology);
 
         // Settings Menu: Products
         contentProducts = (ViewStub) findViewById(R.id.contentProducts);
@@ -180,6 +167,7 @@ public class HomeMenuActivity extends AppCompatActivity
 
     /**
      * Inflate the menu; this adds items to the action bar if it is present.
+     *
      * @param menu
      * @return
      */
@@ -200,11 +188,10 @@ public class HomeMenuActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.menu_products){
+        if (id == R.id.menu_products) {
             switchContent(contentProducts);
             actionsProductsList();
-        }
-        else if(id == R.id.menu_tips){
+        } else if (id == R.id.menu_tips) {
             switchContent(contentTips);
         }
 
@@ -227,24 +214,15 @@ public class HomeMenuActivity extends AppCompatActivity
             switchContent(contentCounselling);
             actionsCounsellingServices();
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_play) {
-            drawer.closeDrawer(GravityCompat.START);
         } else if (id == R.id.nav_herbal) {
             switchContent(contentPari);
             actionsPariHerbalProducts();
             drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_handwriting) {
-            switchContent(contentHandwriting);
-            actionsHandwritingServices();
-            drawer.closeDrawer(GravityCompat.START);
-        } else if (id == R.id.nav_astro) {
-            drawer.closeDrawer(GravityCompat.START);
-        }else if(id == R.id.nav_about){
+        } else if (id == R.id.nav_about) {
             switchContent(contentAbout);
             actionAboutBrainwave();
             drawer.closeDrawer(GravityCompat.START);
-        }
-        else if(id==R.id.nav_close){
+        } else if (id == R.id.nav_close) {
             drawer.closeDrawer(GravityCompat.START);
         }
 
@@ -256,12 +234,9 @@ public class HomeMenuActivity extends AppCompatActivity
      *
      * @param v
      */
-    public void switchContent(View v){
+    public void switchContent(View v) {
         contentCounselling.setVisibility(View.GONE);
         contentPari.setVisibility(View.GONE);
-        contentPlay.setVisibility(View.GONE);
-        contentHandwriting.setVisibility(View.GONE);
-        contentAstrology.setVisibility(View.GONE);
         contentAbout.setVisibility(View.GONE);
         contentProducts.setVisibility(View.GONE);
         contentTips.setVisibility(View.GONE);
@@ -271,8 +246,7 @@ public class HomeMenuActivity extends AppCompatActivity
     /**
      *
      */
-    public void actionsCounsellingServices(){
-
+    public void actionsCounsellingServices() {
         carouselView = (CarouselView) findViewById(R.id.carouselView);
         carouselView.setImageListener(imageListener);
         carouselView.setPageCount(bachImages.length);
@@ -282,7 +256,7 @@ public class HomeMenuActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(HomeMenuActivity.this,AboutServicesActivity.class);
+                Intent intent = new Intent(HomeMenuActivity.this, AboutServicesActivity.class);
                 startActivity(intent);
             }
         });
@@ -294,9 +268,9 @@ public class HomeMenuActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(HomeMenuActivity.this,CounsellingFormActivity.class);
-                intent.putExtra("amount","500");
-                intent.putExtra("packagetype","2");
+                Intent intent = new Intent(HomeMenuActivity.this, CounsellingFormActivity.class);
+                intent.putExtra("amount", "500");
+                intent.putExtra("packagetype", "2");
                 startActivity(intent);
             }
         });
@@ -305,9 +279,9 @@ public class HomeMenuActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(HomeMenuActivity.this,CounsellingFormActivity.class);
-                intent.putExtra("amount","2000");
-                intent.putExtra("packagetype","1");
+                Intent intent = new Intent(HomeMenuActivity.this, CounsellingFormActivity.class);
+                intent.putExtra("amount", "2000");
+                intent.putExtra("packagetype", "1");
                 startActivity(intent);
             }
         });
@@ -324,7 +298,7 @@ public class HomeMenuActivity extends AppCompatActivity
                 setDateTimePicker(dialog);
                 // Third parameter for setAppointment is type of appointment
                 // Telephonic: 1, Skype: 2, Personal: 3
-                setAppointment(1,dialog,1);
+                setAppointment(1, dialog, 1);
                 Button btnAppointment = (Button) dialog.findViewById(R.id.btnCounselSetAppointment);
                 btnAppointment.setText("Set Telephonic Appointment");
                 dialog.show();
@@ -339,7 +313,7 @@ public class HomeMenuActivity extends AppCompatActivity
                 setDateTimePicker(dialog);
                 // Third parameter for setAppointment is type of appointment
                 // Telephonic: 1, Skype: 2, Personal: 3
-                setAppointment(1,dialog,2);
+                setAppointment(1, dialog, 2);
                 Button btnAppointment = (Button) dialog.findViewById(R.id.btnCounselSetAppointment);
                 btnAppointment.setText("Set Skype Appointment");
                 dialog.show();
@@ -354,7 +328,7 @@ public class HomeMenuActivity extends AppCompatActivity
                 setDateTimePicker(dialog);
                 // Third parameter for setAppointment is type of appointment
                 // Telephonic: 1, Skype: 2, Personal: 3
-                setAppointment(1,dialog,3);
+                setAppointment(1, dialog, 3);
                 Button btnAppointment = (Button) dialog.findViewById(R.id.btnCounselSetAppointment);
                 btnAppointment.setText("Set Personal Appointment");
                 dialog.show();
@@ -366,85 +340,16 @@ public class HomeMenuActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 finish();
-                Intent intent = new Intent(HomeMenuActivity.this,MedicinesActivity.class);
+                Intent intent = new Intent(HomeMenuActivity.this, MedicinesActivity.class);
                 startActivity(intent);
             }
         });
     }
 
     /**
-     *
-     */
-    public void actionsHandwritingServices(){
-
-        stubh1 = (ViewStub) findViewById(R.id.vshSchedule);
-        stubh2 = (ViewStub) findViewById(R.id.vshCounselling);
-        stubh3 = (ViewStub) findViewById(R.id.vshCounsellingMeds);
-
-        final RadioGroup radioGroup = (RadioGroup) findViewById(R.id.rgHand);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                RadioButton radioButton = (RadioButton) findViewById(checkedId);
-                if(radioButton.getId() == R.id.rbhSchedule){
-                    stubh1.inflate();
-                    Spinner spinner = (Spinner) findViewById(R.id.spnContacttype);
-                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(HomeMenuActivity.this,
-                            R.array.contact_type_list, android.R.layout.simple_spinner_item);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinner.setAdapter(adapter);
-                    findViewById(R.id.vshCounselling).setVisibility(View.GONE);
-                    findViewById(R.id.vshCounsellingMeds).setVisibility(View.GONE);
-
-                    //setDateTimePicker();
-                    //setAppointment(3);
-                }
-                else if(radioButton.getId() == R.id.rbhCounselling){
-                    stubh2.inflate();
-                    stubh1.setVisibility(View.GONE);
-                    stubh3.setVisibility(View.GONE);
-                }
-                else if(radioButton.getId() == R.id.rbhCounsellingMeds){
-                    stubh3.inflate();
-                    stubh1.setVisibility(View.GONE);
-                    stubh2.setVisibility(View.GONE);
-                }
-            }
-        });
-
-        Button btnAboutHand = (Button) findViewById(R.id.btnAboutHand);
-        btnAboutHand.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialog dialog = new Dialog(HomeMenuActivity.this, android.R.style.Theme_Dialog);
-                dialog.setContentView(R.layout.about_handwriting_layout);
-                dialog.show();
-            }
-        });
-
-        /*Button btnTelephone = (Button) findViewById(R.id.btnAboutCounselling);
-        btnTelephone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialog dialog = new Dialog(HomeMenuActivity.this);
-                dialog.setContentView(R.layout.dialog_appointment_form);
-                setDateTimePicker(dialog);
-                // Third parameter for setAppointment is type of appointment
-                // Telephonic: 1, Skype: 2, Personal: 3
-                setAppointment(3,dialog,1);
-                TextView viewProblem = (TextView) dialog.findViewById(R.id.viewProblem);
-                EditText txtProblem = (EditText) dialog.findViewById(R.id.txtProblem);
-                viewProblem.setVisibility(View.GONE);
-                txtProblem.setVisibility(View.GONE);
-                dialog.show();
-            }
-        });*/
-    }
-
-    /**
      * @param dialog
      */
-    public void setDateTimePicker(Dialog dialog){
+    public void setDateTimePicker(Dialog dialog) {
         ImageButton btnDate, btnTime;
 
         btnDate = (ImageButton) dialog.findViewById(R.id.btnDate);
@@ -455,7 +360,6 @@ public class HomeMenuActivity extends AppCompatActivity
         btnDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 int mYear, mMonth, mDay;
                 //Get Current Date
                 final Calendar calendar = Calendar.getInstance();
@@ -470,28 +374,27 @@ public class HomeMenuActivity extends AppCompatActivity
                         Calendar cal = new GregorianCalendar(year, month, day);
                         int week = cal.get(Calendar.DAY_OF_WEEK);
 
-                        if(week == Calendar.SATURDAY || week == Calendar.SUNDAY || week == Calendar.WEDNESDAY){
+                        if (week == Calendar.SATURDAY || week == Calendar.SUNDAY || week == Calendar.WEDNESDAY) {
                             EditText txtDate = (EditText) commonDialog.findViewById(R.id.txtDueDate);
-                            txtDate.setText(day + "-" + (month+1) + "-" + year);
+                            txtDate.setText(day + "-" + (month + 1) + "-" + year);
                             selectedDate = txtDate.getText().toString();
-                        }
-                        else{
+                        } else {
                             String message = "Appointments available only for Wednesday, Saturday and Sunday. " +
                                     "Please select another date.";
-                            Toast.makeText(HomeMenuActivity.this,message,Toast.LENGTH_LONG).show();
+                            Toast.makeText(HomeMenuActivity.this, message, Toast.LENGTH_LONG).show();
                         }
                     }
-                },mYear,mMonth,mDay);
-                calendar.add(Calendar.DATE,1);
+                }, mYear, mMonth, mDay);
+                calendar.add(Calendar.DATE, 1);
                 Date currentDate = calendar.getTime();
                 datePickerDialog.getDatePicker().setMinDate(currentDate.getTime());
                 datePickerDialog.show();
             }
         });
+
         btnTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 int mHour, mMinute;
                 //Get Current Time
                 final Calendar calendar = Calendar.getInstance();
@@ -502,58 +405,51 @@ public class HomeMenuActivity extends AppCompatActivity
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                         EditText txtTime = (EditText) commonDialog.findViewById(R.id.txtDueTime);
-                        if(selectedDate != null && selectedDate.length() > 0){
+                        if (selectedDate != null && selectedDate.length() > 0) {
                             String date[] = selectedDate.split("-");
-                            Calendar cal = new GregorianCalendar(Integer.parseInt(date[2]), (Integer.parseInt(date[1])-1),
+                            Calendar cal = new GregorianCalendar(Integer.parseInt(date[2]), (Integer.parseInt(date[1]) - 1),
                                     Integer.parseInt(date[0]));
                             int week = cal.get(Calendar.DAY_OF_WEEK);
-                            String min="";
-                            if(minute >= 0 && minute < 10)
-                                min = "0"+minute;
+                            String min = "";
+                            if (minute >= 0 && minute < 10)
+                                min = "0" + minute;
                             else
-                                min = ""+minute;
-                            if(week == Calendar.WEDNESDAY){
-                                if(hour >= 9 && hour <= 12){
-                                    txtTime.setText((hour > 12 ? (hour-12):hour) + ":" + min + (hour > 11 ? " PM" : " AM"));
-                                }
-                                else{
+                                min = "" + minute;
+                            if (week == Calendar.WEDNESDAY) {
+                                if (hour >= 9 && hour <= 12) {
+                                    txtTime.setText((hour > 12 ? (hour - 12) : hour) + ":" + min + (hour > 11 ? " PM" : " AM"));
+                                } else {
                                     txtTime.setText("");
                                     Toast.makeText(HomeMenuActivity.this, "Selected time is not available. Please see the appointment schedule " +
                                             "time slots mentioned below.", Toast.LENGTH_SHORT).show();
                                 }
-                            }
-                            else if(week == Calendar.SATURDAY){
-                                if((hour >= 16 && hour <= 18) || (hour >= 21 && hour <= 23)){
-                                    txtTime.setText((hour > 12 ? (hour-12):hour) + ":" + min + (hour > 11 ? " PM" : " AM"));
-                                }
-                                else{
+                            } else if (week == Calendar.SATURDAY) {
+                                if ((hour >= 16 && hour <= 18) || (hour >= 21 && hour <= 23)) {
+                                    txtTime.setText((hour > 12 ? (hour - 12) : hour) + ":" + min + (hour > 11 ? " PM" : " AM"));
+                                } else {
                                     txtTime.setText("");
                                     Toast.makeText(HomeMenuActivity.this, "Selected time is not available. Please see the appointment schedule " +
                                             "time slots mentioned below.", Toast.LENGTH_SHORT).show();
                                 }
-                            }
-                            else if(week == Calendar.SUNDAY){
-                                if(hour >= 10 && hour <= 15){
-                                    txtTime.setText((hour > 12 ? (hour-12):hour) + ":" + min + (hour > 11 ? " PM" : " AM"));
-                                }
-                                else{
+                            } else if (week == Calendar.SUNDAY) {
+                                if (hour >= 10 && hour <= 15) {
+                                    txtTime.setText((hour > 12 ? (hour - 12) : hour) + ":" + min + (hour > 11 ? " PM" : " AM"));
+                                } else {
                                     txtTime.setText("");
                                     Toast.makeText(HomeMenuActivity.this, "Selected time is not available. Please see the appointment schedule " +
                                             "time slots mentioned below.", Toast.LENGTH_SHORT).show();
                                 }
-                            }
-                            else{
+                            } else {
                                 txtTime.setText("");
                                 Toast.makeText(HomeMenuActivity.this, "Selected time is not available. Please see the appointment schedule " +
                                         "time slots mentioned below.", Toast.LENGTH_SHORT).show();
                             }
-                        }
-                        else{
+                        } else {
                             txtTime.setText("");
                             Toast.makeText(HomeMenuActivity.this, "Please select a date before setting time.", Toast.LENGTH_LONG).show();
                         }
                     }
-                },mHour,mMinute,false);
+                }, mHour, mMinute, false);
                 timePickerDialog.show();
             }
         });
@@ -564,7 +460,7 @@ public class HomeMenuActivity extends AppCompatActivity
      * @param dialog
      * @param type
      */
-    public void setAppointment(final int id, Dialog dialog, final int type){
+    public void setAppointment(final int id, Dialog dialog, final int type) {
         commonDialog = dialog;
         Button btnCounselSetAppointment = (Button) dialog.findViewById(R.id.btnCounselSetAppointment);
         btnCounselSetAppointment.setOnClickListener(new View.OnClickListener() {
@@ -578,31 +474,25 @@ public class HomeMenuActivity extends AppCompatActivity
                 txtTime = (EditText) commonDialog.findViewById(R.id.txtDueTime);
                 txtProblem = (EditText) commonDialog.findViewById(R.id.txtProblem);
 
-                if(txtName.getText().equals("") || txtName.getText().length() == 0){
+                if (txtName.getText().equals("") || txtName.getText().length() == 0) {
                     Toast.makeText(HomeMenuActivity.this, "Please enter your name.", Toast.LENGTH_SHORT).show();
                     txtName.requestFocus();
-                }
-                else if(txtContact.getText().equals("") || txtContact.getText().length() == 0){
+                } else if (txtContact.getText().equals("") || txtContact.getText().length() == 0) {
                     Toast.makeText(HomeMenuActivity.this, "Please enter your contact number.", Toast.LENGTH_SHORT).show();
                     txtContact.requestFocus();
-                }
-                else if(txtEmail.getText().equals("") || txtEmail.getText().length() == 0){
+                } else if (txtEmail.getText().equals("") || txtEmail.getText().length() == 0) {
                     Toast.makeText(HomeMenuActivity.this, "Please enter your email.", Toast.LENGTH_SHORT).show();
                     txtEmail.requestFocus();
-                }
-                else if(txtDate.getText().equals("") || txtDate.getText().length() == 0){
+                } else if (txtDate.getText().equals("") || txtDate.getText().length() == 0) {
                     Toast.makeText(HomeMenuActivity.this, "Please select a date of appointment.", Toast.LENGTH_SHORT).show();
                     txtDate.requestFocus();
-                }
-                else if(txtTime.getText().equals("") || txtTime.getText().length() == 0){
+                } else if (txtTime.getText().equals("") || txtTime.getText().length() == 0) {
                     Toast.makeText(HomeMenuActivity.this, "Please select a time for your appointment", Toast.LENGTH_SHORT).show();
                     txtTime.requestFocus();
-                }
-                else if(txtProblem.getText().equals("") || txtProblem.getText().length() == 0){
+                } else if (txtProblem.getText().equals("") || txtProblem.getText().length() == 0) {
                     Toast.makeText(HomeMenuActivity.this, "Briefly describe your problem here.", Toast.LENGTH_SHORT).show();
                     txtProblem.requestFocus();
-                }
-                else{
+                } else {
                     String appointmentType = "";
 
                     String message = "Hello, \n\n I would like to schedule an appointment with you. Below are my details: \n\n Name: " + txtName.getText().toString() +
@@ -615,32 +505,28 @@ public class HomeMenuActivity extends AppCompatActivity
                             "\n Date of Appointment: " + txtDate.getText().toString() + "\n Time of Appointment: " + txtTime.getText().toString() +
                             "\n Problem in brief: " + txtProblem.getText().toString() + "\n\n Thank you for your time. \n\n Regards,\n Brainwave Support Team";
 
-                    if(type == 1){
+                    if (type == 1) {
                         appointmentType = "Telephonic";
-                    }
-                    else if(type == 2){
+                    } else if (type == 2) {
                         appointmentType = "Skype";
-                    }
-                    else if(type == 3){
+                    } else if (type == 3) {
                         appointmentType = "Personal";
                     }
 
                     String to = txtEmail.getText().toString();
                     String subject = "";
-                    if(id == 1){
+                    if (id == 1) {
                         subject = "Counselling Services - " + appointmentType + ": Appointment";
-                    }
-                    else if(id == 2){
+                    } else if (id == 2) {
                         subject = "Flower Therapy - " + appointmentType + ": Appointment";
-                    }
-                    else if(id == 3){
+                    } else if (id == 3) {
                         subject = "Handwriting & Signature Analysis - " + appointmentType + ": Appointment";
                     }
 
                     // Send mail to admin with appointment details
-                    new AsyncSendMail().execute(getResources().getString(R.string.adminEmail),subject,message, getResources().getString(R.string.appointmentMailFrom));
+                    new AsyncSendMail().execute(getResources().getString(R.string.adminEmail), subject, message, getResources().getString(R.string.appointmentMailFrom));
                     // Send mail to user with appointment details
-                    new AsyncSendMail().execute(to,subject, userMessage, getResources().getString(R.string.appointmentMailFrom));
+                    new AsyncSendMail().execute(to, subject, userMessage, getResources().getString(R.string.appointmentMailFrom));
                 }
             }
         });
@@ -649,21 +535,20 @@ public class HomeMenuActivity extends AppCompatActivity
     /**
      *
      */
-    public void actionsPariHerbalProducts(){
+    public void actionsPariHerbalProducts() {
         final GridView productslist;
         final ProgressBar progress;
-        productslist=(GridView)findViewById(R.id.gvBooksList);
-        progress=(ProgressBar)findViewById(R.id.progress);
+        productslist = (GridView) findViewById(R.id.gvBooksList);
+        progress = (ProgressBar) findViewById(R.id.progress);
 
         FirebaseApp.initializeApp(this);
-
-        mReference= FirebaseDatabase.getInstance().getReference("products");
-        sReference= FirebaseStorage.getInstance().getReference("imagethumbnails");
-        final CustomGridItem item= new CustomGridItem(this,sReference,mReference,"orderid");
+        mReference = FirebaseDatabase.getInstance().getReference("products");
+        sReference = FirebaseStorage.getInstance().getReference("imagethumbnails");
+        final CustomGridItem item = new CustomGridItem(this, sReference, mReference, "orderid");
         mReference.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 item.notifyDataSetChanged();
                 progress.setVisibility(View.GONE);
                 productslist.setVisibility(View.VISIBLE);
@@ -679,14 +564,14 @@ public class HomeMenuActivity extends AppCompatActivity
         productslist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView tvTitle=(TextView)view.findViewById(R.id.tvTitle);
-                String title=tvTitle.getText().toString();
+                TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
+                String title = tvTitle.getText().toString();
                 TextView tvProductDescription = (TextView) findViewById(R.id.tvAuthor);
                 String description = tvProductDescription.getText().toString();
 
-                Intent intent=new Intent(HomeMenuActivity.this,ProductDescriptionActivity.class);
-                intent.putExtra("title",title);
-                intent.putExtra("shortDescription",description);
+                Intent intent = new Intent(HomeMenuActivity.this, ProductDescriptionActivity.class);
+                intent.putExtra("title", title);
+                intent.putExtra("shortDescription", description);
                 finish();
                 startActivity(intent);
             }
@@ -696,7 +581,7 @@ public class HomeMenuActivity extends AppCompatActivity
     /**
      *
      */
-    public void actionAboutBrainwave(){
+    public void actionAboutBrainwave() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recViewAboutBW);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
@@ -706,6 +591,7 @@ public class HomeMenuActivity extends AppCompatActivity
     }
 
     /**
+     * Returns content for About Brainwave page
      * @return
      */
     private List<Brainwave> getDataSet() {
@@ -754,33 +640,30 @@ public class HomeMenuActivity extends AppCompatActivity
                 getResources().getString(R.string.bw_bullet_point_10) + "\n";
         Brainwave obj5 = new Brainwave(title, content);
         results.add(obj5);
-
         return results;
     }
 
     /**
      *
      */
-    public void actionsProductsList(){
-
+    public void actionsProductsList() {
         final List<String> productList = new ArrayList();
         final ProgressBar pd_progress = (ProgressBar) findViewById(R.id.pd_progress);
 
         FirebaseApp.initializeApp(this);
-
-        mReference= FirebaseDatabase.getInstance().getReference("products");
+        mReference = FirebaseDatabase.getInstance().getReference("products");
         mReference.orderByChild("orderid").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int i = 1;
-                for (DataSnapshot data :dataSnapshot.getChildren()){
-                    if((Boolean) data.child("active").getValue()){
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+                    if ((Boolean) data.child("active").getValue()) {
                         productList.add(i + ". " + data.getKey());
                         i++;
                     }
                 }
 
-                ArrayAdapter adapter = new ArrayAdapter(HomeMenuActivity.this,R.layout.item_product_name,productList);
+                ArrayAdapter adapter = new ArrayAdapter(HomeMenuActivity.this, R.layout.item_product_name, productList);
                 ListView listView = (ListView) findViewById(R.id.list_view_products);
                 listView.setAdapter(adapter);
                 pd_progress.setVisibility(View.GONE);
@@ -792,11 +675,10 @@ public class HomeMenuActivity extends AppCompatActivity
 
             }
         });
-
     }
 
     /**
-     *
+     * Send appointment mails
      */
     private class AsyncSendMail extends AsyncTask<String, String, String> {
         @Override

@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bt_very_light_gray"
     android:orientation="vertical"
-    tools:context="nksystems.brainwave.OrderConfirmationActivity"
     android:padding="10dp"
-    android:background="@color/bt_very_light_gray">
+    tools:context="nksystems.brainwave.OrderConfirmationActivity">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="5dp"
         app:cardCornerRadius="4dp"
-        app:contentPadding="10dp"
-        android:layout_gravity="center">
+        app:contentPadding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,17 +23,17 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvOrderTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvOrderTitle"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
-                android:textColor="#000"/>
+                android:textColor="#000" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:background="@color/bt_very_light_gray"/>
+                android:background="@color/bt_very_light_gray" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,12 +42,12 @@
                 android:paddingTop="5dp">
 
                 <ImageView
+                    android:id="@+id/imgPlaceholder"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:id="@+id/imgPlaceholder"
-                    android:src="@drawable/placeholder"
+                    android:layout_gravity="center"
                     android:background="@color/bt_very_light_gray"
-                    android:layout_gravity="center"/>
+                    android:src="@drawable/placeholder" />
 
                 <TextView
                     android:id="@+id/tvOrderDescription"
@@ -65,58 +65,56 @@
     <android.support.v7.widget.CardView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-        app:contentPadding="10dp"
         android:layout_gravity="center"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        app:cardCornerRadius="4dp"
+        app:contentPadding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
-            android:textColor="#000"
-            android:text="Order Summary"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="Order Summary"
+                android:textColor="#000" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/bt_very_light_gray"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/bt_very_light_gray" />
 
             <TableLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="*">
 
-                <TableRow
-                    android:layout_width="0dp">
+                <TableRow android:layout_width="0dp">
 
                     <TableLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:stretchColumns="*">
 
-                        <TableRow
-                            android:layout_width="0dp">
+                        <TableRow android:layout_width="0dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Price"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:paddingTop="5dp"
                                 android:paddingBottom="5dp"
-                                android:id="@+id/tvOrderPrice"/>
+                                android:paddingTop="5dp"
+                                android:text="Price" />
+
+                            <TextView
+                                android:id="@+id/tvOrderPrice"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp" />
 
                         </TableRow>
 
@@ -125,56 +123,54 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="GST 10%"
+                                android:paddingBottom="5dp"
                                 android:paddingTop="5dp"
-                                android:paddingBottom="5dp"/>
+                                android:text="GST 10%" />
 
                             <TextView
+                                android:id="@+id/tvOrderTax"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingTop="5dp"
                                 android:paddingBottom="5dp"
-                                android:id="@+id/tvOrderTax"/>
+                                android:paddingTop="5dp" />
 
                         </TableRow>
 
-                        <TableRow
-                            android:id="@+id/table_row_medicine">
+                        <TableRow android:id="@+id/table_row_medicine">
 
                             <TextView
+                                android:id="@+id/label_medicine"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Medicine"
-                                android:paddingTop="5dp"
                                 android:paddingBottom="5dp"
-                                android:id="@+id/label_medicine"/>
+                                android:paddingTop="5dp"
+                                android:text="Medicine" />
 
                             <TextView
+                                android:id="@+id/tvOrderMedicine"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingTop="5dp"
                                 android:paddingBottom="5dp"
-                                android:id="@+id/tvOrderMedicine"/>
+                                android:paddingTop="5dp" />
 
                         </TableRow>
 
-                        <TableRow
-                            android:id="@+id/table_row_shipping">
+                        <TableRow android:id="@+id/table_row_shipping">
 
                             <TextView
+                                android:id="@+id/label_shipping"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Shipping Charges"
-                                android:paddingTop="5dp"
                                 android:paddingBottom="5dp"
-                                android:id="@+id/label_shipping"/>
+                                android:paddingTop="5dp"
+                                android:text="Shipping Charges" />
 
                             <TextView
+                                android:id="@+id/tvOrderShipping"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingTop="5dp"
                                 android:paddingBottom="5dp"
-                                android:id="@+id/tvOrderShipping"/>
+                                android:paddingTop="5dp" />
 
                         </TableRow>
 
@@ -184,16 +180,15 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
                                 android:background="@color/bt_very_light_gray"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp">
-                            </View>
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"></View>
+
                             <View
                                 android:layout_width="match_parent"
                                 android:layout_height="2dp"
                                 android:background="@color/bt_very_light_gray"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp">
-                            </View>
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"></View>
 
                         </TableRow>
 
@@ -202,20 +197,20 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:text="Total Amount"
-                                android:paddingTop="5dp"
-                                android:paddingBottom="5dp"
                                 android:textColor="#000"
-                                android:textStyle="bold"/>
+                                android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/tvOrderTotal"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:paddingTop="5dp"
                                 android:paddingBottom="5dp"
+                                android:paddingTop="5dp"
                                 android:textColor="#000"
-                                android:textStyle="bold"
-                                android:id="@+id/tvOrderTotal"/>
+                                android:textStyle="bold" />
 
                         </TableRow>
 
@@ -234,10 +229,10 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/side_bar_color"
         android:onClick="checkout"
-        android:text="Checkout"
-        android:textColor="@color/white"
         android:padding="10dp"
-        android:backgroundTint="@color/side_bar_color"/>
+        android:text="Checkout"
+        android:textColor="@color/white" />
 
 </LinearLayout>

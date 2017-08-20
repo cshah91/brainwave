@@ -27,11 +27,11 @@ import java.util.GregorianCalendar;
 /**
  * This class is used for displaying the counselling form
  *
- * @author  Charmy Shah
- * @date    13-05-2017
+ * @author Charmy Shah
  * @version 1.0
+ * @date 13-05-2017
  */
-public class CounsellingFormActivity extends AppCompatActivity{
+public class CounsellingFormActivity extends AppCompatActivity {
 
     CheckBox chkMedication;
     TextView txtTotal;
@@ -43,6 +43,9 @@ public class CounsellingFormActivity extends AppCompatActivity{
     EditText txtQuestName, txtQuestEmail, txtQuestProblem, txtQuestProblemDetailed, txtCounselDueDate,
             txtCounselDueTime, txtAddress, txtCity, txtState, txtPincode;
 
+    /**
+     *
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -52,6 +55,10 @@ public class CounsellingFormActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
+    /**
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -65,6 +72,9 @@ public class CounsellingFormActivity extends AppCompatActivity{
         return true;
     }
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,50 +108,49 @@ public class CounsellingFormActivity extends AppCompatActivity{
         pincode = getIntent().getStringExtra("pincode");
         isMedication = getIntent().getStringExtra("isMedication");
 
-        if (isMedication != null && isMedication.equals("true")){
+        if (isMedication != null && isMedication.equals("true")) {
             chkMedication.setChecked(true);
-        }
-        else{
+        } else {
             chkMedication.setChecked(false);
         }
 
-        if (name != null && name.length() > 0){
+        if (name != null && name.length() > 0) {
             txtQuestName.setText(name);
         }
 
-        if (email != null && email.length() > 0){
+        if (email != null && email.length() > 0) {
             txtQuestEmail.setText(email);
         }
 
-        if (briefProblem != null && briefProblem.length() > 0){
+        if (briefProblem != null && briefProblem.length() > 0) {
             txtQuestProblem.setText(briefProblem);
         }
 
-        if (detailedProblem != null && detailedProblem.length() > 0){
+        if (detailedProblem != null && detailedProblem.length() > 0) {
             txtQuestProblemDetailed.setText(detailedProblem);
         }
 
-        if (date != null && date.length() > 0){
+        if (date != null && date.length() > 0) {
             txtCounselDueDate.setText(date);
         }
 
-        if (time != null && time.length() > 0){
+        if (time != null && time.length() > 0) {
             txtCounselDueTime.setText(time);
         }
 
-        if (address != null && address.length() > 0){
+        if (address != null && address.length() > 0) {
             txtAddress.setText(address);
         }
 
-        if (city != null && city.length() > 0){
+        if (city != null && city.length() > 0) {
             txtCity.setText(city);
         }
 
-        if (state != null && state.length() > 0){
+        if (state != null && state.length() > 0) {
             txtState.setText(state);
         }
 
-        if (pincode != null && pincode.length() > 0){
+        if (pincode != null && pincode.length() > 0) {
             txtPincode.setText(pincode);
         }
 
@@ -172,12 +181,10 @@ public class CounsellingFormActivity extends AppCompatActivity{
         }
 
         txtTotal = (TextView) findViewById(R.id.viewTotal);
-
         originalAmount = Integer.parseInt(getIntent().getStringExtra("amount"));
         medicationAmount = Integer.parseInt(getResources().getString(R.string.medication_amount));
 
         txtTotal.setText("Total: " + originalAmount + " INR");
-
         newAmount = originalAmount;
 
         chkMedication.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -202,7 +209,6 @@ public class CounsellingFormActivity extends AppCompatActivity{
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 // Package Type - 1 = Long Personal Session
                 // Package Type - 2 = Short Telephonic Session
                 if (txtQuestName.getText().equals("") || txtQuestName.getText().length() == 0) {
@@ -280,6 +286,9 @@ public class CounsellingFormActivity extends AppCompatActivity{
         });
     }
 
+    /**
+     *
+     */
     public void setDateTimePicker() {
         ImageButton btnCounselDate, btnCounselTime;
 

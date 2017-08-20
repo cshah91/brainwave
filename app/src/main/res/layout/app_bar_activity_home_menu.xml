@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent"
     android:id="@+id/rootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="nksystems.brainwave.HomeMenuActivity">
 
     <android.support.design.widget.AppBarLayout
@@ -24,64 +24,57 @@
     </android.support.design.widget.AppBarLayout>
 
     <ViewStub
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/contentAbout"
-        android:visibility="visible"
-        />
-
-    <ViewStub
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="visible" />
+
+    <ViewStub
         android:id="@+id/contentCounselling"
-        android:visibility="gone"
-        />
-
-    <ViewStub
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <ViewStub
         android:id="@+id/contentFlower"
-        android:visibility="gone"
-        />
-
-    <ViewStub
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <ViewStub
         android:id="@+id/contentPari"
-        android:visibility="gone"
-        />
-
-    <ViewStub
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <ViewStub
         android:id="@+id/contentPlay"
-        android:visibility="gone"
-        />
-
-    <ViewStub
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <ViewStub
         android:id="@+id/contentAstrology"
-        android:visibility="gone"
-        />
-
-    <ViewStub
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <ViewStub
         android:id="@+id/contentHandwriting"
-        android:visibility="gone"
-        />
-
-    <ViewStub
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <ViewStub
         android:id="@+id/contentProducts"
-        android:visibility="gone"/>
-
-    <ViewStub
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <ViewStub
         android:id="@+id/contentTips"
-        android:visibility="gone"/>
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
 </LinearLayout>

@@ -7,11 +7,11 @@ import java.security.Provider;
 /**
  * This class is used in sending out mails from system
  *
- * @author  Charmy Shah
- * @date    19-08-2017
+ * @author Charmy Shah
  * @version 1.0
+ * @date 19-08-2017
  */
-public final class JSSEProvider extends Provider{
+public final class JSSEProvider extends Provider {
 
     public JSSEProvider() {
         super("HarmonyJSSE", 1.0, "Harmony JSSE Provider");

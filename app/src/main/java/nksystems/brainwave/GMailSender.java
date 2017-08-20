@@ -19,14 +19,15 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.util.ByteArrayDataSource;
+
 /**
  * This class is used for sending out automatic mails from the system
  *
- * @author  Charmy Shah
- * @date    19-08-2017
+ * @author Charmy Shah
  * @version 1.0
+ * @date 19-08-2017
  */
-public class GMailSender extends Authenticator{
+public class GMailSender extends Authenticator {
 
     private String mailHost = "smtp.gmail.com";
     private String user;
@@ -37,7 +38,11 @@ public class GMailSender extends Authenticator{
         Security.addProvider(new JSSEProvider());
     }
 
-    public GMailSender(String user, String password){
+    /**
+     * @param user
+     * @param password
+     */
+    public GMailSender(String user, String password) {
         this.user = user;
         this.password = password;
 
@@ -55,12 +60,22 @@ public class GMailSender extends Authenticator{
         session = Session.getDefaultInstance(props, this);
     }
 
+    /**
+     * @return
+     */
     protected PasswordAuthentication getPasswordAuthentication() {
         return new PasswordAuthentication(user, password);
     }
 
+    /**
+     * @param subject
+     * @param body
+     * @param sender
+     * @param recipients
+     * @throws Exception
+     */
     public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception {
-        try{
+        try {
             MimeMessage message = new MimeMessage(session);
             DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
             message.setSender(new InternetAddress(sender));
@@ -71,7 +86,7 @@ public class GMailSender extends Authenticator{
             else
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
             Transport.send(message);
-        }catch(Exception e){
+        } catch (Exception e) {
             Log.e("SendMail", e.getMessage(), e);
         }
     }
@@ -80,21 +95,34 @@ public class GMailSender extends Authenticator{
         private byte[] data;
         private String type;
 
+        /**
+         * @param data
+         * @param type
+         */
         public ByteArrayDataSource(byte[] data, String type) {
             super();
             this.data = data;
             this.type = type;
         }
 
+        /**
+         * @param data
+         */
         public ByteArrayDataSource(byte[] data) {
             super();
             this.data = data;
         }
 
+        /**
+         * @param type
+         */
         public void setType(String type) {
             this.type = type;
         }
 
+        /**
+         * @return
+         */
         public String getContentType() {
             if (type == null)
                 return "application/octet-stream";
@@ -102,14 +130,25 @@ public class GMailSender extends Authenticator{
                 return type;
         }
 
+        /**
+         * @return
+         * @throws IOException
+         */
         public InputStream getInputStream() throws IOException {
             return new ByteArrayInputStream(data);
         }
 
+        /**
+         * @return
+         */
         public String getName() {
             return "ByteArrayDataSource";
         }
 
+        /**
+         * @return
+         * @throws IOException
+         */
         public OutputStream getOutputStream() throws IOException {
             throw new IOException("Not Supported");
         }

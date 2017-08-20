@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/activity_vertical_margin"
     android:layout_marginLeft="@dimen/activity_horizontal_margin"
     android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:layout_marginTop="@dimen/activity_vertical_margin">
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -67,14 +68,14 @@
                 android:paddingTop="10dp"
                 android:text="Problem in detail"
                 android:textColor="#000"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/txtQuestProblemDetailed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/viewQuestProblemDetailed"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/viewCounselDateTime"
@@ -103,9 +104,9 @@
                     android:id="@+id/btnCounselDate"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:scaleType="centerCrop"
-                    android:backgroundTint="@color/colorAccent"
                     android:layout_gravity="bottom"
+                    android:backgroundTint="@color/colorAccent"
+                    android:scaleType="centerCrop"
                     android:src="@mipmap/ic_date_range_white_48dp" />
 
             </LinearLayout>
@@ -129,78 +130,95 @@
                     android:id="@+id/btnCounselTime"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:scaleType="centerCrop"
+                    android:layout_gravity="bottom"
                     android:backgroundTint="@color/colorAccent"
-                    android:src="@mipmap/ic_schedule_white_48dp"
-                    android:layout_gravity="bottom"/>
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_schedule_white_48dp" />
 
             </LinearLayout>
 
             <TableLayout
+                android:id="@+id/tblCounselAppointment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tblCounselAppointment"
                 android:layout_below="@id/linearCounselTime"
                 android:paddingBottom="10dp">
 
                 <TableRow>
+
                     <TextView
-                        android:text="Appointment Timings"
+                        android:layout_span="3"
                         android:padding="3dp"
-                        android:layout_span="3"/>
+                        android:text="Appointment Timings" />
                 </TableRow>
+
                 <TableRow>
+
                     <TextView
-                        android:text="Wednesday"
-                        android:padding="3dp"/>
+                        android:padding="3dp"
+                        android:text="Wednesday" />
+
                     <TextView
-                        android:text=":"
-                        android:padding="3dp"/>
+                        android:padding="3dp"
+                        android:text=":" />
+
                     <TextView
-                        android:text="9:00 AM to 1:00 PM IST"
-                        android:padding="3dp"/>
+                        android:padding="3dp"
+                        android:text="9:00 AM to 1:00 PM IST" />
                 </TableRow>
+
                 <TableRow>
+
                     <TextView
-                        android:text="Saturday"
-                        android:padding="3dp"/>
+                        android:padding="3dp"
+                        android:text="Saturday" />
+
                     <TextView
-                        android:text=":"
-                        android:padding="3dp"/>
+                        android:padding="3dp"
+                        android:text=":" />
+
                     <TextView
-                        android:text="4:00 PM to 7:00 PM IST"
-                        android:padding="3dp"/>
+                        android:padding="3dp"
+                        android:text="4:00 PM to 7:00 PM IST" />
                 </TableRow>
+
                 <TableRow>
+
                     <TextView
-                        android:text="Saturday"
-                        android:padding="3dp"/>
+                        android:padding="3dp"
+                        android:text="Saturday" />
+
                     <TextView
-                        android:text=":"
-                        android:padding="3dp"/>
+                        android:padding="3dp"
+                        android:text=":" />
+
                     <TextView
-                        android:text="9:00 PM to 12:00 AM IST"
-                        android:padding="3dp"/>
+                        android:padding="3dp"
+                        android:text="9:00 PM to 12:00 AM IST" />
                 </TableRow>
+
                 <TableRow>
+
                     <TextView
-                        android:text="Sunday"
-                        android:padding="3dp"/>
+                        android:padding="3dp"
+                        android:text="Sunday" />
+
                     <TextView
-                        android:text=":"
-                        android:padding="3dp"/>
+                        android:padding="3dp"
+                        android:text=":" />
+
                     <TextView
-                        android:text="10:00 AM to 4:00 PM IST"
-                        android:padding="3dp"/>
+                        android:padding="3dp"
+                        android:text="10:00 AM to 4:00 PM IST" />
                 </TableRow>
             </TableLayout>
 
             <LinearLayout
+                android:id="@+id/linearCounselAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/linearCounselAddress"
                 android:layout_below="@+id/tblCounselAppointment"
+                android:orientation="vertical"
                 android:visibility="gone">
 
                 <TextView
@@ -209,7 +227,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:text="Shipping Address"
-                    android:textColor="#000"/>
+                    android:textColor="#000" />
 
                 <EditText
                     android:id="@+id/txtCounselAddress"
@@ -222,7 +240,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:text="City"
-                    android:textColor="#000"/>
+                    android:textColor="#000" />
 
                 <EditText
                     android:id="@+id/txtAddressCity"
@@ -235,7 +253,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:text="State"
-                    android:textColor="#000"/>
+                    android:textColor="#000" />
 
                 <EditText
                     android:id="@+id/txtAddressState"
@@ -248,7 +266,7 @@
                     android:layout_height="wrap_content"
                     android:paddingTop="10dp"
                     android:text="Pincode"
-                    android:textColor="#000"/>
+                    android:textColor="#000" />
 
                 <EditText
                     android:id="@+id/txtAddressPincode"
@@ -257,17 +275,17 @@
             </LinearLayout>
 
             <CheckBox
+                android:id="@+id/chkMedication"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Include Flower Medication"
-                android:id="@+id/chkMedication"
-                android:layout_below="@+id/linearCounselAddress"/>
+                android:layout_below="@+id/linearCounselAddress"
+                android:text="Include Flower Medication" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_below="@id/chkMedication"
+                android:orientation="horizontal"
                 android:paddingTop="10dp">
 
                 <Button
@@ -275,10 +293,10 @@
                     style="@style/Widget.AppCompat.Button.Colored"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/viewTotal"
                     android:text="Submit &amp; Pay"
                     android:textAlignment="center"
-                    android:textSize="14sp"
-                    android:layout_below="@+id/viewTotal"/>
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/viewTotal"

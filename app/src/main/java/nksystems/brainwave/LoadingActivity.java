@@ -10,14 +10,17 @@ import com.airbnb.lottie.LottieAnimationView;
 /**
  * This class is used for displaying the loading screen at the start of the app
  *
- * @author  Nemi Shah
- * @date    24-04-2017
+ * @author Nemi Shah
  * @version 1.0
+ * @date 24-04-2017
  */
 public class LoadingActivity extends AppCompatActivity {
 
     LottieAnimationView animView;
 
+    /**
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

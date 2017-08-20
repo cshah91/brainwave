@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,15 +11,15 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/viewServiceTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/viewServiceTitle"
+            android:layout_gravity="center_vertical"
             android:padding="15dp"
             android:textAlignment="center"
-            android:layout_gravity="center_vertical"
+            android:textColor="#351C75"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="#351C75"/>
+            android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
@@ -35,460 +36,460 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/llWorkshops"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:id="@+id/llWorkshops">
+                    android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/wkContent11"
+                        style="@style/dialog_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/wk_content_1_1"
-                        style="@style/dialog_content"
-                        android:visibility="gone"
-                        android:id="@+id/wkContent11"/>
+                        android:visibility="gone" />
 
                     <TextView
+                        android:id="@+id/wkContent12"
+                        style="@style/dialog_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/wk_learn"
-                        style="@style/dialog_content"
-                        android:visibility="gone"
-                        android:id="@+id/wkContent12"/>
+                        android:visibility="gone" />
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/viewWkBullets1"
                         style="@style/dialog_content"
-                        android:visibility="gone"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
 
                     <TextView
+                        android:id="@+id/wkContent21"
+                        style="@style/dialog_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/wk_content_2_1"
-                        style="@style/dialog_content"
-                        android:visibility="gone"
-                        android:id="@+id/wkContent21"/>
+                        android:visibility="gone" />
 
                     <TextView
+                        android:id="@+id/wkContent22"
+                        style="@style/dialog_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/wk_learn"
-                        style="@style/dialog_content"
-                        android:visibility="gone"
-                        android:id="@+id/wkContent22"/>
+                        android:visibility="gone" />
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/viewWkBullets2"
                         style="@style/dialog_content"
-                        android:visibility="gone"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
 
                     <TextView
+                        android:id="@+id/wkContent31"
+                        style="@style/dialog_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/wk_content_3_1"
-                        style="@style/dialog_content"
-                        android:visibility="gone"
-                        android:id="@+id/wkContent31"/>
+                        android:visibility="gone" />
 
                     <TextView
+                        android:id="@+id/wkContent32"
+                        style="@style/dialog_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/wk_content_3_2"
-                        style="@style/dialog_content"
-                        android:visibility="gone"
-                        android:id="@+id/wkContent32"/>
+                        android:visibility="gone" />
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/viewWkBullets31"
                         style="@style/dialog_content"
-                        android:visibility="gone"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
 
                     <TextView
+                        android:id="@+id/wkContent33"
+                        style="@style/dialog_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/wk_content_3_3"
-                        style="@style/dialog_content"
-                        android:visibility="gone"
-                        android:id="@+id/wkContent33"/>
+                        android:visibility="gone" />
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/viewWkBullets32"
                         style="@style/dialog_content"
-                        android:visibility="gone"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
 
                     <TextView
+                        android:id="@+id/wkContent61"
+                        style="@style/dialog_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/wk_content_6_1"
-                        style="@style/dialog_content"
-                        android:visibility="gone"
-                        android:id="@+id/wkContent61"/>
+                        android:visibility="gone" />
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/viewWkBullets61"
                         style="@style/dialog_content"
-                        android:visibility="gone"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
 
                     <TextView
+                        android:id="@+id/wkContent62"
+                        style="@style/dialog_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/wk_content_6_2"
-                        style="@style/dialog_content"
-                        android:visibility="gone"
-                        android:id="@+id/wkContent62"/>
+                        android:visibility="gone" />
 
                     <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/viewWkBullets62"
-                        style="@style/dialog_content"/>
+                        style="@style/dialog_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llServices"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:id="@+id/llServices">
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/llSvContent2"
-                        android:visibility="gone"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sv_content_2_1_1"
+                            android:id="@+id/svContent211"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent211"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_2_1_2"
+                            android:text="@string/sv_content_2_1_1" />
+
+                        <TextView
+                            android:id="@+id/svContent212"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent212"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_2_1_3"
+                            android:text="@string/sv_content_2_1_2" />
+
+                        <TextView
+                            android:id="@+id/svContent213"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent213"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_2_2_1"
+                            android:text="@string/sv_content_2_1_3" />
+
+                        <TextView
+                            android:id="@+id/svContent221"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent221"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_2_2_2"
+                            android:text="@string/sv_content_2_2_1" />
+
+                        <TextView
+                            android:id="@+id/svContent222"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent222"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/sv_content_2_2_2" />
+
+                        <TextView
                             android:id="@+id/viewSvBullets22"
-                            style="@style/dialog_content" />
+                            style="@style/dialog_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                         <TextView
+                            android:id="@+id/svContent23"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_2_3"
-                            style="@style/dialog_content"
-                            android:id="@+id/svContent23"/>
+                            android:text="@string/sv_content_2_3" />
 
                         <TextView
+                            android:id="@+id/svContent24"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_2_4"
-                            style="@style/dialog_content"
-                            android:id="@+id/svContent24"/>
+                            android:text="@string/sv_content_2_4" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/llSvContent3"
-                        android:visibility="gone"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <TextView
+                            android:id="@+id/svContent31"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_3_1"
-                            style="@style/dialog_content"
-                            android:id="@+id/svContent31"/>
+                            android:text="@string/sv_content_3_1" />
 
                         <TextView
+                            android:id="@+id/svContent32"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_3_2"
-                            style="@style/dialog_content"
-                            android:id="@+id/svContent32"/>
+                            android:text="@string/sv_content_3_2" />
 
                         <TextView
+                            android:id="@+id/svContent33"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_3_3"
-                            style="@style/dialog_content"
-                            android:id="@+id/svContent33"/>
+                            android:text="@string/sv_content_3_3" />
 
                         <TextView
+                            android:id="@+id/svContent34"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_3_4"
-                            style="@style/dialog_content"
-                            android:id="@+id/svContent34"/>
+                            android:text="@string/sv_content_3_4" />
 
                         <TextView
+                            android:id="@+id/svContent35"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_3_5"
-                            style="@style/dialog_content"
-                            android:id="@+id/svContent35"/>
+                            android:text="@string/sv_content_3_5" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/llSvContent4"
-                        android:visibility="gone"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sv_content_4_1"
+                            android:id="@+id/svContent41"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent41"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_4_2"
+                            android:text="@string/sv_content_4_1" />
+
+                        <TextView
+                            android:id="@+id/svContent42"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent42"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_4_3"
+                            android:text="@string/sv_content_4_2" />
+
+                        <TextView
+                            android:id="@+id/svContent43"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent43"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/sv_content_4_3" />
+
+                        <TextView
                             android:id="@+id/viewSvBullets43"
-                            style="@style/dialog_content" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sv_content_4_4"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent44"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                         <TextView
+                            android:id="@+id/svContent44"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/sv_content_4_4" />
+
+                        <TextView
                             android:id="@+id/viewSvBullets44"
-                            style="@style/dialog_content" />
+                            style="@style/dialog_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                         <TextView
+                            android:id="@+id/svContent45"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_4_5"
-                            style="@style/dialog_content"
-                            android:id="@+id/svContent45"/>
+                            android:text="@string/sv_content_4_5" />
 
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
                         android:id="@+id/llSvContent5"
-                        android:visibility="gone"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sv_content_5_1"
+                            android:id="@+id/svContent51"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent51"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_5_2"
+                            android:text="@string/sv_content_5_1" />
+
+                        <TextView
+                            android:id="@+id/svContent52"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent52"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_5_3"
+                            android:text="@string/sv_content_5_2" />
+
+                        <TextView
+                            android:id="@+id/svContent53"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent53"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_5_4"
+                            android:text="@string/sv_content_5_3" />
+
+                        <TextView
+                            android:id="@+id/svContent54"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent54"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_5_5"
+                            android:text="@string/sv_content_5_4" />
+
+                        <TextView
+                            android:id="@+id/svContent55"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent55"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/sv_content_5_5" />
+
+                        <TextView
                             android:id="@+id/viewSvBullets55"
-                            style="@style/dialog_content" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sv_content_5_6"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent56"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                         <TextView
+                            android:id="@+id/svContent56"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/sv_content_5_6" />
+
+                        <TextView
                             android:id="@+id/viewSvBullets56"
-                            style="@style/dialog_content" />
+                            style="@style/dialog_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                         <TextView
+                            android:id="@+id/svContent57"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_5_7"
-                            style="@style/dialog_content"
-                            android:id="@+id/svContent57"/>
+                            android:text="@string/sv_content_5_7" />
 
                         <TextView
+                            android:id="@+id/svContent58"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_5_8"
-                            style="@style/dialog_content"
-                            android:id="@+id/svContent58"/>
+                            android:text="@string/sv_content_5_8" />
 
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/llSvContent6"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/llSvContent6"
-                        android:visibility="gone"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sv_content_6_1"
+                            android:id="@+id/svContent61"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent61"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_6_2"
+                            android:text="@string/sv_content_6_1" />
+
+                        <TextView
+                            android:id="@+id/svContent62"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent62"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_6_3"
+                            android:text="@string/sv_content_6_2" />
+
+                        <TextView
+                            android:id="@+id/svContent63"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent63"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_6_4"
+                            android:text="@string/sv_content_6_3" />
+
+                        <TextView
+                            android:id="@+id/svContent64"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent64"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/sv_content_6_4" />
+
+                        <TextView
                             android:id="@+id/viewSvBullets64"
-                            style="@style/dialog_content" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sv_content_6_5"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent65"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                         <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sv_content_6_6"
+                            android:id="@+id/svContent65"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent66"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_6_7"
+                            android:text="@string/sv_content_6_5" />
+
+                        <TextView
+                            android:id="@+id/svContent66"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent67"/>
-
-                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/sv_content_6_6" />
+
+                        <TextView
+                            android:id="@+id/svContent67"
+                            style="@style/dialog_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sv_content_6_7" />
+
+                        <TextView
                             android:id="@+id/viewSvBullets67"
-                            style="@style/dialog_content" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sv_content_6_8"
                             style="@style/dialog_content"
-                            android:id="@+id/svContent68"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                         <TextView
+                            android:id="@+id/svContent68"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:text="@string/sv_content_6_8" />
+
+                        <TextView
                             android:id="@+id/viewSvBullets68"
-                            style="@style/dialog_content" />
+                            style="@style/dialog_content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                         <TextView
+                            android:id="@+id/svContent69"
+                            style="@style/dialog_content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sv_content_6_9"
-                            style="@style/dialog_content"
-                            android:id="@+id/svContent69"/>
+                            android:text="@string/sv_content_6_9" />
 
                     </LinearLayout>
 

@@ -7,30 +7,9 @@
             android:icon="@mipmap/icon_counseling"
             android:title="Counselling Services" />
         <item
-            android:id="@+id/nav_flower"
-            android:icon="@mipmap/icon_flower"
-            android:title="Flower Therapy"
-            android:visible="false"/>
-        <item
             android:id="@+id/nav_herbal"
             android:icon="@mipmap/icon_herbal"
             android:title="Pari Herbal Products" />
-        <item
-            android:id="@+id/nav_play"
-            android:icon="@mipmap/icon_play"
-            android:title="Play Therapy"
-            android:visible="false"/>
-        <item
-            android:id="@+id/nav_handwriting"
-            android:icon="@mipmap/icon_handwriting"
-            android:title="Handwriting Analysis"
-            android:visible="false"/>
-        <item
-            android:id="@+id/nav_astro"
-            android:icon="@mipmap/icon_astro_alt"
-            android:title="Astrology"
-            android:visible="false"/>
-
         <item
             android:id="@+id/nav_about"
             android:icon="@mipmap/ic_info_black_48dp"
@@ -39,7 +18,6 @@
             android:id="@+id/nav_close"
             android:icon="@mipmap/ic_clear_black_48dp"
             android:title="Close" />
-
     </group>
 
 
